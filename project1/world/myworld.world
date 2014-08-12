@@ -49,7 +49,7 @@ window
   
 )
 
-# load an environment bitmap
+#load an environment bitmap
 floorplan
 ( 
   name "swarm"
