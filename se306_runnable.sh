@@ -12,7 +12,7 @@ rosrun project1 R0 &
 rosrun project1 R1 &
 rosrun project1 R2 &
 
-read -p "Press any key to continue... " -n1 -s
+read -p "Press any key to exit... " -n1 -s
 killall R0
 killall R1
 killall R2
