@@ -18,18 +18,28 @@ double theta;
 
 void wakeUp()
 {
-	// Go out of bed.
-	// Navigate to sofa.
+	// Triggered by schedule.
+	// Navigate to sofa, and then stop.
 }
 
 void getReadyToEat()
 {
-	// Navigate to dining table.
+	// Triggered by robot message.
+	// Navigate to dining table, and then stop.
 }
 
 void eat()
 {
-	// Spin on the spot to show that resident is eating, then stop. 
+	// Triggered by robot message.
+	// Spin on the spot to show that resident is eating. 
+	angular_z = 2;
+
+	/* Stop the spinning.
+	if(count==200){
+		angular_z=0;
+	}
+	*/
+	
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
@@ -58,8 +68,8 @@ int main(int argc, char **argv)
 	py = 20;
 	
 	//Initial velocity
-	linear_x = 10;
-	angular_z = 0.2;
+	linear_x = 0;
+	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
 ros::init(argc, argv, "RobotNode0");
@@ -83,6 +93,8 @@ int count = 0;
 ////messages
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
+
+// Test catching a robot message.
 
 while (ros::ok())
 {
