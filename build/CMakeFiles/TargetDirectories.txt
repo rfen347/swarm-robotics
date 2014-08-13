@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CookingRobot.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/R0.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/R1.dir
+/home/shivarni/indigo_workspace/project1/build/CMakeFiles/R2.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/ROSBUILD_genmsg_cpp.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/ROSBUILD_genmsg_lisp.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
@@ -23,29 +22,3 @@
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/test-results.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/test-results-run.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/tests.dir
-=======
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/R0.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/R1.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/R2.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/ROSBUILD_genmsg_cpp.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/ROSBUILD_genmsg_lisp.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/ROSBUILD_gensrv_lisp.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/_catkin_empty_exported_target.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/clean_test_results.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/doxygen.dir
-/home/bc/indigo_workspace3/project1/build/gtest/CMakeFiles/gtest.dir
-/home/bc/indigo_workspace3/project1/build/gtest/CMakeFiles/gtest_main.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/rosbuild_clean-test-results.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/rosbuild_precompile.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/rosbuild_premsgsrvgen.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/rospack_genmsg.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/rospack_genmsg_libexe.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/rospack_gensrv.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/run_tests.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/test.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/test-future.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/test-results.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/test-results-run.dir
-/home/bc/indigo_workspace3/project1/build/CMakeFiles/tests.dir
->>>>>>> 619742598b2f9c4e188e26b10f08e8f688b3b93a

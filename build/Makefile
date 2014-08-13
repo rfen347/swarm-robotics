@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/bc/indigo_workspace3/project1
+CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/bc/indigo_workspace3/project1/build
+CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bc/indigo_workspace3/project1/build/CMakeFiles /home/bc/indigo_workspace3/project1/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles /home/shivarni/indigo_workspace/project1/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bc/indigo_workspace3/project1/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,19 +128,6 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named CookingRobot
-
-# Build rule for target.
-CookingRobot: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 CookingRobot
-.PHONY : CookingRobot
-
-# fast build rule for target.
-CookingRobot/fast:
-	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/build
-.PHONY : CookingRobot/fast
 
 #=============================================================================
 # Target rules for targets named R0
@@ -454,34 +441,6 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
-<<<<<<< HEAD
-src/CookingRobot.o: src/CookingRobot.cpp.o
-.PHONY : src/CookingRobot.o
-
-# target to build an object file
-src/CookingRobot.cpp.o:
-	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/src/CookingRobot.cpp.o
-.PHONY : src/CookingRobot.cpp.o
-
-src/CookingRobot.i: src/CookingRobot.cpp.i
-.PHONY : src/CookingRobot.i
-
-# target to preprocess a source file
-src/CookingRobot.cpp.i:
-	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/src/CookingRobot.cpp.i
-.PHONY : src/CookingRobot.cpp.i
-
-src/CookingRobot.s: src/CookingRobot.cpp.s
-.PHONY : src/CookingRobot.s
-
-# target to generate assembly for a file
-src/CookingRobot.cpp.s:
-	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/src/CookingRobot.cpp.s
-.PHONY : src/CookingRobot.cpp.s
-
-src/R0.o: src/R0.cpp.o
-.PHONY : src/R0.o
-=======
 src/cookingrobot.o: src/cookingrobot.cpp.o
 .PHONY : src/cookingrobot.o
 
@@ -508,7 +467,6 @@ src/cookingrobot.cpp.s:
 
 src/resident.o: src/resident.cpp.o
 .PHONY : src/resident.o
->>>>>>> 619742598b2f9c4e188e26b10f08e8f688b3b93a
 
 # target to build an object file
 src/resident.cpp.o:
@@ -561,7 +519,6 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... CookingRobot"
 	@echo "... R0"
 	@echo "... R1"
 	@echo "... R2"
@@ -591,17 +548,6 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
-<<<<<<< HEAD
-	@echo "... src/CookingRobot.o"
-	@echo "... src/CookingRobot.i"
-	@echo "... src/CookingRobot.s"
-	@echo "... src/R0.o"
-	@echo "... src/R0.i"
-	@echo "... src/R0.s"
-	@echo "... src/R1.o"
-	@echo "... src/R1.i"
-	@echo "... src/R1.s"
-=======
 	@echo "... src/cookingrobot.o"
 	@echo "... src/cookingrobot.i"
 	@echo "... src/cookingrobot.s"
@@ -611,7 +557,6 @@ help:
 	@echo "... src/visitor.o"
 	@echo "... src/visitor.i"
 	@echo "... src/visitor.s"
->>>>>>> 619742598b2f9c4e188e26b10f08e8f688b3b93a
 .PHONY : help
 
 

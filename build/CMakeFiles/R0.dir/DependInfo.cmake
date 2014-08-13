@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/bc/indigo_workspace3/project1/src/resident.cpp" "/home/bc/indigo_workspace3/project1/build/CMakeFiles/R0.dir/src/resident.cpp.o"
+  "/home/shivarni/indigo_workspace/project1/src/resident.cpp" "/home/shivarni/indigo_workspace/project1/build/CMakeFiles/R0.dir/src/resident.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

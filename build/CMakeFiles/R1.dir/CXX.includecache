@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/bc/indigo_workspace3/project1/src/cookingrobot.cpp
+/home/shivarni/indigo_workspace/project1/src/cookingrobot.cpp
 ros/ros.h
-/home/bc/indigo_workspace3/project1/src/ros/ros.h
+/home/shivarni/indigo_workspace/project1/src/ros/ros.h
 std_msgs/String.h
-/home/bc/indigo_workspace3/project1/src/std_msgs/String.h
+/home/shivarni/indigo_workspace/project1/src/std_msgs/String.h
 geometry_msgs/Twist.h
 -
 nav_msgs/Odometry.h
@@ -20,7 +20,7 @@ sensor_msgs/LaserScan.h
 sstream
 -
 math.h
-/home/bc/indigo_workspace3/project1/src/math.h
+/home/shivarni/indigo_workspace/project1/src/math.h
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h
