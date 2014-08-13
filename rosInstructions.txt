@@ -1,0 +1,23 @@
+
+
+>>roscd 
+You should now be in your ros workspace
+>>roscore
+
+Open new terminal:
+>>roscd
+>>cd project1
+>>rosmake
+
+To run robot processes:
+>>rosrun project1 R0
+
+Open new terminal:
+>>roscd
+>>rosrun project1 R1
+
+Open new terminal:
+>>roscd
+>>cd project1
+>>rosrun stage_ros stageros world/myworld.world
+
