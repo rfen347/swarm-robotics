@@ -6,27 +6,11 @@
 
 #IncludeRegexTransform: 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 /home/rione/indigo_workspace/project1/src/resident.cpp
 ros/ros.h
 /home/rione/indigo_workspace/project1/src/ros/ros.h
 std_msgs/String.h
 /home/rione/indigo_workspace/project1/src/std_msgs/String.h
-=======
-/home/shivarni/indigo_workspace/project1/src/resident.cpp
-=======
-/home/rione/indigo_workspace/project1/src/resident.cpp
->>>>>>> cookingRobot
-ros/ros.h
-/home/rione/indigo_workspace/project1/src/ros/ros.h
-std_msgs/String.h
-<<<<<<< HEAD
-/home/shivarni/indigo_workspace/project1/src/std_msgs/String.h
->>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
-=======
-/home/rione/indigo_workspace/project1/src/std_msgs/String.h
->>>>>>> cookingRobot
 geometry_msgs/Twist.h
 -
 nav_msgs/Odometry.h
@@ -36,15 +20,7 @@ sensor_msgs/LaserScan.h
 sstream
 -
 math.h
-<<<<<<< HEAD
-<<<<<<< HEAD
 /home/rione/indigo_workspace/project1/src/math.h
-=======
-/home/shivarni/indigo_workspace/project1/src/math.h
->>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
-=======
-/home/rione/indigo_workspace/project1/src/math.h
->>>>>>> cookingRobot
 
 /opt/ros/indigo/include/XmlRpcDecl.h
 ros/macros.h

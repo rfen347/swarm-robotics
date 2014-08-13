@@ -39,24 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
-<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
-=======
-CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
->>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
-=======
-CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
->>>>>>> cookingRobot
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -93,6 +79,16 @@ install/local: preinstall
 install/local/fast: install/local
 .PHONY : install/local/fast
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+.PHONY : install/strip/fast
+
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -114,21 +110,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-<<<<<<< HEAD
-<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles /home/rione/indigo_workspace/project1/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles 0
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles /home/shivarni/indigo_workspace/project1/build/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles 0
->>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles /home/rione/indigo_workspace/project1/build/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles 0
->>>>>>> cookingRobot
 .PHONY : all
 
 # The main clean target
@@ -558,6 +542,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
+	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_clean-test-results"

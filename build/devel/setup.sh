@@ -8,15 +8,7 @@
 
 # since this file is sourced either use the provided _CATKIN_SETUP_DIR
 # or fall back to the destination set at configure time
-<<<<<<< HEAD
-<<<<<<< HEAD
 : ${_CATKIN_SETUP_DIR:=/home/rione/indigo_workspace/project1/build/devel}
-=======
-: ${_CATKIN_SETUP_DIR:=/home/shivarni/indigo_workspace/project1/build/devel}
->>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
-=======
-: ${_CATKIN_SETUP_DIR:=/home/rione/indigo_workspace/project1/build/devel}
->>>>>>> cookingRobot
 _SETUP_UTIL="$_CATKIN_SETUP_DIR/_setup_util.py"
 unset _CATKIN_SETUP_DIR
 
