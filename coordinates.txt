@@ -13,6 +13,7 @@ Bathroom sink (-9.23,-2.27)
 Bath (-8, -3.7)
 Front door (7.0,-4.7)
 
+Resident
 Bed_Table_1(-3.5, 4.5)
 Bed_Table_2(-3.5, -1.0)
 Bed_Table_3(-0.5, -1.0)
