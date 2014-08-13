@@ -271,7 +271,7 @@ _CATKIN_GTEST_INCLUDE:FILEPATH=/usr/include/gtest/gtest.h
 _CATKIN_GTEST_SRC:FILEPATH=/usr/src/gtest/src/gtest.cc
 
 //Path to a file.
-_file_name:FILEPATH=/home/shivarni/indigo_workspace/project1/src/R1.cpp
+_file_name:FILEPATH=/home/shivarni/indigo_workspace/project1/src/CookingRobot.cpp
 
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/indigo/share/catkin/cmake

@@ -140,6 +140,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named CookingRobot
+
+# Build rule for target.
+CookingRobot: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CookingRobot
+.PHONY : CookingRobot
+
+# fast build rule for target.
+CookingRobot/fast:
+	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/build
+.PHONY : CookingRobot/fast
+
+#=============================================================================
 # Target rules for targets named R0
 
 # Build rule for target.
@@ -438,6 +451,30 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/CookingRobot.o: src/CookingRobot.cpp.o
+.PHONY : src/CookingRobot.o
+
+# target to build an object file
+src/CookingRobot.cpp.o:
+	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/src/CookingRobot.cpp.o
+.PHONY : src/CookingRobot.cpp.o
+
+src/CookingRobot.i: src/CookingRobot.cpp.i
+.PHONY : src/CookingRobot.i
+
+# target to preprocess a source file
+src/CookingRobot.cpp.i:
+	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/src/CookingRobot.cpp.i
+.PHONY : src/CookingRobot.cpp.i
+
+src/CookingRobot.s: src/CookingRobot.cpp.s
+.PHONY : src/CookingRobot.s
+
+# target to generate assembly for a file
+src/CookingRobot.cpp.s:
+	$(MAKE) -f CMakeFiles/CookingRobot.dir/build.make CMakeFiles/CookingRobot.dir/src/CookingRobot.cpp.s
+.PHONY : src/CookingRobot.cpp.s
+
 src/R0.o: src/R0.cpp.o
 .PHONY : src/R0.o
 
@@ -492,6 +529,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... CookingRobot"
 	@echo "... R0"
 	@echo "... R1"
 	@echo "... ROSBUILD_genmsg_cpp"
@@ -521,6 +559,9 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/CookingRobot.o"
+	@echo "... src/CookingRobot.i"
+	@echo "... src/CookingRobot.s"
 	@echo "... src/R0.o"
 	@echo "... src/R0.i"
 	@echo "... src/R0.s"
