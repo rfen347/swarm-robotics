@@ -58,6 +58,6 @@ floorplan
   pose [ 0 0 0 0 ]
 )
 # throw in a robot
-myRobot( pose [ 10 20 0 0 ] name "r0" color "blue")
+myRobot( pose [ -1 2 0 0 ] name "r0" color "red")
 myRobot( pose [ 3 2 0 0 ] name "r1" color "green")
-
+myRobot( pose [ -6.5 6 0 0 ] name "r3" color "pink")
