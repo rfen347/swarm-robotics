@@ -16,10 +16,8 @@ double px;
 double py;
 double theta;
 
-// Methods to do:
-// - wakeUp() . Triggered by schedule call directly. This makes the resident go out of bed and navigate to the sofa.
-// - getReadyToEat() . Triggered by robot message. This makes the resident navigate to the dining table.
-// - eat() . Triggered by robot message. This makes the resident spin for a while and then stop.
+// TO-DO:
+// - Make visitor walk around without bumping into things.
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {

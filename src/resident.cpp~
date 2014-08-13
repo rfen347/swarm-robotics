@@ -16,16 +16,11 @@ double px;
 double py;
 double theta;
 
-// Methods to do:
-// - wakeUp() . Triggered by schedule call directly. This makes the resident go out of bed and navigate to the sofa.
-// - getReadyToEat() . Triggered by robot message. This makes the resident navigate to the dining table.
-// - eat() . Triggered by robot message. This makes the resident spin for a while and then stop.
-
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 5 + msg.pose.pose.position.x;
-	py =10 + msg.pose.pose.position.y;
+	px = 0 + msg.pose.pose.position.x;
+	py =0 + msg.pose.pose.position.y;
 	ROS_INFO("Current x position is: %f", px);
 	ROS_INFO("Current y position is: %f", py);
 }
@@ -44,26 +39,26 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = M_PI/2.0;
-	px = 5;
-	py = 10;
+	px = 10;
+	py = 20;
 	
 	//Initial velocity
-	linear_x = 0.2;
+	linear_x = 10;
 	angular_z = 0.2;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "R2");
+ros::init(argc, argv, "RobotNode0");
 
 //NodeHandle is the main access point to communicate with ros.
 ros::NodeHandle n;
 
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
 
 //subscribe to listen to messages coming from stage
-ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
-ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_2/base_scan",1000,StageLaser_callback);
+ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
+ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
 
 ros::Rate loop_rate(10);
 
@@ -92,4 +87,3 @@ while (ros::ok())
 return 0;
 
 }
-
