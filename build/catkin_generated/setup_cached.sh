@@ -5,15 +5,15 @@
 # it emulates the modifications of the setup script without recurring computations
 
 # new environment variables
-export CATKIN_TEST_RESULTS_DIR="/home/shivarni/indigo_workspace/project1/build/test_results"
-export ROS_TEST_RESULTS_DIR="/home/shivarni/indigo_workspace/project1/build/test_results"
+export CATKIN_TEST_RESULTS_DIR="/home/eric/indigo_workspace/project1/build/test_results"
+export ROS_TEST_RESULTS_DIR="/home/eric/indigo_workspace/project1/build/test_results"
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/shivarni/indigo_workspace/project1/build/devel:$CMAKE_PREFIX_PATH"
-export CPATH="/home/shivarni/indigo_workspace/project1/build/devel/include:$CPATH"
-export LD_LIBRARY_PATH="/home/shivarni/indigo_workspace/project1/build/devel/lib:/home/shivarni/indigo_workspace/project1/build/devel/lib/x86_64-linux-gnu:/opt/ros/indigo/lib/x86_64-linux-gnu:/opt/ros/indigo/lib"
-export PATH="/home/shivarni/indigo_workspace/project1/build/devel/bin:$PATH"
-export PKG_CONFIG_PATH="/home/shivarni/indigo_workspace/project1/build/devel/lib/pkgconfig:/home/shivarni/indigo_workspace/project1/build/devel/lib/x86_64-linux-gnu/pkgconfig:/opt/ros/indigo/lib/x86_64-linux-gnu/pkgconfig:/opt/ros/indigo/lib/pkgconfig"
-export PYTHONPATH="/home/shivarni/indigo_workspace/project1/build/devel/lib/python2.7/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/shivarni/indigo_workspace/project1/build/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/shivarni/indigo_workspace/project1:/opt/ros/indigo/share:/opt/ros/indigo/stacks"
+export CMAKE_PREFIX_PATH="/home/eric/indigo_workspace/project1/build/devel:$CMAKE_PREFIX_PATH"
+export CPATH="/home/eric/indigo_workspace/project1/build/devel/include:$CPATH"
+export LD_LIBRARY_PATH="/home/eric/indigo_workspace/project1/build/devel/lib:/home/eric/indigo_workspace/project1/build/devel/lib/x86_64-linux-gnu:/opt/ros/indigo/lib/x86_64-linux-gnu:/opt/ros/indigo/lib"
+export PATH="/home/eric/indigo_workspace/project1/build/devel/bin:$PATH"
+export PKG_CONFIG_PATH="/home/eric/indigo_workspace/project1/build/devel/lib/pkgconfig:/home/eric/indigo_workspace/project1/build/devel/lib/x86_64-linux-gnu/pkgconfig:/opt/ros/indigo/lib/x86_64-linux-gnu/pkgconfig:/opt/ros/indigo/lib/pkgconfig"
+export PYTHONPATH="/home/eric/indigo_workspace/project1/build/devel/lib/python2.7/dist-packages:$PYTHONPATH"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/eric/indigo_workspace/project1/build/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/shivarni/indigo_workspace/project1:/home/eric/indigo_workspace/project1:/opt/ros/indigo/share:/opt/ros/indigo/stacks"

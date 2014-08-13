@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
+CMAKE_SOURCE_DIR = /home/eric/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
+CMAKE_BINARY_DIR = /home/eric/indigo_workspace/project1/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,16 +79,6 @@ install/local: preinstall
 install/local/fast: install/local
 .PHONY : install/local/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-.PHONY : install/strip/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -110,9 +100,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles /home/shivarni/indigo_workspace/project1/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/eric/indigo_workspace/project1/build/CMakeFiles /home/eric/indigo_workspace/project1/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/eric/indigo_workspace/project1/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -151,19 +141,6 @@ R0: cmake_check_build_system
 R0/fast:
 	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/build
 .PHONY : R0/fast
-
-#=============================================================================
-# Target rules for targets named R1
-
-# Build rule for target.
-R1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 R1
-.PHONY : R1
-
-# fast build rule for target.
-R1/fast:
-	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/build
-.PHONY : R1/fast
 
 #=============================================================================
 # Target rules for targets named ROSBUILD_genmsg_cpp
@@ -438,53 +415,29 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
-src/R0.o: src/R0.cpp.o
-.PHONY : src/R0.o
+src/resident.o: src/resident.cpp.o
+.PHONY : src/resident.o
 
 # target to build an object file
-src/R0.cpp.o:
-	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/R0.cpp.o
-.PHONY : src/R0.cpp.o
+src/resident.cpp.o:
+	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.o
+.PHONY : src/resident.cpp.o
 
-src/R0.i: src/R0.cpp.i
-.PHONY : src/R0.i
-
-# target to preprocess a source file
-src/R0.cpp.i:
-	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/R0.cpp.i
-.PHONY : src/R0.cpp.i
-
-src/R0.s: src/R0.cpp.s
-.PHONY : src/R0.s
-
-# target to generate assembly for a file
-src/R0.cpp.s:
-	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/R0.cpp.s
-.PHONY : src/R0.cpp.s
-
-src/R1.o: src/R1.cpp.o
-.PHONY : src/R1.o
-
-# target to build an object file
-src/R1.cpp.o:
-	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/R1.cpp.o
-.PHONY : src/R1.cpp.o
-
-src/R1.i: src/R1.cpp.i
-.PHONY : src/R1.i
+src/resident.i: src/resident.cpp.i
+.PHONY : src/resident.i
 
 # target to preprocess a source file
-src/R1.cpp.i:
-	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/R1.cpp.i
-.PHONY : src/R1.cpp.i
+src/resident.cpp.i:
+	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.i
+.PHONY : src/resident.cpp.i
 
-src/R1.s: src/R1.cpp.s
-.PHONY : src/R1.s
+src/resident.s: src/resident.cpp.s
+.PHONY : src/resident.s
 
 # target to generate assembly for a file
-src/R1.cpp.s:
-	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/R1.cpp.s
-.PHONY : src/R1.cpp.s
+src/resident.cpp.s:
+	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.s
+.PHONY : src/resident.cpp.s
 
 # Help Target
 help:
@@ -493,7 +446,6 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... R0"
-	@echo "... R1"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_genmsg_lisp"
 	@echo "... ROSBUILD_gensrv_cpp"
@@ -504,7 +456,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_clean-test-results"
@@ -521,12 +472,9 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
-	@echo "... src/R0.o"
-	@echo "... src/R0.i"
-	@echo "... src/R0.s"
-	@echo "... src/R1.o"
-	@echo "... src/R1.i"
-	@echo "... src/R1.s"
+	@echo "... src/resident.o"
+	@echo "... src/resident.i"
+	@echo "... src/resident.s"
 .PHONY : help
 
 
