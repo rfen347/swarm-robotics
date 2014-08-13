@@ -8,9 +8,9 @@ cd project1
 rosmake
 roscd
 rosrun stage_ros stageros project1/world/myworld.world &
-rosrun se306_example R0 &
-rosrun se306_example R1 &
-rosrun se306_example R2 &
+rosrun project1 R0 &
+rosrun project1 R1 &
+rosrun project1 R2 &
 
 read -p "Press any key to continue... " -n1 -s
 killall R0

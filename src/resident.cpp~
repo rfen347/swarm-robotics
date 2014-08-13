@@ -7,6 +7,7 @@
 #include <sstream>
 #include "math.h"
 
+
 //velocity of the robot
 double linear_x;
 double angular_z;
@@ -15,6 +16,29 @@ double angular_z;
 double px;
 double py;
 double theta;
+
+void wakeUp()
+{
+	// Triggered by schedule.
+	// Navigate to sofa, and then stop.
+}
+
+void getReadyToEat()
+{
+	// Triggered by robot message.
+	// Navigate to dining table, and then stop.
+}
+
+void eat()
+{
+	// Spin on the spot to show that resident is eating. 
+	angular_z = 2;	
+}
+
+void stopEating()
+{
+	angular_z=0;
+}
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
@@ -25,7 +49,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	ROS_INFO("Current y position is: %f", py);
 }
 
-
 void StageLaser_callback(sensor_msgs::LaserScan msg)
 {
 	//This is the callback function to process laser scan messages
@@ -35,6 +58,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 
 int main(int argc, char **argv)
 {
+// Create a schedule object
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
@@ -43,8 +67,8 @@ int main(int argc, char **argv)
 	py = 20;
 	
 	//Initial velocity
-	linear_x = 10;
-	angular_z = 0.2;
+	linear_x = 0;
+	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
 ros::init(argc, argv, "RobotNode0");
@@ -62,7 +86,7 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 
 ros::Rate loop_rate(10);
 
-//a count of howmany messages we have sent
+//a count of how many messages we have sent
 int count = 0;
 
 ////messages
@@ -82,6 +106,12 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+
+	if(count==80){
+		eat();
+	}else if(count==100){
+		stopEating();
+	}
 }
 
 return 0;
