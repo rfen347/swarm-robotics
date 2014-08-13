@@ -16,6 +16,22 @@ double px;
 double py;
 double theta;
 
+void wakeUp()
+{
+	// Go out of bed.
+	// Navigate to sofa.
+}
+
+void getReadyToEat()
+{
+	// Navigate to dining table.
+}
+
+void eat()
+{
+	// Spin on the spot to show that resident is eating, then stop. 
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
@@ -24,7 +40,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	ROS_INFO("Current x position is: %f", px);
 	ROS_INFO("Current y position is: %f", py);
 }
-
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
 {
