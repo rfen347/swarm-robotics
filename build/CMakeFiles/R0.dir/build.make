@@ -35,10 +35,17 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
+=======
+CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
 
 # Include any dependencies generated for this target.
 include CMakeFiles/R0.dir/depend.make
@@ -73,6 +80,7 @@ CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/rosgraph_msgs/packag
 CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/xmlrpcpp/package.xml
 CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/roscpp/package.xml
 CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/sensor_msgs/package.xml
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/rione/indigo_workspace/project1/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/R0.dir/src/resident.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/R0.dir/src/resident.cpp.o -c /home/rione/indigo_workspace/project1/src/resident.cpp
@@ -84,6 +92,19 @@ CMakeFiles/R0.dir/src/resident.cpp.i: cmake_force
 CMakeFiles/R0.dir/src/resident.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/R0.dir/src/resident.cpp.s"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/rione/indigo_workspace/project1/src/resident.cpp -o CMakeFiles/R0.dir/src/resident.cpp.s
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/shivarni/indigo_workspace/project1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/R0.dir/src/resident.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/R0.dir/src/resident.cpp.o -c /home/shivarni/indigo_workspace/project1/src/resident.cpp
+
+CMakeFiles/R0.dir/src/resident.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/R0.dir/src/resident.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/shivarni/indigo_workspace/project1/src/resident.cpp > CMakeFiles/R0.dir/src/resident.cpp.i
+
+CMakeFiles/R0.dir/src/resident.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/R0.dir/src/resident.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/shivarni/indigo_workspace/project1/src/resident.cpp -o CMakeFiles/R0.dir/src/resident.cpp.s
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
 
 CMakeFiles/R0.dir/src/resident.cpp.o.requires:
 .PHONY : CMakeFiles/R0.dir/src/resident.cpp.o.requires
@@ -119,6 +140,10 @@ CMakeFiles/R0.dir/clean:
 .PHONY : CMakeFiles/R0.dir/clean
 
 CMakeFiles/R0.dir/depend:
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/R0.dir/DependInfo.cmake --color=$(COLOR)
+=======
+	cd /home/shivarni/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build/CMakeFiles/R0.dir/DependInfo.cmake --color=$(COLOR)
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
 .PHONY : CMakeFiles/R0.dir/depend
 

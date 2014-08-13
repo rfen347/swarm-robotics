@@ -1,2 +1,6 @@
 - setup-file:
+<<<<<<< HEAD
     local-name: /home/rione/indigo_workspace/project1/build/devel/setup.sh
+=======
+    local-name: /home/shivarni/indigo_workspace/project1/build/devel/setup.sh
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388

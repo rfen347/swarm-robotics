@@ -18,9 +18,15 @@ except ImportError:
             break
     from catkin.environment_cache import generate_environment_script
 
+<<<<<<< HEAD
 code = generate_environment_script('/home/rione/indigo_workspace/project1/build/devel/env.sh')
 
 output_filename = '/home/rione/indigo_workspace/project1/build/catkin_generated/setup_cached.sh'
+=======
+code = generate_environment_script('/home/shivarni/indigo_workspace/project1/build/devel/env.sh')
+
+output_filename = '/home/shivarni/indigo_workspace/project1/build/catkin_generated/setup_cached.sh'
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
 with open(output_filename, 'w') as f:
     #print('Generate script for cached setup "%s"' % output_filename)
     f.write('\n'.join(code))

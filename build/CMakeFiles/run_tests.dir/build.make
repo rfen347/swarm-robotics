@@ -35,10 +35,17 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
+=======
+CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
 
 # Utility rule file for run_tests.
 
@@ -60,6 +67,10 @@ CMakeFiles/run_tests.dir/clean:
 .PHONY : CMakeFiles/run_tests.dir/clean
 
 CMakeFiles/run_tests.dir/depend:
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/run_tests.dir/DependInfo.cmake --color=$(COLOR)
+=======
+	cd /home/shivarni/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build/CMakeFiles/run_tests.dir/DependInfo.cmake --color=$(COLOR)
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
 .PHONY : CMakeFiles/run_tests.dir/depend
 

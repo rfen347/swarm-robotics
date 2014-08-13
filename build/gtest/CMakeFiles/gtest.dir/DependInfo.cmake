@@ -4,7 +4,11 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
+<<<<<<< HEAD
   "/usr/src/gtest/src/gtest-all.cc" "/home/rione/indigo_workspace/project1/build/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+=======
+  "/usr/src/gtest/src/gtest-all.cc" "/home/shivarni/indigo_workspace/project1/build/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -20,7 +24,12 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
+<<<<<<< HEAD
   "/home/rione/indigo_workspace/project1/include"
+=======
+  "/home/shivarni/indigo_workspace/project1/include"
+  "/opt/ros/indigo/include"
+>>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
   "/usr/src/gtest/include"
   "/usr/src/gtest"
   )

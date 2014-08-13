@@ -24,9 +24,17 @@ Open new terminal:
 
 Git command line stuff:
 
+<<<<<<< HEAD
+git clone <github link> 			--- do this only initially
+git add <filename>					--- add new file to repo
+git commit -m "message"				--- save changes to local repo
+git pull <github link> <branchname>	--- pull from github before pushing
+git push origin +<branchname>		--- push to github
+=======
 git clone <github link>  		--- do this only initially
 git add <filename>       		--- add new file to repo
 git commit -m "message"  		--- save changes to local repo
 git pull <github link> <branchname>	--- pull from github before pushing
 git push origin +<branchname>		--- push to github
 
+>>>>>>> 8de02b20528fb3e2338c371c5850fe0ead3b75ec
