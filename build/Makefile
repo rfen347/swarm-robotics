@@ -79,16 +79,6 @@ install/local: preinstall
 install/local/fast: install/local
 .PHONY : install/local/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-.PHONY : install/strip/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -164,6 +154,19 @@ R1: cmake_check_build_system
 R1/fast:
 	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/build
 .PHONY : R1/fast
+
+#=============================================================================
+# Target rules for targets named R2
+
+# Build rule for target.
+R2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 R2
+.PHONY : R2
+
+# fast build rule for target.
+R2/fast:
+	$(MAKE) -f CMakeFiles/R2.dir/build.make CMakeFiles/R2.dir/build
+.PHONY : R2/fast
 
 #=============================================================================
 # Target rules for targets named ROSBUILD_genmsg_cpp
@@ -438,53 +441,77 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
-src/R0.o: src/R0.cpp.o
-.PHONY : src/R0.o
+src/cookingrobot.o: src/cookingrobot.cpp.o
+.PHONY : src/cookingrobot.o
 
 # target to build an object file
-src/R0.cpp.o:
-	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/R0.cpp.o
-.PHONY : src/R0.cpp.o
+src/cookingrobot.cpp.o:
+	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/cookingrobot.cpp.o
+.PHONY : src/cookingrobot.cpp.o
 
-src/R0.i: src/R0.cpp.i
-.PHONY : src/R0.i
+src/cookingrobot.i: src/cookingrobot.cpp.i
+.PHONY : src/cookingrobot.i
 
 # target to preprocess a source file
-src/R0.cpp.i:
-	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/R0.cpp.i
-.PHONY : src/R0.cpp.i
+src/cookingrobot.cpp.i:
+	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/cookingrobot.cpp.i
+.PHONY : src/cookingrobot.cpp.i
 
-src/R0.s: src/R0.cpp.s
-.PHONY : src/R0.s
+src/cookingrobot.s: src/cookingrobot.cpp.s
+.PHONY : src/cookingrobot.s
 
 # target to generate assembly for a file
-src/R0.cpp.s:
-	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/R0.cpp.s
-.PHONY : src/R0.cpp.s
+src/cookingrobot.cpp.s:
+	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/cookingrobot.cpp.s
+.PHONY : src/cookingrobot.cpp.s
 
-src/R1.o: src/R1.cpp.o
-.PHONY : src/R1.o
+src/resident.o: src/resident.cpp.o
+.PHONY : src/resident.o
 
 # target to build an object file
-src/R1.cpp.o:
-	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/R1.cpp.o
-.PHONY : src/R1.cpp.o
+src/resident.cpp.o:
+	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.o
+.PHONY : src/resident.cpp.o
 
-src/R1.i: src/R1.cpp.i
-.PHONY : src/R1.i
+src/resident.i: src/resident.cpp.i
+.PHONY : src/resident.i
 
 # target to preprocess a source file
-src/R1.cpp.i:
-	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/R1.cpp.i
-.PHONY : src/R1.cpp.i
+src/resident.cpp.i:
+	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.i
+.PHONY : src/resident.cpp.i
 
-src/R1.s: src/R1.cpp.s
-.PHONY : src/R1.s
+src/resident.s: src/resident.cpp.s
+.PHONY : src/resident.s
 
 # target to generate assembly for a file
-src/R1.cpp.s:
-	$(MAKE) -f CMakeFiles/R1.dir/build.make CMakeFiles/R1.dir/src/R1.cpp.s
-.PHONY : src/R1.cpp.s
+src/resident.cpp.s:
+	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.s
+.PHONY : src/resident.cpp.s
+
+src/visitor.o: src/visitor.cpp.o
+.PHONY : src/visitor.o
+
+# target to build an object file
+src/visitor.cpp.o:
+	$(MAKE) -f CMakeFiles/R2.dir/build.make CMakeFiles/R2.dir/src/visitor.cpp.o
+.PHONY : src/visitor.cpp.o
+
+src/visitor.i: src/visitor.cpp.i
+.PHONY : src/visitor.i
+
+# target to preprocess a source file
+src/visitor.cpp.i:
+	$(MAKE) -f CMakeFiles/R2.dir/build.make CMakeFiles/R2.dir/src/visitor.cpp.i
+.PHONY : src/visitor.cpp.i
+
+src/visitor.s: src/visitor.cpp.s
+.PHONY : src/visitor.s
+
+# target to generate assembly for a file
+src/visitor.cpp.s:
+	$(MAKE) -f CMakeFiles/R2.dir/build.make CMakeFiles/R2.dir/src/visitor.cpp.s
+.PHONY : src/visitor.cpp.s
 
 # Help Target
 help:
@@ -494,6 +521,7 @@ help:
 	@echo "... depend"
 	@echo "... R0"
 	@echo "... R1"
+	@echo "... R2"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_genmsg_lisp"
 	@echo "... ROSBUILD_gensrv_cpp"
@@ -504,7 +532,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_clean-test-results"
@@ -521,12 +548,15 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
-	@echo "... src/R0.o"
-	@echo "... src/R0.i"
-	@echo "... src/R0.s"
-	@echo "... src/R1.o"
-	@echo "... src/R1.i"
-	@echo "... src/R1.s"
+	@echo "... src/cookingrobot.o"
+	@echo "... src/cookingrobot.i"
+	@echo "... src/cookingrobot.s"
+	@echo "... src/resident.o"
+	@echo "... src/resident.i"
+	@echo "... src/resident.s"
+	@echo "... src/visitor.o"
+	@echo "... src/visitor.i"
+	@echo "... src/visitor.s"
 .PHONY : help
 
 

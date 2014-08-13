@@ -19,3 +19,9 @@
 *.exe
 *.out
 *.app
+
+# Temporary files
+*~
+
+# Cached files
+CMakeCache.txt

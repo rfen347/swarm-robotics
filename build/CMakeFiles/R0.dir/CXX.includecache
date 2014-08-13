@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/shivarni/indigo_workspace/project1/src/R0.cpp
+/home/shivarni/indigo_workspace/project1/src/resident.cpp
 ros/ros.h
 /home/shivarni/indigo_workspace/project1/src/ros/ros.h
 std_msgs/String.h

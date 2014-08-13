@@ -49,59 +49,59 @@ include CMakeFiles/R0.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/R0.dir/flags.make
 
-CMakeFiles/R0.dir/src/R0.cpp.o: CMakeFiles/R0.dir/flags.make
-CMakeFiles/R0.dir/src/R0.cpp.o: ../src/R0.cpp
-CMakeFiles/R0.dir/src/R0.cpp.o: ../manifest.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/cpp_common/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/rostime/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/roscpp_traits/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/roscpp_serialization/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/genmsg/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/genpy/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/message_runtime/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/std_msgs/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/geometry_msgs/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/gencpp/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/genlisp/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/message_generation/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/actionlib_msgs/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/nav_msgs/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/catkin/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/rosbuild/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/rosconsole/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/rosgraph_msgs/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/xmlrpcpp/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/roscpp/package.xml
-CMakeFiles/R0.dir/src/R0.cpp.o: /opt/ros/indigo/share/sensor_msgs/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: CMakeFiles/R0.dir/flags.make
+CMakeFiles/R0.dir/src/resident.cpp.o: ../src/resident.cpp
+CMakeFiles/R0.dir/src/resident.cpp.o: ../manifest.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/cpp_common/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/rostime/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/roscpp_traits/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/roscpp_serialization/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/genmsg/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/genpy/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/message_runtime/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/std_msgs/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/geometry_msgs/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/gencpp/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/genlisp/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/message_generation/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/actionlib_msgs/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/nav_msgs/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/catkin/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/rosbuild/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/rosconsole/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/rosgraph_msgs/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/xmlrpcpp/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/roscpp/package.xml
+CMakeFiles/R0.dir/src/resident.cpp.o: /opt/ros/indigo/share/sensor_msgs/package.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/shivarni/indigo_workspace/project1/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/R0.dir/src/R0.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/R0.dir/src/R0.cpp.o -c /home/shivarni/indigo_workspace/project1/src/R0.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/R0.dir/src/resident.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/R0.dir/src/resident.cpp.o -c /home/shivarni/indigo_workspace/project1/src/resident.cpp
 
-CMakeFiles/R0.dir/src/R0.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/R0.dir/src/R0.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/shivarni/indigo_workspace/project1/src/R0.cpp > CMakeFiles/R0.dir/src/R0.cpp.i
+CMakeFiles/R0.dir/src/resident.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/R0.dir/src/resident.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/shivarni/indigo_workspace/project1/src/resident.cpp > CMakeFiles/R0.dir/src/resident.cpp.i
 
-CMakeFiles/R0.dir/src/R0.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/R0.dir/src/R0.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/shivarni/indigo_workspace/project1/src/R0.cpp -o CMakeFiles/R0.dir/src/R0.cpp.s
+CMakeFiles/R0.dir/src/resident.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/R0.dir/src/resident.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/shivarni/indigo_workspace/project1/src/resident.cpp -o CMakeFiles/R0.dir/src/resident.cpp.s
 
-CMakeFiles/R0.dir/src/R0.cpp.o.requires:
-.PHONY : CMakeFiles/R0.dir/src/R0.cpp.o.requires
+CMakeFiles/R0.dir/src/resident.cpp.o.requires:
+.PHONY : CMakeFiles/R0.dir/src/resident.cpp.o.requires
 
-CMakeFiles/R0.dir/src/R0.cpp.o.provides: CMakeFiles/R0.dir/src/R0.cpp.o.requires
-	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/R0.cpp.o.provides.build
-.PHONY : CMakeFiles/R0.dir/src/R0.cpp.o.provides
+CMakeFiles/R0.dir/src/resident.cpp.o.provides: CMakeFiles/R0.dir/src/resident.cpp.o.requires
+	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.o.provides.build
+.PHONY : CMakeFiles/R0.dir/src/resident.cpp.o.provides
 
-CMakeFiles/R0.dir/src/R0.cpp.o.provides.build: CMakeFiles/R0.dir/src/R0.cpp.o
+CMakeFiles/R0.dir/src/resident.cpp.o.provides.build: CMakeFiles/R0.dir/src/resident.cpp.o
 
 # Object files for target R0
 R0_OBJECTS = \
-"CMakeFiles/R0.dir/src/R0.cpp.o"
+"CMakeFiles/R0.dir/src/resident.cpp.o"
 
 # External object files for target R0
 R0_EXTERNAL_OBJECTS =
 
-../bin/R0: CMakeFiles/R0.dir/src/R0.cpp.o
+../bin/R0: CMakeFiles/R0.dir/src/resident.cpp.o
 ../bin/R0: CMakeFiles/R0.dir/build.make
 ../bin/R0: CMakeFiles/R0.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../bin/R0"
@@ -111,7 +111,7 @@ R0_EXTERNAL_OBJECTS =
 CMakeFiles/R0.dir/build: ../bin/R0
 .PHONY : CMakeFiles/R0.dir/build
 
-CMakeFiles/R0.dir/requires: CMakeFiles/R0.dir/src/R0.cpp.o.requires
+CMakeFiles/R0.dir/requires: CMakeFiles/R0.dir/src/resident.cpp.o.requires
 .PHONY : CMakeFiles/R0.dir/requires
 
 CMakeFiles/R0.dir/clean:
