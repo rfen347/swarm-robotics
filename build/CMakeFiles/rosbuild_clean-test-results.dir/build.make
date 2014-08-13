@@ -36,6 +36,7 @@ EQUALS = =
 
 # The top-level source directory on which CMake was run.
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
@@ -46,6 +47,12 @@ CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
+>>>>>>> cookingRobot
 
 # Utility rule file for rosbuild_clean-test-results.
 
@@ -54,10 +61,14 @@ include CMakeFiles/rosbuild_clean-test-results.dir/progress.make
 
 CMakeFiles/rosbuild_clean-test-results:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ! rm -rf /home/rione/.ros/test_results/project1; then echo "WARNING:\ failed\ to\ remove\ test-results\ directory"\; fi
 =======
 	if ! rm -rf /home/shivarni/.ros/test_results/project1; then echo "WARNING:\ failed\ to\ remove\ test-results\ directory"\; fi
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	if ! rm -rf /home/rione/.ros/test_results/project1; then echo "WARNING:\ failed\ to\ remove\ test-results\ directory"\; fi
+>>>>>>> cookingRobot
 
 rosbuild_clean-test-results: CMakeFiles/rosbuild_clean-test-results
 rosbuild_clean-test-results: CMakeFiles/rosbuild_clean-test-results.dir/build.make
@@ -73,9 +84,13 @@ CMakeFiles/rosbuild_clean-test-results.dir/clean:
 
 CMakeFiles/rosbuild_clean-test-results.dir/depend:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/rosbuild_clean-test-results.dir/DependInfo.cmake --color=$(COLOR)
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build/CMakeFiles/rosbuild_clean-test-results.dir/DependInfo.cmake --color=$(COLOR)
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/rosbuild_clean-test-results.dir/DependInfo.cmake --color=$(COLOR)
+>>>>>>> cookingRobot
 .PHONY : CMakeFiles/rosbuild_clean-test-results.dir/depend
 

@@ -3,10 +3,14 @@
 
 # compile CXX with /usr/bin/c++
 <<<<<<< HEAD
+<<<<<<< HEAD
 CXX_FLAGS = -O2 -g -DNDEBUG -fPIC -I/home/rione/indigo_workspace/project1/include -I/usr/src/gtest/include -I/usr/src/gtest     -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra
 =======
 CXX_FLAGS = -O2 -g -DNDEBUG -fPIC -I/home/shivarni/indigo_workspace/project1/include -I/opt/ros/indigo/include -I/usr/src/gtest/include -I/usr/src/gtest     -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+CXX_FLAGS = -O2 -g -DNDEBUG -fPIC -I/home/rione/indigo_workspace/project1/include -I/opt/ros/indigo/include -I/usr/src/gtest/include -I/usr/src/gtest     -Wall -Wshadow -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra
+>>>>>>> cookingRobot
 
 CXX_DEFINES = -DGTEST_CREATE_SHARED_LIBRARY=1 -DROS_PACKAGE_NAME=\"project1\" -Dgtest_main_EXPORTS
 

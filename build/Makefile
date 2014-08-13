@@ -40,6 +40,7 @@ EQUALS = =
 
 # The top-level source directory on which CMake was run.
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
@@ -50,6 +51,12 @@ CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
+>>>>>>> cookingRobot
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -108,6 +115,7 @@ rebuild_cache/fast: rebuild_cache
 # The main all target
 all: cmake_check_build_system
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles /home/rione/indigo_workspace/project1/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles 0
@@ -116,6 +124,11 @@ all: cmake_check_build_system
 	$(MAKE) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles 0
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles /home/rione/indigo_workspace/project1/build/CMakeFiles/progress.marks
+	$(MAKE) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles 0
+>>>>>>> cookingRobot
 .PHONY : all
 
 # The main clean target

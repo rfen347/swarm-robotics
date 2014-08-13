@@ -1,5 +1,8 @@
 # Hashes of file build rules.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cookingRobot
 ca2349b5abf870ae47cc32e7260b17f9 CMakeFiles/ROSBUILD_genmsg_cpp
 ca2349b5abf870ae47cc32e7260b17f9 CMakeFiles/ROSBUILD_genmsg_lisp
 ca2349b5abf870ae47cc32e7260b17f9 CMakeFiles/ROSBUILD_gensrv_cpp
@@ -19,6 +22,7 @@ ca2349b5abf870ae47cc32e7260b17f9 CMakeFiles/test-future
 2e8faadd15a9dcaeef43c8fd144fe0ab CMakeFiles/test-results
 ca2349b5abf870ae47cc32e7260b17f9 CMakeFiles/test-results-run
 ca2349b5abf870ae47cc32e7260b17f9 CMakeFiles/tests
+<<<<<<< HEAD
 =======
 dd4e12f3d467a665746a08a0067b18d7 CMakeFiles/ROSBUILD_genmsg_cpp
 dd4e12f3d467a665746a08a0067b18d7 CMakeFiles/ROSBUILD_genmsg_lisp
@@ -40,3 +44,5 @@ dd4e12f3d467a665746a08a0067b18d7 CMakeFiles/test-future
 dd4e12f3d467a665746a08a0067b18d7 CMakeFiles/test-results-run
 dd4e12f3d467a665746a08a0067b18d7 CMakeFiles/tests
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+>>>>>>> cookingRobot

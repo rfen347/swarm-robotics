@@ -16,6 +16,20 @@ double px;
 double py;
 double theta;
 
+void cook() {
+
+	//navigate to food storage
+	//indicate getting items from food storage
+	//navigate to fridge
+	//indicate getting items from fridge
+	//navigate to stovetop
+	//indicate cooking
+	//navigate to table
+	//inform resident food is served!
+	//navigate back to idle position
+
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	

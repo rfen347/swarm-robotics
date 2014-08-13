@@ -36,6 +36,7 @@ EQUALS = =
 
 # The top-level source directory on which CMake was run.
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
@@ -46,6 +47,12 @@ CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
+>>>>>>> cookingRobot
 
 # Utility rule file for clean_test_results.
 
@@ -54,10 +61,14 @@ include CMakeFiles/clean_test_results.dir/progress.make
 
 CMakeFiles/clean_test_results:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/usr/bin/cmake -E remove_directory /home/rione/indigo_workspace/project1/build/test_results
 =======
 	/usr/bin/cmake -E remove_directory /home/shivarni/indigo_workspace/project1/build/test_results
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	/usr/bin/cmake -E remove_directory /home/rione/indigo_workspace/project1/build/test_results
+>>>>>>> cookingRobot
 
 clean_test_results: CMakeFiles/clean_test_results
 clean_test_results: CMakeFiles/clean_test_results.dir/build.make
@@ -73,9 +84,13 @@ CMakeFiles/clean_test_results.dir/clean:
 
 CMakeFiles/clean_test_results.dir/depend:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/clean_test_results.dir/DependInfo.cmake --color=$(COLOR)
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build/CMakeFiles/clean_test_results.dir/DependInfo.cmake --color=$(COLOR)
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/clean_test_results.dir/DependInfo.cmake --color=$(COLOR)
+>>>>>>> cookingRobot
 .PHONY : CMakeFiles/clean_test_results.dir/depend
 

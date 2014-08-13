@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cookingRobot
 /home/rione/indigo_workspace/project1/build/CMakeFiles/R0.dir
 /home/rione/indigo_workspace/project1/build/CMakeFiles/R1.dir
 /home/rione/indigo_workspace/project1/build/CMakeFiles/R2.dir
@@ -23,6 +26,7 @@
 /home/rione/indigo_workspace/project1/build/CMakeFiles/test-results.dir
 /home/rione/indigo_workspace/project1/build/CMakeFiles/test-results-run.dir
 /home/rione/indigo_workspace/project1/build/CMakeFiles/tests.dir
+<<<<<<< HEAD
 =======
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/R0.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/R1.dir
@@ -49,3 +53,5 @@
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/test-results-run.dir
 /home/shivarni/indigo_workspace/project1/build/CMakeFiles/tests.dir
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+>>>>>>> cookingRobot

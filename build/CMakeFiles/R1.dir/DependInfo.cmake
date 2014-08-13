@@ -5,10 +5,14 @@ SET(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/home/rione/indigo_workspace/project1/src/cookingrobot.cpp" "/home/rione/indigo_workspace/project1/build/CMakeFiles/R1.dir/src/cookingrobot.cpp.o"
 =======
   "/home/shivarni/indigo_workspace/project1/src/cookingrobot.cpp" "/home/shivarni/indigo_workspace/project1/build/CMakeFiles/R1.dir/src/cookingrobot.cpp.o"
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+  "/home/rione/indigo_workspace/project1/src/cookingrobot.cpp" "/home/rione/indigo_workspace/project1/build/CMakeFiles/R1.dir/src/cookingrobot.cpp.o"
+>>>>>>> cookingRobot
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

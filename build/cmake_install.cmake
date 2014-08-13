@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Install script for directory: /home/rione/indigo_workspace/project1
 =======
 # Install script for directory: /home/shivarni/indigo_workspace/project1
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+# Install script for directory: /home/rione/indigo_workspace/project1
+>>>>>>> cookingRobot
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -56,10 +60,14 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 <<<<<<< HEAD
+<<<<<<< HEAD
 FILE(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/_setup_util.py")
 =======
 FILE(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/shivarni/indigo_workspace/project1/build/catkin_generated/installspace/_setup_util.py")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+FILE(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/_setup_util.py")
+>>>>>>> cookingRobot
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -72,10 +80,14 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 <<<<<<< HEAD
+<<<<<<< HEAD
 FILE(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/env.sh")
 =======
 FILE(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/shivarni/indigo_workspace/project1/build/catkin_generated/installspace/env.sh")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+FILE(INSTALL DESTINATION "/usr/local" TYPE PROGRAM FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/env.sh")
+>>>>>>> cookingRobot
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -88,10 +100,14 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 <<<<<<< HEAD
+<<<<<<< HEAD
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/setup.bash")
 =======
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/shivarni/indigo_workspace/project1/build/catkin_generated/installspace/setup.bash")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/setup.bash")
+>>>>>>> cookingRobot
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -104,10 +120,14 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 <<<<<<< HEAD
+<<<<<<< HEAD
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/setup.sh")
 =======
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/shivarni/indigo_workspace/project1/build/catkin_generated/installspace/setup.sh")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/setup.sh")
+>>>>>>> cookingRobot
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -120,10 +140,14 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 <<<<<<< HEAD
+<<<<<<< HEAD
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/setup.zsh")
 =======
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/shivarni/indigo_workspace/project1/build/catkin_generated/installspace/setup.zsh")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/setup.zsh")
+>>>>>>> cookingRobot
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -136,10 +160,14 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 <<<<<<< HEAD
+<<<<<<< HEAD
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/.rosinstall")
 =======
 FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/shivarni/indigo_workspace/project1/build/catkin_generated/installspace/.rosinstall")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+FILE(INSTALL DESTINATION "/usr/local" TYPE FILE FILES "/home/rione/indigo_workspace/project1/build/catkin_generated/installspace/.rosinstall")
+>>>>>>> cookingRobot
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -153,10 +181,14 @@ ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unsp
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
 <<<<<<< HEAD
+<<<<<<< HEAD
   INCLUDE("/home/rione/indigo_workspace/project1/build/gtest/cmake_install.cmake")
 =======
   INCLUDE("/home/shivarni/indigo_workspace/project1/build/gtest/cmake_install.cmake")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+  INCLUDE("/home/rione/indigo_workspace/project1/build/gtest/cmake_install.cmake")
+>>>>>>> cookingRobot
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 
@@ -167,6 +199,7 @@ ELSE(CMAKE_INSTALL_COMPONENT)
 ENDIF(CMAKE_INSTALL_COMPONENT)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 FILE(WRITE "/home/rione/indigo_workspace/project1/build/${CMAKE_INSTALL_MANIFEST}" "")
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
   FILE(APPEND "/home/rione/indigo_workspace/project1/build/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
@@ -175,4 +208,9 @@ FILE(WRITE "/home/shivarni/indigo_workspace/project1/build/${CMAKE_INSTALL_MANIF
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
   FILE(APPEND "/home/shivarni/indigo_workspace/project1/build/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+FILE(WRITE "/home/rione/indigo_workspace/project1/build/${CMAKE_INSTALL_MANIFEST}" "")
+FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
+  FILE(APPEND "/home/rione/indigo_workspace/project1/build/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+>>>>>>> cookingRobot
 ENDFOREACH(file)

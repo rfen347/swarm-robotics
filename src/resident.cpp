@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 	
 	//Initial velocity
 	linear_x = 10;
-	angular_z = 0.2;
+	angular_z = 20;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
 ros::init(argc, argv, "RobotNode0");

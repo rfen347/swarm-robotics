@@ -40,6 +40,7 @@ EQUALS = =
 
 # The top-level source directory on which CMake was run.
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
@@ -50,6 +51,12 @@ CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
+>>>>>>> cookingRobot
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -108,6 +115,7 @@ rebuild_cache/fast: rebuild_cache
 # The main all target
 all: cmake_check_build_system
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles /home/rione/indigo_workspace/project1/build/gtest/CMakeFiles/progress.marks
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles 0
@@ -116,15 +124,24 @@ all: cmake_check_build_system
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/shivarni/indigo_workspace/project1/build/CMakeFiles 0
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles /home/rione/indigo_workspace/project1/build/gtest/CMakeFiles/progress.marks
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/rione/indigo_workspace/project1/build/CMakeFiles 0
+>>>>>>> cookingRobot
 .PHONY : all
 
 # The main clean target
 clean:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/clean
+>>>>>>> cookingRobot
 .PHONY : clean
 
 # The main clean target
@@ -134,37 +151,53 @@ clean/fast: clean
 # Prepare targets for installation.
 preinstall: all
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+>>>>>>> cookingRobot
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/preinstall
+>>>>>>> cookingRobot
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+>>>>>>> cookingRobot
 .PHONY : depend
 
 # Convenience name for target.
 gtest/CMakeFiles/gtest.dir/rule:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest.dir/rule
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest.dir/rule
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest.dir/rule
+>>>>>>> cookingRobot
 .PHONY : gtest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.
@@ -174,19 +207,27 @@ gtest: gtest/CMakeFiles/gtest.dir/rule
 # fast build rule for target.
 gtest/fast:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
+>>>>>>> cookingRobot
 .PHONY : gtest/fast
 
 # Convenience name for target.
 gtest/CMakeFiles/gtest_main.dir/rule:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest_main.dir/rule
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest_main.dir/rule
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest_main.dir/rule
+>>>>>>> cookingRobot
 .PHONY : gtest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
@@ -196,10 +237,14 @@ gtest_main: gtest/CMakeFiles/gtest_main.dir/rule
 # fast build rule for target.
 gtest_main/fast:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
+>>>>>>> cookingRobot
 .PHONY : gtest_main/fast
 
 src/gtest-all.o: src/gtest-all.cc.o
@@ -208,10 +253,14 @@ src/gtest-all.o: src/gtest-all.cc.o
 # target to build an object file
 src/gtest-all.cc.o:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+>>>>>>> cookingRobot
 .PHONY : src/gtest-all.cc.o
 
 src/gtest-all.i: src/gtest-all.cc.i
@@ -220,10 +269,14 @@ src/gtest-all.i: src/gtest-all.cc.i
 # target to preprocess a source file
 src/gtest-all.cc.i:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
+>>>>>>> cookingRobot
 .PHONY : src/gtest-all.cc.i
 
 src/gtest-all.s: src/gtest-all.cc.s
@@ -232,10 +285,14 @@ src/gtest-all.s: src/gtest-all.cc.s
 # target to generate assembly for a file
 src/gtest-all.cc.s:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
+>>>>>>> cookingRobot
 .PHONY : src/gtest-all.cc.s
 
 src/gtest_main.o: src/gtest_main.cc.o
@@ -244,10 +301,14 @@ src/gtest_main.o: src/gtest_main.cc.o
 # target to build an object file
 src/gtest_main.cc.o:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+>>>>>>> cookingRobot
 .PHONY : src/gtest_main.cc.o
 
 src/gtest_main.i: src/gtest_main.cc.i
@@ -256,10 +317,14 @@ src/gtest_main.i: src/gtest_main.cc.i
 # target to preprocess a source file
 src/gtest_main.cc.i:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
+>>>>>>> cookingRobot
 .PHONY : src/gtest_main.cc.i
 
 src/gtest_main.s: src/gtest_main.cc.s
@@ -268,10 +333,14 @@ src/gtest_main.s: src/gtest_main.cc.s
 # target to generate assembly for a file
 src/gtest_main.cc.s:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
+>>>>>>> cookingRobot
 .PHONY : src/gtest_main.cc.s
 
 # Help Target
@@ -305,9 +374,13 @@ help:
 # because they might be regenerated.
 cmake_check_build_system:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+>>>>>>> cookingRobot
 .PHONY : cmake_check_build_system
 

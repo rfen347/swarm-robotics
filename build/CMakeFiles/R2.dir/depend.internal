@@ -3,10 +3,14 @@
 
 CMakeFiles/R2.dir/src/visitor.cpp.o
 <<<<<<< HEAD
+<<<<<<< HEAD
  /home/rione/indigo_workspace/project1/src/visitor.cpp
 =======
  /home/shivarni/indigo_workspace/project1/src/visitor.cpp
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+ /home/rione/indigo_workspace/project1/src/visitor.cpp
+>>>>>>> cookingRobot
  /opt/ros/indigo/include/XmlRpcDecl.h
  /opt/ros/indigo/include/XmlRpcValue.h
  /opt/ros/indigo/include/geometry_msgs/Point.h

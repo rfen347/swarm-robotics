@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /usr/bin/c++  -fPIC -O2 -g -DNDEBUG   -shared -Wl,-soname,libgtest_main.so -o /home/rione/indigo_workspace/project1/lib/libgtest_main.so CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -L/home/rione/indigo_workspace/project1/build/gtest/src -lpthread /home/rione/indigo_workspace/project1/lib/libgtest.so -lpthread -Wl,-rpath,/home/rione/indigo_workspace/project1/build/gtest/src:/home/rione/indigo_workspace/project1/lib 
 =======
 /usr/bin/c++  -fPIC -O2 -g -DNDEBUG   -shared -Wl,-soname,libgtest_main.so -o /home/shivarni/indigo_workspace/project1/lib/libgtest_main.so CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -L/opt/ros/indigo/lib  -L/home/shivarni/indigo_workspace/project1/build/gtest/src -lpthread /home/shivarni/indigo_workspace/project1/lib/libgtest.so -lpthread -Wl,-rpath,/opt/ros/indigo/lib:/home/shivarni/indigo_workspace/project1/build/gtest/src:/home/shivarni/indigo_workspace/project1/lib 
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+/usr/bin/c++  -fPIC -O2 -g -DNDEBUG   -shared -Wl,-soname,libgtest_main.so -o /home/rione/indigo_workspace/project1/lib/libgtest_main.so CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -L/opt/ros/indigo/lib  -L/home/rione/indigo_workspace/project1/build/gtest/src -lpthread /home/rione/indigo_workspace/project1/lib/libgtest.so -lpthread -Wl,-rpath,/opt/ros/indigo/lib:/home/rione/indigo_workspace/project1/build/gtest/src:/home/rione/indigo_workspace/project1/lib 
+>>>>>>> cookingRobot

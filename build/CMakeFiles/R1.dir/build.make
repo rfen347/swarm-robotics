@@ -36,6 +36,7 @@ EQUALS = =
 
 # The top-level source directory on which CMake was run.
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
 
 # The top-level build directory on which CMake was run.
@@ -46,6 +47,12 @@ CMAKE_SOURCE_DIR = /home/shivarni/indigo_workspace/project1
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/shivarni/indigo_workspace/project1/build
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+CMAKE_SOURCE_DIR = /home/rione/indigo_workspace/project1
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/rione/indigo_workspace/project1/build
+>>>>>>> cookingRobot
 
 # Include any dependencies generated for this target.
 include CMakeFiles/R1.dir/depend.make
@@ -81,6 +88,7 @@ CMakeFiles/R1.dir/src/cookingrobot.cpp.o: /opt/ros/indigo/share/xmlrpcpp/package
 CMakeFiles/R1.dir/src/cookingrobot.cpp.o: /opt/ros/indigo/share/roscpp/package.xml
 CMakeFiles/R1.dir/src/cookingrobot.cpp.o: /opt/ros/indigo/share/sensor_msgs/package.xml
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/rione/indigo_workspace/project1/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/R1.dir/src/cookingrobot.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/R1.dir/src/cookingrobot.cpp.o -c /home/rione/indigo_workspace/project1/src/cookingrobot.cpp
@@ -94,17 +102,24 @@ CMakeFiles/R1.dir/src/cookingrobot.cpp.s: cmake_force
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/rione/indigo_workspace/project1/src/cookingrobot.cpp -o CMakeFiles/R1.dir/src/cookingrobot.cpp.s
 =======
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/shivarni/indigo_workspace/project1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rione/indigo_workspace/project1/build/CMakeFiles $(CMAKE_PROGRESS_1)
+>>>>>>> cookingRobot
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/R1.dir/src/cookingrobot.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/R1.dir/src/cookingrobot.cpp.o -c /home/shivarni/indigo_workspace/project1/src/cookingrobot.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/R1.dir/src/cookingrobot.cpp.o -c /home/rione/indigo_workspace/project1/src/cookingrobot.cpp
 
 CMakeFiles/R1.dir/src/cookingrobot.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/R1.dir/src/cookingrobot.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/shivarni/indigo_workspace/project1/src/cookingrobot.cpp > CMakeFiles/R1.dir/src/cookingrobot.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/rione/indigo_workspace/project1/src/cookingrobot.cpp > CMakeFiles/R1.dir/src/cookingrobot.cpp.i
 
 CMakeFiles/R1.dir/src/cookingrobot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/R1.dir/src/cookingrobot.cpp.s"
+<<<<<<< HEAD
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/shivarni/indigo_workspace/project1/src/cookingrobot.cpp -o CMakeFiles/R1.dir/src/cookingrobot.cpp.s
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/rione/indigo_workspace/project1/src/cookingrobot.cpp -o CMakeFiles/R1.dir/src/cookingrobot.cpp.s
+>>>>>>> cookingRobot
 
 CMakeFiles/R1.dir/src/cookingrobot.cpp.o.requires:
 .PHONY : CMakeFiles/R1.dir/src/cookingrobot.cpp.o.requires
@@ -141,9 +156,13 @@ CMakeFiles/R1.dir/clean:
 
 CMakeFiles/R1.dir/depend:
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/R1.dir/DependInfo.cmake --color=$(COLOR)
 =======
 	cd /home/shivarni/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1 /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build /home/shivarni/indigo_workspace/project1/build/CMakeFiles/R1.dir/DependInfo.cmake --color=$(COLOR)
 >>>>>>> cd51746fa4cc54c811d436b8ef92bbb9eb97c388
+=======
+	cd /home/rione/indigo_workspace/project1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1 /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build /home/rione/indigo_workspace/project1/build/CMakeFiles/R1.dir/DependInfo.cmake --color=$(COLOR)
+>>>>>>> cookingRobot
 .PHONY : CMakeFiles/R1.dir/depend
 
