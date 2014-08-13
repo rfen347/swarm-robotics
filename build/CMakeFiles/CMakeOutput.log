@@ -339,3 +339,71 @@ make[2]: Leaving directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles
 make[1]: Leaving directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
 
 
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2918663259/fast"
+make[1]: Entering directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2918663259.dir/build.make CMakeFiles/cmTryCompileExec2918663259.dir/build
+make[2]: Entering directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2918663259.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2918663259.dir/CheckIncludeFiles.c.o   -c /home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec2918663259
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2918663259.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec2918663259.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec2918663259 -rdynamic 
+make[2]: Leaving directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1134927221/fast"
+make[1]: Entering directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1134927221.dir/build.make CMakeFiles/cmTryCompileExec1134927221.dir/build
+make[2]: Entering directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1134927221.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec1134927221.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1134927221
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1134927221.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec1134927221.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1134927221 -rdynamic -lpthread 
+make[2]: Leaving directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/shivarni/indigo_workspace/project1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec147829089/fast"
+make[1]: Entering directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec147829089.dir/build.make CMakeFiles/cmTryCompileExec147829089.dir/build
+make[2]: Entering directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec147829089.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec147829089.dir/CheckIncludeFiles.c.o   -c /home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec147829089
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec147829089.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec147829089.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec147829089 -rdynamic 
+make[2]: Leaving directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec988868165/fast"
+make[1]: Entering directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec988868165.dir/build.make CMakeFiles/cmTryCompileExec988868165.dir/build
+make[2]: Entering directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec988868165.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec988868165.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec988868165
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec988868165.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec988868165.dir/CheckFunctionExists.c.o  -o cmTryCompileExec988868165 -rdynamic -lpthread 
+make[2]: Leaving directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/bc/indigo_workspace3/project1/build/CMakeFiles/CMakeTmp'
+
+

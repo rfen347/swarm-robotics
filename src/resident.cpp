@@ -7,6 +7,7 @@
 #include <sstream>
 #include "math.h"
 
+
 //velocity of the robot
 double linear_x;
 double angular_z;
@@ -30,16 +31,13 @@ void getReadyToEat()
 
 void eat()
 {
-	// Triggered by robot message.
 	// Spin on the spot to show that resident is eating. 
-	angular_z = 2;
+	angular_z = 2;	
+}
 
-	/* Stop the spinning.
-	if(count==200){
-		angular_z=0;
-	}
-	*/
-	
+void stopEating()
+{
+	angular_z=0;
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
@@ -60,6 +58,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 
 int main(int argc, char **argv)
 {
+// Create a schedule object
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
@@ -87,14 +86,12 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 
 ros::Rate loop_rate(10);
 
-//a count of howmany messages we have sent
+//a count of how many messages we have sent
 int count = 0;
 
 ////messages
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
-
-// Test catching a robot message.
 
 while (ros::ok())
 {
@@ -109,6 +106,12 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+
+	if(count==80){
+		eat();
+	}else if(count==100){
+		stopEating();
+	}
 }
 
 return 0;
