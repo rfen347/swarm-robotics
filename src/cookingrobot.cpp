@@ -174,11 +174,14 @@ while (ros::ok())
 		angular_z = 0;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
 >>>>>>> d3a8c48fbead9ab4f2e04806057ddd4992e3d452
 
+=======
+>>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
 
 	if(count==720){
 		linear_x = 2;
@@ -217,10 +220,13 @@ while (ros::ok())
 	} 
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 1fa30caae448050e74aa3e5b11c6dda550c8d176
 >>>>>>> d3a8c48fbead9ab4f2e04806057ddd4992e3d452
+=======
+>>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
 }
 
 return 0;

@@ -143,6 +143,7 @@ while (ros::ok())
 	}
 	if(count==738){
 		angular_z = M_PI / 2;
+<<<<<<< HEAD
 		linear_x = 0;
 	}
 	if(count==798){
@@ -161,6 +162,26 @@ while (ros::ok())
 		angular_z = M_PI / 2;
 		linear_x = 0;
 	}
+=======
+		linear_x = 0;
+	}
+	if(count==798){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==808){
+		angular_z = -M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==818){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==838){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	}
+>>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
 	if(count==848){
 		angular_z = 0;
 		linear_x = 2;
@@ -174,9 +195,18 @@ while (ros::ok())
 		linear_x = 2;
 	}
 	if(count==908){
+<<<<<<< HEAD
 		angular_z = 0;
 		linear_x = 0;
 	}
+=======
+		angular_z = -M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==928){
+		angular_z = 0;
+	}
+>>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
 
 
 }

@@ -15,10 +15,11 @@ cd project1
 rosmake
 roscd
 
+rosrun stage_ros stageros project1/world/myworld.world &
+sleep 5
 rosrun project1 R0 &
 rosrun project1 R1 &
 rosrun project1 R2 &
-rosrun stage_ros stageros project1/world/myworld.world &
 
 read -p "Press any key to exit... " -n1 -s
 killall R0
