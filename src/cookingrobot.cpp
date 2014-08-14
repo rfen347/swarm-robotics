@@ -101,9 +101,29 @@ while (ros::ok())
 	++count;
 
 	//Start cooking at 5 seconds (testing)
-	if (count==50) {
-		cook();
+	//if (count==50) {
+	//	cook();
+	//}
+
+	if(count==200){
+		linear_x = 2;
 	}
+	if(count==210){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	} 
+	if(count==220){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==240){
+		angular_z = M_PI / 2;;
+		linear_x = 0;
+	}
+	if(count==300){
+		angular_z = 0;
+	}
+
 
 }
 
