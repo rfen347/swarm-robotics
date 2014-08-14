@@ -43,11 +43,11 @@ int main(int argc, char **argv)
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = M_PI/2.0;
 	px = 7;
-	py = -3;
+	py = -4.5;
 	
 	//Initial velocity
-	linear_x = 0.7;
-	angular_z = 1.2;
+	linear_x = 0;
+	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
 ros::init(argc, argv, "RobotNode2");
@@ -85,6 +85,39 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+
+	if(count==100){
+		linear_x = 2;
+	}
+	if(count==110){
+		angular_z =  M_PI / 2;
+		linear_x = 0;
+	} 
+	if(count==120){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==155){
+		angular_z = - M_PI / 2;;
+		linear_x = 0;
+	}
+	if(count==165){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==235){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==245){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==265){
+		angular_z =  M_PI / 2;
+		linear_x = 0;
+	}
+
 }
 
 return 0;
