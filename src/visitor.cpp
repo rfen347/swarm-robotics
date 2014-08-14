@@ -24,8 +24,8 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//This is the call back function to process odometry messages coming from Stage. 	
 	px = 5 + msg.pose.pose.position.x;
 	py =10 + msg.pose.pose.position.y;
-	ROS_INFO("Current x position is: %f", px);
-	ROS_INFO("Current y position is: %f", py);
+	//ROS_INFO("Current x position is: %f", px);
+	//ROS_INFO("Current y position is: %f", py);
 }
 
 
@@ -83,6 +83,8 @@ while (ros::ok())
 	
 	ros::spinOnce();
 
+	ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
+
 	loop_rate.sleep();
 	++count;
 
@@ -113,6 +115,7 @@ while (ros::ok())
 		angular_z = 0;
 		linear_x = 2;
 	}
+<<<<<<< HEAD
 	if(count > 265 && count < 640){
 		if (count % 2 < 1) {
 			linear_x = -10;
@@ -140,6 +143,11 @@ while (ros::ok())
 	}
 	if(count==738){
 		angular_z = M_PI * 2;
+=======
+	if(count==265){
+		ROS_INFO("ACTIVITY - Visitor watching TV");
+		angular_z =  M_PI / 2;
+>>>>>>> be901ada2afec6b9b82897b19b6237ecfefcb1e6
 		linear_x = 0;
 	}
 
