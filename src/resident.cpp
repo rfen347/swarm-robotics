@@ -22,41 +22,54 @@ double theta;
 void StageLaser_callback(sensor_msgs::LaserScan msg);
 void StageOdom_callback(nav_msgs::Odometry msg);
 
+void move(){
+	linear_x=2;
+}
+
+void stopMove(){
+	linear_x=0;
+}
+
+void spin(){
+	angular_z=2;
+}
+
+void stopSpin(){
+	angular_z=0;
+}
+
 void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
-	// Navigate from (-6.8, 4.5) to (-3.5, 4.5), which is 3.3 units East.
-	linear_x = 2;
-	
-	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
+	// Navigate from (-6.5, 4.5) to (-3.5, 4.5), which is 3 units East.
+	move();
+	while(true){
+		if(px>-3){
+			stopMove();
+			return 0;
+		}
+	}
 }
 
 void getReadyToEat()
 {
 	// Triggered by robot message.
-	// Navigate to dining table, and then stop.
+	// Navigate from bedroom to dining table, and then stop.
+	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
+	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
 }
 
 
 void eat()
 {
-	// Spin on the spot to show that resident is eating. 
-	angular_z = 2;
-	// Then after two seconds, it stops eating.
-
-	// Triggered by robot call.
-	// Navigate to dining table, and then stop.
-	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
-	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
-
-
+	spin();
 }
 
 void stopEating()
 {
 	// Stop spinning to show that the resident has stopped eating.
-	angular_z=0;
+	stopSpin();
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
@@ -64,8 +77,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//This is the call back function to process odometry messages coming from Stage. 	
 	px = -6.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -125,58 +136,10 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-	ROS_INFO("Cycle no. %i", count);
 
-/*
-	if(count==20){ // At 2 seconds, resident wakes up.
-		wakeUp();
-	}else if (count==30){ // At 4 seconds, the resident will get ready to eat.
-		getReadyToEat();
-	}else if(count==100){ // Once the robot has delivered the food, start eating.
-		eat();
-	}else if(count==120){ // Take two seconds to eat, then stop.
-		stopEating();
-*/
+	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
 
-	if(px>2.5){
-		linear_x=0;
-		ROS_INFO("OH YEAH MR. KRABS");
-	}
-
-// Gary's navigation
-/*
-	if(count==10){
-		linear_x = 2;
-	}else if(count==40){
-		angular_z = - M_PI / 2;
-		linear_x = 0;
-	}else if(count==50){
-		angular_z = 0;
-		linear_x = 2;
-	}else if(count==100){
-		angular_z = M_PI / 2;;
-		linear_x = 0;
-	}else if(count==110){
-		angular_z = 0;
-		linear_x = 2;
-	}else if(count==140){
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	}else if(count==150){
-		angular_z = 0;
-		linear_x = 2;
-	}else if(count==190){
-		angular_z = - M_PI / 2;
-		linear_x = 0;
-	}else if(count==200){
-		angular_z = 0;
-		linear_x = 2;
-	}else if(count==210){
-		angular_z = 2;
-		linear_x = 0;
-	}
-*/
-
+	wakeUp();
 }
 
 return 0;
