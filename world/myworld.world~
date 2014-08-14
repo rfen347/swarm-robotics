@@ -58,6 +58,12 @@ floorplan
   pose [ 0 0 0 0 ]
 )
 # throw in a robot
+<<<<<<< HEAD
 myRobot( pose [ -6.8 4.5 0 0 ] name "r0" color "red")
 myRobot( pose [ 5.5 4.5 0 -90 ] name "r1" color "green")
 myRobot( pose [ 7.0 -4.7 0 90 ] name "r2" color "pink")
+=======
+myRobot( pose [ -6.8 4.5 0 -90 ] name "r0" color "red")
+myRobot( pose [ 5.5 4.5 0 -90 ] name "r1" color "green")
+myRobot( pose [ 7.0 -3.0 0 90 ] name "r2" color "pink")
+>>>>>>> 6a1d3880a5339d70000ee643066422c8fdf068b2

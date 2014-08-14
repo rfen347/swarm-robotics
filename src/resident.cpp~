@@ -18,17 +18,27 @@ double px;
 double py;
 double theta;
 
+<<<<<<< HEAD
+=======
+//a count of how many messages we have sent
+int count = 0;
+
+>>>>>>> 6a1d3880a5339d70000ee643066422c8fdf068b2
 void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
+<<<<<<< HEAD
 	linear_x = 2;
 	
+=======
 	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
+>>>>>>> 6a1d3880a5339d70000ee643066422c8fdf068b2
 }
 
 void getReadyToEat()
 {
+<<<<<<< HEAD
 	// Triggered by robot message.
 	// Navigate to dining table, and then stop.
 }
@@ -37,11 +47,13 @@ void eat()
 {
 	// Spin on the spot to show that resident is eating. 
 	angular_z = 2;	
+=======
 	// Triggered by robot call.
 	// Navigate to dining table, and then stop.
 	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
 	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
 
+>>>>>>> 6a1d3880a5339d70000ee643066422c8fdf068b2
 }
 
 void stopEating()
@@ -49,13 +61,19 @@ void stopEating()
 	angular_z=0;
 }
 
+<<<<<<< HEAD
+=======
 void eat()
 {
 	// Triggered by robot call.
 	// Spin on the spot to show that resident is eating. 
 	angular_z = 2;
 	// Then after two seconds, it stops eating.
+	if(count==40){
+		stopEating();
+	}
 }
+>>>>>>> 6a1d3880a5339d70000ee643066422c8fdf068b2
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
@@ -102,8 +120,12 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 
 ros::Rate loop_rate(10);
 
+<<<<<<< HEAD
 //a count of how many messages we have sent
 int count = 0;
+=======
+
+>>>>>>> 6a1d3880a5339d70000ee643066422c8fdf068b2
 
 ////messages
 //velocity of this RobotNode
@@ -123,6 +145,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+<<<<<<< HEAD
 	if(count==10){
 		linear_x = 2;
 	}
@@ -163,6 +186,13 @@ while (ros::ok())
 		linear_x = 0;
 	}
 
+=======
+	// At 2 seconds, resident wakes up.
+	if(count==20){
+		//wakeUp();
+		eat();
+	}
+>>>>>>> 6a1d3880a5339d70000ee643066422c8fdf068b2
 }
 
 return 0;

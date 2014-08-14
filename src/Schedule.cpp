@@ -21,9 +21,9 @@ class timer {
 			return seconds >= elapsedTime();
 		}
 
-		int wakeTime=2;
-		int eatingTime1 = 8;
-		int eatingTime2 = 14;
+		static int wakeTime=2;
+		static int eatingTime1 = 8;
+		static int eatingTime2 = 14;
 };
 
 //Functions
@@ -40,23 +40,24 @@ int main() {
 	cout << "timer started . . ." << endl;
 	while(true) {
 		if(t.elapsedTime() ==t.wakeTime) {
-			cout<<"Resident wakes up"<<endl;
+			//cout<<"Resident wakes up"<<endl;
 			break;
 		}
 	}
 	while(true) {
 		if(t.elapsedTime() == t.eatingTime1) {
-			cout<<"Resident eats"<<endl;
+			//cout<<"Resident eats"<<endl;
+			resident.eat();
 			break;
 				}
 	}
 	while(true) {
 			if(t.elapsedTime() == t.eatingTime2) {
-				cout<<"Resident eats"<<endl;
+				//cout<<"Resident eats"<<endl;
 				break;
 					}
 		}
-	cout << t.elapsedTime() <<  " seconds elapsed" << endl;
+	//cout << t.elapsedTime() <<  " seconds elapsed" << endl;
 }
 
 
