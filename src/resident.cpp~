@@ -6,6 +6,7 @@
 
 #include <sstream>
 #include "math.h"
+//#include "cookingrobot.h"
 
 //velocity of the robot
 double linear_x;
@@ -16,14 +17,12 @@ double px;
 double py;
 double theta;
 
-//a count of how many messages we have sent
-int count = 0;
-
 void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
-	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
+	// Navigate from (-6.8, 4.5) to (-3.5, 4.5), which is 3.3 units East.
+	linear_x=0.5;
 }
 
 void getReadyToEat()
@@ -35,22 +34,18 @@ void getReadyToEat()
 
 }
 
+void eat()
+{
+	// Spin on the spot to show that resident is eating. 
+	angular_z = 2;
+}
+
 void stopEating()
 {
+	// Stop spinning to show that the resident has stopped eating.
 	angular_z=0;
 }
 
-
-void eat()
-{
-	// Triggered by robot call.
-	// Spin on the spot to show that resident is eating. 
-	angular_z = 2;
-	// Then after two seconds, it stops eating.
-	if(count==40){
-		stopEating();
-	}
-}
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
@@ -97,7 +92,8 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 
 ros::Rate loop_rate(10);
 
-
+//a count of how many messages we have sent
+int count = 0;
 
 ////messages
 //velocity of this RobotNode
@@ -117,10 +113,15 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	// At 2 seconds, resident wakes up.
-	if(count==20){
-		//wakeUp();
+	if(count==20){ // At 2 seconds, resident wakes up.
+		wakeUp();
+	}else if (count==30){ // At 4 seconds, the resident will get ready to eat.
+		getReadyToEat();
+	}
+	}else if(count==100){ // Once the robot has delivered the food, start eating.
 		eat();
+	}else if(count==120){ // Take two seconds to eat, then stop.
+		stopEating();
 	}
 }
 
