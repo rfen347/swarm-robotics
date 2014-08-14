@@ -11,19 +11,39 @@
 #include "resident.cpp"
 
 Reisident r;
-
-// Declare a test
-TEST(AlphaTest, residentTestCase1)
-{
-<test things here, calling EXPECT_* and/or ASSERT_* macros as needed>
+//when they fail, ASSERT_* yields a fatal failure and returns from the current function, 
+//while EXPECT_* yields a nonfatal failure, allowing the function to continue running
+//Normally, EXPECT_* is the better option since the rest of the test can continue to run and can give useful output.
+//However, ASSERT_* is better if the test shouldn't continue.
+//=================Resident test cases==========================================
+TEST(initialPositionTest, residentTestCase1){
+	ASSERT_EQ(0,linear_x);
+	ASSERT_EQ(0, angular_z);
 }
 
-// Declare another test
-TEST(TestSuite, testCase2)
-{
-<test things here, calling EXPECT_* and/or ASSERT_* macros as needed>
+TEST(initialPoseTest, residentTestCase1){
+	ASSERT_EQ(0, theta);
+	ASSERT_EQ(-6.5, px);
+	ASSERT_EQ(4.5, py);	
 }
 
+TEST(wakeUpTest, residentTestCase3){
+	r.wakeUp();
+	ASSERT_EQ(2, linear_x);	
+
+}
+
+TEST(stopEatingTest, residentTestCase4){
+ 	r.stopEating();
+	ASSERT_EQ(0, angular_z);
+}
+
+TEST(residentPositionTest, residentTestCase5){
+	
+}
+//=================Visitor test cases============================================
+
+//=================Cooking robot test cases======================================
 // Run all the tests that were declared with TEST()
 int main(int argc, char **argv){
 testing::InitGoogleTest(&argc, argv);
