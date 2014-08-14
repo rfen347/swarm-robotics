@@ -173,6 +173,44 @@ while (ros::ok())
 	if(count==700){
 		angular_z = 0;
 	}
+
+
+	if(count==720){
+		linear_x = 2;
+	}
+	if(count==750){
+		angular_z = -M_PI / 2;
+		linear_x = 0;
+	} 
+	if(count==760){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==765){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==775){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==790){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==800){
+		angular_z = 0;
+		linear_x = 2;
+	} 
+	if(count==850){
+		angular_z = -M_PI / 2;
+		linear_x = 0;
+	}
+
+	if(count==870){
+		angular_z = 0;
+	} 
+	
 }
 
 return 0;
