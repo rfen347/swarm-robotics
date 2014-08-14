@@ -160,11 +160,44 @@ while (ros::ok())
 		angular_z = 0;
 		linear_x = 2;
 	}
+<<<<<<< HEAD
+	if(count > 210 && count < 640){
+		if (count % 2 < 1) {
+			linear_x = -10;
+		} else {linear_x = 10;}
+	}
+	if(count==640){
+		angular_z = 0;
+		linear_x = -2;
+	}
+	if(count==660){
+		angular_z = - M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==670){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==720){
+		angular_z = M_PI / 2;
+=======
 	if(count==210){
 		ROS_INFO("ACTIVITY - Resident is watching TV");
 		angular_z = 2;
+>>>>>>> be901ada2afec6b9b82897b19b6237ecfefcb1e6
 		linear_x = 0;
 	}
+	if(count==730){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==735){
+		angular_z = - M_PI / 2;
+		linear_x = 0;
+	
+	
+
+	
 
 }
 
