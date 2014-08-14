@@ -32,4 +32,3 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 rosbuild_add_executable(R0 src/resident.cpp)
 rosbuild_add_executable(R1 src/cookingrobot.cpp)
 rosbuild_add_executable(R2 src/visitor.cpp)
-
