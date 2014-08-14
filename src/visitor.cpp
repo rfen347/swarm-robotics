@@ -42,12 +42,12 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = M_PI/2.0;
-	px = 5;
-	py = 10;
+	px = 7;
+	py = -3;
 	
 	//Initial velocity
-	linear_x = 0.2;
-	angular_z = 0.2;
+	linear_x = 0.7;
+	angular_z = 1.2;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
 ros::init(argc, argv, "RobotNode2");

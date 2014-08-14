@@ -30,9 +30,5 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #target_link_libraries(example ${PROJECT_NAME})
 
 rosbuild_add_executable(R0 src/resident.cpp)
-<<<<<<< HEAD
-=======
 rosbuild_add_executable(R1 src/cookingrobot.cpp)
 rosbuild_add_executable(R2 src/visitor.cpp)
-
->>>>>>> ddbed7a998ec93c8c764216eac0c3e5e1c458968

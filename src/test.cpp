@@ -13,7 +13,7 @@
 Reisident r;
 
 // Declare a test
-TEST(AlphaTest, testCase1)
+TEST(AlphaTest, residentTestCase1)
 {
 <test things here, calling EXPECT_* and/or ASSERT_* macros as needed>
 }
