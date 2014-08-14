@@ -100,7 +100,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
+	//ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
 
 	//Start cooking at 5 seconds (testing)
 	//if (count==50) {

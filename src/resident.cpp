@@ -120,7 +120,7 @@ while (ros::ok())
 	
 	ros::spinOnce();
 
-	ROS_INFO("Cycle %i - Resident co-ordinates - (%f, %f)",count,px,py);
+	//ROS_INFO("Cycle %i - Resident co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;
