@@ -125,6 +125,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+	// leave bed and go to sofa
 	if(count==10){
 		linear_x = 2;
 	}
