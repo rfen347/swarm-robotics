@@ -7,6 +7,7 @@
 
 #include <sstream>
 #include "math.h"
+//#include "cookingrobot.h"
 
 
 //velocity of the robot
@@ -25,6 +26,7 @@ void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
+	// Navigate from (-6.8, 4.5) to (-3.5, 4.5), which is 3.3 units East.
 	linear_x = 2;
 	
 	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
@@ -37,14 +39,8 @@ void getReadyToEat()
 }
 
 
-void stopEating()
-{
-	angular_z=0;
-}
-
 void eat()
 {
-	// Triggered by robot call.
 	// Spin on the spot to show that resident is eating. 
 	angular_z = 2;
 	// Then after two seconds, it stops eating.
@@ -56,6 +52,13 @@ void eat()
 
 
 }
+
+void stopEating()
+{
+	// Stop spinning to show that the resident has stopped eating.
+	angular_z=0;
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
@@ -63,7 +66,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	py = 4.5 + msg.pose.pose.position.y;
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
-	
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -84,7 +86,7 @@ int main(int argc, char **argv)
 	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 0;
+	linear_x = 2;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
@@ -123,46 +125,57 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+	ROS_INFO("Cycle no. %i", count);
 
+/*
+	if(count==20){ // At 2 seconds, resident wakes up.
+		wakeUp();
+	}else if (count==30){ // At 4 seconds, the resident will get ready to eat.
+		getReadyToEat();
+	}else if(count==100){ // Once the robot has delivered the food, start eating.
+		eat();
+	}else if(count==120){ // Take two seconds to eat, then stop.
+		stopEating();
+*/
+
+	if(px>2.5){
+		linear_x=0;
+		ROS_INFO("OH YEAH MR. KRABS");
+	}
+
+// Gary's navigation
+/*
 	if(count==10){
 		linear_x = 2;
-	}
-	if(count==40){
+	}else if(count==40){
 		angular_z = - M_PI / 2;
 		linear_x = 0;
-	} 
-	if(count==50){
+	}else if(count==50){
 		angular_z = 0;
 		linear_x = 2;
-	}
-	if(count==100){
+	}else if(count==100){
 		angular_z = M_PI / 2;;
 		linear_x = 0;
-	}
-	if(count==110){
+	}else if(count==110){
 		angular_z = 0;
 		linear_x = 2;
-	}
-	if(count==140){
+	}else if(count==140){
 		angular_z = M_PI / 2;
 		linear_x = 0;
-	}
-	if(count==150){
+	}else if(count==150){
 		angular_z = 0;
 		linear_x = 2;
-	}
-	if(count==190){
+	}else if(count==190){
 		angular_z = - M_PI / 2;
 		linear_x = 0;
-	}
-	if(count==200){
+	}else if(count==200){
 		angular_z = 0;
 		linear_x = 2;
-	}
-	if(count==210){
+	}else if(count==210){
 		angular_z = 2;
 		linear_x = 0;
 	}
+*/
 
 }
 

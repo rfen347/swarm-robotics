@@ -24,6 +24,7 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//This is the call back function to process odometry messages coming from Stage. 	
 	px = 7.5 + msg.pose.pose.position.x;
 	py =-3.5 + msg.pose.pose.position.y;
+
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 }
