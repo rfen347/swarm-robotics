@@ -3,6 +3,7 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
+#include <tf/transform_broadcaster.h>
 
 #include <sstream>
 #include "math.h"
@@ -21,6 +22,8 @@ void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
+	linear_x = 2;
+	
 }
 
 void getReadyToEat()
@@ -62,9 +65,9 @@ int main(int argc, char **argv)
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
-	theta = M_PI/2.0;
-	px = 10;
-	py = 20;
+	theta = 0;
+	px = -6.5;
+	py = 4.5;
 	
 	//Initial velocity
 	linear_x = 0;
@@ -107,11 +110,46 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	if(count==80){
-		eat();
-	}else if(count==100){
-		stopEating();
+	if(count==10){
+		linear_x = 2;
 	}
+	if(count==40){
+		angular_z = - M_PI / 2;
+		linear_x = 0;
+	} 
+	if(count==50){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==100){
+		angular_z = angular_z = M_PI / 2;;
+		linear_x = 0;
+	}
+	if(count==110){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==140){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==150){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==190){
+		angular_z = - M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==200){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==210){
+		angular_z = 2;
+		linear_x = 0;
+	}
+
 }
 
 return 0;
