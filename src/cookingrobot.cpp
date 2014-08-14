@@ -6,6 +6,7 @@
 
 #include <sstream>
 #include "math.h"
+#include "resident.cpp"
 
 //velocity of the robot
 double linear_x;
@@ -19,6 +20,8 @@ double theta;
 void cook() {
 
 	//navigate to food storage
+	//linear_x = 0.5;
+
 	//indicate getting items from food storage
 	//navigate to fridge
 	//indicate getting items from fridge
@@ -33,8 +36,8 @@ void cook() {
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 5 + msg.pose.pose.position.x;
-	py =10 + msg.pose.pose.position.y;
+	px = 0 + msg.pose.pose.position.x;
+	py = 0 + msg.pose.pose.position.y;
 	ROS_INFO("Current x position is: %f", px);
 	ROS_INFO("Current y position is: %f", py);
 }
@@ -53,12 +56,12 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = M_PI/2.0;
-	px = 5;
-	py = 10;
+	px = 5.5;
+	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 0.2;
-	angular_z = 0.2;
+	linear_x = 0;
+	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
 ros::init(argc, argv, "RobotNode1");
@@ -96,6 +99,11 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+
+	if (count==90) {
+		cook();
+	}
+
 }
 
 return 0;
