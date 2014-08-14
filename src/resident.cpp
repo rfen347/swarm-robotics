@@ -18,6 +18,9 @@ double px;
 double py;
 double theta;
 
+void StageLaser_callback(sensor_msgs::LaserScan msg);
+void StageOdom_callback(nav_msgs::Odometry msg);
+
 void wakeUp()
 {
 	// Triggered by schedule.
@@ -33,16 +36,6 @@ void getReadyToEat()
 	// Navigate to dining table, and then stop.
 }
 
-void eat()
-{
-	// Spin on the spot to show that resident is eating. 
-	angular_z = 2;	
-	// Triggered by robot call.
-	// Navigate to dining table, and then stop.
-	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
-	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
-
-}
 
 void stopEating()
 {
@@ -55,6 +48,13 @@ void eat()
 	// Spin on the spot to show that resident is eating. 
 	angular_z = 2;
 	// Then after two seconds, it stops eating.
+
+	// Triggered by robot call.
+	// Navigate to dining table, and then stop.
+	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
+	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
+
+
 }
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
@@ -135,7 +135,7 @@ while (ros::ok())
 		linear_x = 2;
 	}
 	if(count==100){
-		angular_z = angular_z = M_PI / 2;;
+		angular_z = M_PI / 2;;
 		linear_x = 0;
 	}
 	if(count==110){
