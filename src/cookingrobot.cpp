@@ -135,11 +135,12 @@ while (ros::ok())
 		linear_x = 0;
 	} 
 	if(count==480){
+		ROS_INFO("ACTIVITY - Cooking robot stops cooking");
 		angular_z = 0;
 	}
 
-
 	if(count==500){
+		ROS_INFO("ACTIVITY - Cooking robot takes food to dining table");
 		linear_x = 2;
 	}
 	if(count==540){
@@ -167,6 +168,7 @@ while (ros::ok())
 		linear_x = 2;
 	} 
 	if(count==640){
+		ROS_INFO("ACTIVITY - Cooking robot puts food on dining table");
 		angular_z = -M_PI / 2;
 		linear_x = 0;
 	}
@@ -175,6 +177,7 @@ while (ros::ok())
 	}
 
 	if(count==720){
+		ROS_INFO("ACTIVITY - Cooking robot goes back to original position");	
 		linear_x = 2;
 	}
 	if(count==750){
