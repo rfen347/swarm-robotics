@@ -18,17 +18,18 @@ double theta;
 
 void cook() {
 
-	//navigate to food storage
-	linear_x = 5;
+	//navigate to food storage (7.35, -0.55)
+	linear_x = 2;
+	angular_z= 0.5;
 
 	//indicate getting items from food storage
-	//navigate to fridge
+	//navigate to fridge (8.6, 0.15)
 	//indicate getting items from fridge
-	//navigate to stovetop
+	//navigate to stovetop (8.6, 3.6)
 	//indicate cooking
-	//navigate to table
+	//navigate to table (2.12, -1.44)
 	//inform resident food is served!
-	//navigate back to idle position
+	//navigate back to idle position (5.5, 4.5)
 
 }
 

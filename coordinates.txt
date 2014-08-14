@@ -3,10 +3,10 @@ Resident starting position (-6.8,4.5)
 Visitor starting position(7.0,-4.7)
 
 Points of interest
->>Note these points are for where the robot would be positioned next to the object of interest
-Fridge (8.77, 0.19)
+>>Note these points are for where the robot would be positioned next to the object of interest without colliding
+Fridge (8.6, 0.15)
 Food storage(7.45, -0.66)
-Stove (8.5, 3.6)
+Stove (8.6, 3.6)
 Couch (0.85, 2.69)
 Bed (-6.8, 4.5)
 Toilet (-5.77, -3.09)
