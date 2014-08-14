@@ -210,17 +210,19 @@ while (ros::ok())
 		angular_z = 0;
 		linear_x = 2;
 	}
-	if(count==930){
+	if(count==932){
 		angular_z = - M_PI / 2;
 		linear_x = 0;
 	}
 
-	if(count==950){
+	if(count==952){
 		angular_z = 0;
 	}
 	
 
-	
+	if(count==1050){
+		count = 0;
+	}
 
 }
 
