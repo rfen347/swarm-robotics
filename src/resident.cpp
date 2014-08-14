@@ -59,10 +59,11 @@ void eat()
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 0 + msg.pose.pose.position.x;
-	py =0 + msg.pose.pose.position.y;
-	ROS_INFO("Current x position is: %f", px);
-	ROS_INFO("Current y position is: %f", py);
+	px = -6.5 + msg.pose.pose.position.x;
+	py = 4.5 + msg.pose.pose.position.y;
+	//ROS_INFO("Current x position is: %f", px);
+	//ROS_INFO("Current y position is: %f", py);
+	
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)

@@ -3,7 +3,7 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-
+#include <tf/transform_broadcaster.h>
 #include <sstream>
 #include "math.h"
 
@@ -20,7 +20,7 @@ void cook() {
 
 	//navigate to food storage (7.35, -0.55)
 	linear_x = 2;
-	angular_z= 0.5;
+	angular_z= 0.1;
 
 	//indicate getting items from food storage
 	//navigate to fridge (8.6, 0.15)
@@ -36,8 +36,8 @@ void cook() {
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 0 + msg.pose.pose.position.x;
-	py = 0 + msg.pose.pose.position.y;
+	px = 5.5 + msg.pose.pose.position.x;
+	py = 4.5 + msg.pose.pose.position.y;
 	ROS_INFO("Current x position is: %f", px);
 	ROS_INFO("Current y position is: %f", py);
 }
