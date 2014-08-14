@@ -6,7 +6,6 @@
 
 #include <sstream>
 #include "math.h"
-#include "resident.cpp"
 
 //velocity of the robot
 double linear_x;
@@ -20,7 +19,7 @@ double theta;
 void cook() {
 
 	//navigate to food storage
-	//linear_x = 0.5;
+	linear_x = 5;
 
 	//indicate getting items from food storage
 	//navigate to fridge
@@ -100,7 +99,8 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	if (count==90) {
+	//Start cooking at 5 seconds (testing)
+	if (count==50) {
 		cook();
 	}
 
