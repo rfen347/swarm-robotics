@@ -155,7 +155,6 @@ while (ros::ok())
 	if(count==110){
 		angular_z = 0;
 		linear_x = 2;
->>>>>>> 949e7abd918542835194efad32cf2867034e0867
 	}
 	if(count==140){
 		angular_z = M_PI / 2;

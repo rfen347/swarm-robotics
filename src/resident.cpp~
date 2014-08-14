@@ -23,14 +23,10 @@ void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
-<<<<<<< HEAD
 	// Navigate from (-6.8, 4.5) to (-3.5, 4.5), which is 3.3 units East.
-	linear_x=0.5;
-=======
 	linear_x = 2;
 	
 	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
->>>>>>> 949e7abd918542835194efad32cf2867034e0867
 }
 
 void getReadyToEat()
@@ -54,10 +50,7 @@ void eat()
 {
 	// Spin on the spot to show that resident is eating. 
 	angular_z = 2;
-<<<<<<< HEAD
-=======
 	// Then after two seconds, it stops eating.
->>>>>>> 949e7abd918542835194efad32cf2867034e0867
 }
 
 void stopEating()
@@ -133,7 +126,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-<<<<<<< HEAD
+/*
 	if(count==20){ // At 2 seconds, resident wakes up.
 		wakeUp();
 	}else if (count==30){ // At 4 seconds, the resident will get ready to eat.
@@ -142,7 +135,8 @@ while (ros::ok())
 		eat();
 	}else if(count==120){ // Take two seconds to eat, then stop.
 		stopEating();
-=======
+*/
+
 	if(count==10){
 		linear_x = 2;
 	}
@@ -161,7 +155,6 @@ while (ros::ok())
 	if(count==110){
 		angular_z = 0;
 		linear_x = 2;
->>>>>>> 949e7abd918542835194efad32cf2867034e0867
 	}
 	if(count==140){
 		angular_z = M_PI / 2;
