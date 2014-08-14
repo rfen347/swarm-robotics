@@ -212,6 +212,10 @@ while (ros::ok())
 	if(count==870){
 		angular_z = 0;
 	} 
+
+	if(count==1050){
+		count = 0;
+	}
 	
 }
 
