@@ -2,6 +2,13 @@
 
 source ../setup.bash
 roscd
+
+killall R0
+killall R1
+killall R2
+killall stageros
+killall roscore
+
 roscore &
 sleep 5
 cd project1

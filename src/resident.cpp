@@ -3,10 +3,12 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
+#include <tf/transform_broadcaster.h>
 
 #include <sstream>
 #include "math.h"
 //#include "cookingrobot.h"
+
 
 //velocity of the robot
 double linear_x;
@@ -22,11 +24,21 @@ void wakeUp()
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
 	// Navigate from (-6.8, 4.5) to (-3.5, 4.5), which is 3.3 units East.
-	linear_x=0.5;
+	linear_x = 2;
+	
+	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
 }
 
 void getReadyToEat()
 {
+	// Triggered by robot message.
+	// Navigate to dining table, and then stop.
+}
+
+void eat()
+{
+	// Spin on the spot to show that resident is eating. 
+	angular_z = 2;	
 	// Triggered by robot call.
 	// Navigate to dining table, and then stop.
 	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
@@ -38,6 +50,7 @@ void eat()
 {
 	// Spin on the spot to show that resident is eating. 
 	angular_z = 2;
+	// Then after two seconds, it stops eating.
 }
 
 void stopEating()
@@ -68,9 +81,9 @@ int main(int argc, char **argv)
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
-	theta = M_PI/2.0;
-	px = 10;
-	py = 20;
+	theta = 0;
+	px = -6.5;
+	py = 4.5;
 	
 	//Initial velocity
 	linear_x = 0;
@@ -113,6 +126,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+/*
 	if(count==20){ // At 2 seconds, resident wakes up.
 		wakeUp();
 	}else if (count==30){ // At 4 seconds, the resident will get ready to eat.
@@ -121,7 +135,49 @@ while (ros::ok())
 		eat();
 	}else if(count==120){ // Take two seconds to eat, then stop.
 		stopEating();
+*/
+
+	if(count==10){
+		linear_x = 2;
 	}
+	if(count==40){
+		angular_z = - M_PI / 2;
+		linear_x = 0;
+	} 
+	if(count==50){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==100){
+		angular_z = angular_z = M_PI / 2;;
+		linear_x = 0;
+	}
+	if(count==110){
+		angular_z = 0;
+		linear_x = 2;
+>>>>>>> 949e7abd918542835194efad32cf2867034e0867
+	}
+	if(count==140){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==150){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==190){
+		angular_z = - M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==200){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==210){
+		angular_z = 2;
+		linear_x = 0;
+	}
+
 }
 
 return 0;
