@@ -160,8 +160,8 @@ while (ros::ok())
 		angular_z = 0;
 		linear_x = 2;
 	}
-<<<<<<< HEAD
 	if(count > 210 && count < 640){
+		ROS_INFO("ACTIVITY - Resident is watching TV");
 		if (count % 2 < 1) {
 			linear_x = -10;
 		} else {linear_x = 10;}
@@ -180,11 +180,6 @@ while (ros::ok())
 	}
 	if(count==720){
 		angular_z = M_PI / 2;
-=======
-	if(count==210){
-		ROS_INFO("ACTIVITY - Resident is watching TV");
-		angular_z = 2;
->>>>>>> be901ada2afec6b9b82897b19b6237ecfefcb1e6
 		linear_x = 0;
 	}
 	if(count==730){
@@ -194,7 +189,35 @@ while (ros::ok())
 	if(count==735){
 		angular_z = - M_PI / 2;
 		linear_x = 0;
-	
+	}
+	if(count==795){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==820){
+		angular_z = -M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==830){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==890){
+		angular_z = M_PI / 2;
+		linear_x = 0;
+	}
+	if(count==900){
+		angular_z = 0;
+		linear_x = 2;
+	}
+	if(count==930){
+		angular_z = - M_PI / 2;
+		linear_x = 0;
+	}
+
+	if(count==950){
+		angular_z = 0;
+	}
 	
 
 	

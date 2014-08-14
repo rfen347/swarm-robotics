@@ -173,9 +173,6 @@ while (ros::ok())
 	if(count==700){
 		angular_z = 0;
 	}
-<<<<<<< HEAD
-
-
 
 	if(count==720){
 		linear_x = 2;
@@ -213,8 +210,6 @@ while (ros::ok())
 		angular_z = 0;
 	} 
 	
-=======
->>>>>>> 1fa30caae448050e74aa3e5b11c6dda550c8d176
 }
 
 return 0;
