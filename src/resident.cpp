@@ -21,16 +21,21 @@ void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
+	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
 }
 
 void getReadyToEat()
 {
-	// Triggered by robot message.
+	// Triggered by robot call.
 	// Navigate to dining table, and then stop.
+	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
+	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
+
 }
 
 void eat()
 {
+	// Triggered by robot call.
 	// Spin on the spot to show that resident is eating. 
 	angular_z = 2;	
 }
@@ -107,6 +112,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+	// At 2 seconds, resident wakes up.
+	if(count==20){
+		wakeUp();
+	}
 	if(count==80){
 		eat();
 	}else if(count==100){

@@ -11,9 +11,9 @@ export ROS_TEST_RESULTS_DIR="/home/bc/indigo_workspace3/project1/build/test_resu
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/bc/indigo_workspace3/project1/build/devel:$CMAKE_PREFIX_PATH"
 export CPATH="/home/bc/indigo_workspace3/project1/build/devel/include:$CPATH"
-export LD_LIBRARY_PATH="/home/bc/indigo_workspace3/project1/build/devel/lib:/home/bc/indigo_workspace3/project1/build/devel/lib/x86_64-linux-gnu:/opt/ros/indigo/lib/x86_64-linux-gnu:/opt/ros/indigo/lib"
+export LD_LIBRARY_PATH="/home/bc/indigo_workspace3/project1/build/devel/lib:/home/bc/indigo_workspace3/project1/build/devel/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
 export PATH="/home/bc/indigo_workspace3/project1/build/devel/bin:$PATH"
-export PKG_CONFIG_PATH="/home/bc/indigo_workspace3/project1/build/devel/lib/pkgconfig:/home/bc/indigo_workspace3/project1/build/devel/lib/x86_64-linux-gnu/pkgconfig:/opt/ros/indigo/lib/x86_64-linux-gnu/pkgconfig:/opt/ros/indigo/lib/pkgconfig"
+export PKG_CONFIG_PATH="/home/bc/indigo_workspace3/project1/build/devel/lib/pkgconfig:/home/bc/indigo_workspace3/project1/build/devel/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
 export PYTHONPATH="/home/bc/indigo_workspace3/project1/build/devel/lib/python2.7/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/bc/indigo_workspace3/project1/build/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/shivarni/indigo_workspace/project1:/home/bc/indigo_workspace3/project1:/opt/ros/indigo/share:/opt/ros/indigo/stacks"
+export ROS_PACKAGE_PATH="/home/bc/indigo_workspace3/project1:/opt/ros/indigo/share:/opt/ros/indigo/stacks"
