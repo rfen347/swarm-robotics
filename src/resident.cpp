@@ -120,7 +120,7 @@ while (ros::ok())
 	
 	ros::spinOnce();
 
-	ROS_INFO("Cycle %i - Resident co-ordinates - (%f, %f)",count,px,py);
+	//ROS_INFO("Cycle %i - Resident co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;
@@ -161,10 +161,7 @@ while (ros::ok())
 		angular_z = 0;
 		linear_x = 2;
 	}
-<<<<<<< HEAD
 	// watching TV
-=======
->>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
 	if(count > 210 && count < 640){
 		ROS_INFO("ACTIVITY - Resident is watching TV");
 		if (count % 2 < 1) {
@@ -196,10 +193,7 @@ while (ros::ok())
 		angular_z = - M_PI / 2;
 		linear_x = 0;
 	}
-<<<<<<< HEAD
 	// off to bed
-=======
->>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
 	if(count==795){
 		angular_z = 0;
 		linear_x = 2;
@@ -224,16 +218,6 @@ while (ros::ok())
 		angular_z = - M_PI / 2;
 		linear_x = 0;
 	}
-<<<<<<< HEAD
-=======
-
-	if(count==950){
-		angular_z = 0;
-	}
->>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
-	
-
-	
 
 }
 
