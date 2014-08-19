@@ -22,8 +22,9 @@ double theta;
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 5 + msg.pose.pose.position.x;
-	py =10 + msg.pose.pose.position.y;
+	px = 7.5 + msg.pose.pose.position.x;
+	py =-3.5 + msg.pose.pose.position.y;
+
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 }
@@ -88,7 +89,8 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 	
-
+	// The old time-dependent navigation:
+/*
 	// enters house
 	// go straight
 	if(count==100){
@@ -220,7 +222,7 @@ while (ros::ok())
 	// reset the day
 	if(count==1050){
 		count = 0;
-	}
+	}*/
 
 }
 
