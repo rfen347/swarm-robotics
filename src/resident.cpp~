@@ -136,8 +136,6 @@ void stopEating()
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
 	px = -6.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 }
@@ -160,7 +158,7 @@ int main(int argc, char **argv)
 	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 0;
+	linear_x = 2;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
@@ -201,6 +199,8 @@ while (ros::ok())
 	++count;
 
 	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
+
+	wakeUp();
 }
 
 return 0;

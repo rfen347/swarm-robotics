@@ -89,7 +89,8 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 	
-
+	// The old time-dependent navigation:
+/*
 	// enters house
 	// go straight
 	if(count==100){
@@ -221,7 +222,7 @@ while (ros::ok())
 	// reset the day
 	if(count==1050){
 		count = 0;
-	}
+	}*/
 
 }
 

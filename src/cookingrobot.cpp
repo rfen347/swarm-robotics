@@ -38,6 +38,7 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//This is the call back function to process odometry messages coming from Stage. 	
 	px = 5.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
+
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 }
@@ -102,12 +103,8 @@ while (ros::ok())
 
 	//ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
 
-	//Start cooking at 5 seconds (testing)
-	//if (count==50) {
-	//	cook();
-	//}
-
-
+	// The old time-dependent navigation:
+	/*
 	// start walking to the food storeage
 	// go straight
 	if(count==200){
@@ -244,7 +241,7 @@ while (ros::ok())
 	// reset the day
 	if(count==1050){
 		count = 0;
-	}
+	}*/
 	
 }
 
