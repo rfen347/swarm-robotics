@@ -100,133 +100,148 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
+	//ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
 
 	//Start cooking at 5 seconds (testing)
 	//if (count==50) {
 	//	cook();
 	//}
 
+
+	// start walking to the food storeage
+	// go straight
 	if(count==200){
 		linear_x = 2;
 	}
+	// turn 90 degrees anti-clockwise
 	if(count==250){
 		angular_z = M_PI / 2;
 		linear_x = 0;
 	} 
+	// go straight
 	if(count==260){
 		angular_z = 0;
 		linear_x = 2;
 	}
+	// start taking food
 	if(count==280){
 		ROS_INFO("ACTIVITY - Cooking robot starts taking food");
 		angular_z = M_PI / 2;;
 		linear_x = 0;
 	}
+	// finish taking food
 	if(count==330){
 		angular_z = 0;
 	}
+	// go straight to stove 
 	if(count==340){
 		linear_x = 2;
 	}
+	// start cooking
 	if(count==380){
 		ROS_INFO("ACTIVITY - Cooking robot starts cooking");
 		angular_z = - M_PI / 2;
 		linear_x = 0;
 	} 
+	// finish cooking
 	if(count==480){
+		ROS_INFO("ACTIVITY - Cooking robot stops cooking");
 		angular_z = 0;
 	}
-
-
+	// start taking food to dining table
+	//go straight
 	if(count==500){
+		ROS_INFO("ACTIVITY - Cooking robot takes food to dining table");
 		linear_x = 2;
 	}
+	// turn 90 degrees clockwise
 	if(count==540){
 		angular_z = -M_PI / 2;
 		linear_x = 0;
 	} 
+	// go straight
 	if(count==550){
 		angular_z = 0;
 		linear_x = 2;
 	}
+	// turn 90 degrees clockwise
 	if(count==600){
 		angular_z = -M_PI / 2;
 		linear_x = 0;
 	}
+	// go straight
 	if(count==610){
 		angular_z = 0;
 		linear_x = 2;
 	}
+	// turn 90 degrees anti-clockwise
 	if(count==615){
 		linear_x = 0;
 		angular_z = M_PI / 2;
 	}
+	// go straight
 	if(count==625){
 		angular_z = 0;
 		linear_x = 2;
 	} 
+	// puts food on dining table(spin)
 	if(count==640){
+		ROS_INFO("ACTIVITY - Cooking robot puts food on dining table");
 		angular_z = -M_PI / 2;
 		linear_x = 0;
 	}
+	// finish put food
 	if(count==700){
 		angular_z = 0;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
->>>>>>> d3a8c48fbead9ab4f2e04806057ddd4992e3d452
-
-=======
->>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
-
 	if(count==720){
+		ROS_INFO("ACTIVITY - Cooking robot goes back to original position");	
 		linear_x = 2;
 	}
+	// turn 90 degrees clockwise
 	if(count==750){
 		angular_z = -M_PI / 2;
 		linear_x = 0;
 	} 
+	// go straight
 	if(count==760){
 		angular_z = 0;
 		linear_x = 2;
 	}
+	// turn 90 degrees anti-clockwise
 	if(count==765){
 		angular_z = M_PI / 2;
 		linear_x = 0;
 	}
+	// go straight
 	if(count==775){
 		angular_z = 0;
 		linear_x = 2;
 	}
+	// turn 90 degrees anti-clockwise
 	if(count==790){
 		angular_z = M_PI / 2;
 		linear_x = 0;
 	}
+	// go straight
 	if(count==800){
 		angular_z = 0;
 		linear_x = 2;
 	} 
+	// back to the original facing direction
+	// turn 90 degrees clockwise 
 	if(count==850){
 		angular_z = -M_PI / 2;
 		linear_x = 0;
 	}
-
+	// stop
 	if(count==870){
 		angular_z = 0;
 	} 
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1fa30caae448050e74aa3e5b11c6dda550c8d176
->>>>>>> d3a8c48fbead9ab4f2e04806057ddd4992e3d452
-=======
->>>>>>> 37fbbfce7e7708f71f819832857fcc4b23dae1ed
+	// reset the day
+	if(count==1050){
+		count = 0;
+	}
 }
 
 return 0;
