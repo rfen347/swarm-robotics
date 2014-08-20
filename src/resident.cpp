@@ -4,7 +4,7 @@
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
 #include <tf/transform_broadcaster.h>
-
+#include <project1/move.h>
 #include <sstream>
 #include "math.h"
 
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "RobotNode0");
+ros::init(argc, argv, "Resident");
 
 //NodeHandle is the main access point to communicate with ros.
 ros::NodeHandle n;
@@ -120,7 +120,6 @@ while (ros::ok())
 	
 	ros::spinOnce();
 
-	//ROS_INFO("Cycle %i - Resident co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;

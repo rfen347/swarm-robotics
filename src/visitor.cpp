@@ -3,7 +3,7 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-#include <tf/transform_broadcaster.h>
+#include <project1/move.h>
 #include <sstream>
 #include "math.h"
 
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "RobotNode2");
+ros::init(argc, argv, "Visitor");
 
 //NodeHandle is the main access point to communicate with ros.
 ros::NodeHandle n;
@@ -58,6 +58,7 @@ ros::NodeHandle n;
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+ros::Publisher cooking_move = n.advertise<project1::move>("robot_1/aaa",1000); 
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
@@ -72,11 +73,21 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+// move
+project1::move Mo;
+
 while (ros::ok())
 {
 	//messages to stage
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
+	
+	
+	if (count == 20) {
+	
+		cooking_move.publish(Mo);
+	
+	} 
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);

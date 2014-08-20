@@ -3,7 +3,7 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-
+#include <project1/move.h>
 #include <sstream>
 #include "math.h"
 
@@ -50,6 +50,11 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
+void chatterCallback(project1::move Mo){
+	ROS_INFO("Moving!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+	linear_x = 3;
+}
+
 int main(int argc, char **argv)
 {
 
@@ -64,7 +69,7 @@ int main(int argc, char **argv)
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "RobotNode1");
+ros::init(argc, argv, "CookingRobot");
 
 //NodeHandle is the main access point to communicate with ros.
 ros::NodeHandle n;
@@ -76,6 +81,7 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
+ros::Subscriber sub = n.subscribe<project1::move>("robot_1/aaa", 1000, chatterCallback);
 
 ros::Rate loop_rate(10);
 
