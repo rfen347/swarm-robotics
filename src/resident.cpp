@@ -173,10 +173,6 @@ void stopEating()
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
-	double roll;
-	double pitch;
-	double yaw;
-
 	//This is the call back function to process odometry messages coming from Stage. 	
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
