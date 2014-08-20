@@ -179,6 +179,19 @@ R2/fast:
 .PHONY : R2/fast
 
 #=============================================================================
+# Target rules for targets named R3
+
+# Build rule for target.
+R3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 R3
+.PHONY : R3
+
+# fast build rule for target.
+R3/fast:
+	$(MAKE) -f CMakeFiles/R3.dir/build.make CMakeFiles/R3.dir/build
+.PHONY : R3/fast
+
+#=============================================================================
 # Target rules for targets named ROSBUILD_genmsg_cpp
 
 # Build rule for target.
@@ -525,6 +538,30 @@ src/resident.cpp.s:
 	$(MAKE) -f CMakeFiles/R0.dir/build.make CMakeFiles/R0.dir/src/resident.cpp.s
 .PHONY : src/resident.cpp.s
 
+src/schedule.o: src/schedule.cpp.o
+.PHONY : src/schedule.o
+
+# target to build an object file
+src/schedule.cpp.o:
+	$(MAKE) -f CMakeFiles/R3.dir/build.make CMakeFiles/R3.dir/src/schedule.cpp.o
+.PHONY : src/schedule.cpp.o
+
+src/schedule.i: src/schedule.cpp.i
+.PHONY : src/schedule.i
+
+# target to preprocess a source file
+src/schedule.cpp.i:
+	$(MAKE) -f CMakeFiles/R3.dir/build.make CMakeFiles/R3.dir/src/schedule.cpp.i
+.PHONY : src/schedule.cpp.i
+
+src/schedule.s: src/schedule.cpp.s
+.PHONY : src/schedule.s
+
+# target to generate assembly for a file
+src/schedule.cpp.s:
+	$(MAKE) -f CMakeFiles/R3.dir/build.make CMakeFiles/R3.dir/src/schedule.cpp.s
+.PHONY : src/schedule.cpp.s
+
 src/visitor.o: src/visitor.cpp.o
 .PHONY : src/visitor.o
 
@@ -558,6 +595,7 @@ help:
 	@echo "... R0"
 	@echo "... R1"
 	@echo "... R2"
+	@echo "... R3"
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_genmsg_lisp"
 	@echo "... ROSBUILD_genmsg_py"
@@ -593,6 +631,9 @@ help:
 	@echo "... src/resident.o"
 	@echo "... src/resident.i"
 	@echo "... src/resident.s"
+	@echo "... src/schedule.o"
+	@echo "... src/schedule.i"
+	@echo "... src/schedule.s"
 	@echo "... src/visitor.o"
 	@echo "... src/visitor.i"
 	@echo "... src/visitor.s"

@@ -58,7 +58,6 @@ ros::NodeHandle n;
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
-ros::Publisher cooking_move = n.advertise<project1::move>("robot_1/aaa",1000); 
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
@@ -81,14 +80,7 @@ while (ros::ok())
 	//messages to stage
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
-	
-	
-	if (count == 20) {
-	
-		cooking_move.publish(Mo);
-	
-	} 
-        
+
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 	
