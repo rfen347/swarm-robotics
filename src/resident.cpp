@@ -47,7 +47,7 @@ void wakeUp()
 	while(true){
 		if(px>-3){
 			stopMove();
-			return 0;
+			return;
 		}
 	}
 }
