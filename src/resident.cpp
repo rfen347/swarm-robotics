@@ -42,12 +42,12 @@ void stopSpin(){
 	angular_z=0;
 }
 
-void navigate(char[] direction, float distance)
+void navigate(char direction[], float distance)
 //Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
 {
 	// Determine the current angle.
 
-	if (char[]=={'n','o','r','t','h'}){
+	if (direction=="north"){
 		// Determine the shortest rotation to make the robot face North (90 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
@@ -59,7 +59,7 @@ void navigate(char[] direction, float distance)
 				// return 0;
 			// }
 		// }
-	}else if (char[]=={'e','a','s','t'}){
+	}else if (direction=="east"){
 		// Determine the shortest rotation to make the robot face East (0 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
@@ -71,7 +71,7 @@ void navigate(char[] direction, float distance)
 				// return 0;
 			// }
 		// }
-	}else if (char[]=={'s','o','u','t','h'}){
+	}else if (direction=="south"){
 		// Determine the shortest rotation to make the robot face South (-90 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
@@ -107,7 +107,7 @@ void wakeUp()
 	while(true){
 		if(px>-3){
 			stopMove();
-			return 0;
+			return;
 		}
 	}
 }
@@ -158,7 +158,7 @@ int main(int argc, char **argv)
 	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 2;
+	linear_x = 0;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
@@ -195,14 +195,10 @@ while (ros::ok())
 	
 	ros::spinOnce();
 
-	//ROS_INFO("Cycle %i - Resident co-ordinates - (%f, %f)",count,px,py);
-
 	loop_rate.sleep();
 	++count;
 
 	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
-
-	wakeUp();
 }
 
 return 0;

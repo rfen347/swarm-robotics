@@ -42,13 +42,13 @@ void stopSpin(){
 	angular_z=0;
 }
 
-void navigate(char[] direction, float distance)
+void navigate(char direction[], float distance)
 //Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
 {
 	// Determine the current angle.
 
-	if (char[]=={'n','o','r','t','h'}){
-		// Determine the shortest rotation to make the robot face North (90 degrees).
+	if (direction=="north"){
+		// Determine the shortest rotation to make the robot face North (90 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
 
@@ -59,18 +59,42 @@ void navigate(char[] direction, float distance)
 				// return 0;
 			// }
 		// }
-	}else if (char[]=={'e','a','s','t'}){
-		// Determine the shortest rotation to make the robot face East (0 degrees).
+	}else if (direction=="east"){
+		// Determine the shortest rotation to make the robot face East (0 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
-		// Move east the correct distance.
-	}else if (char[]=={'s','o','u','t','h'}){
-		// Determine the shortest rotation to make the robot face South (-90 degrees).
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}else if (direction=="south"){
+		// Determine the shortest rotation to make the robot face South (-90 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
-		// Move south the correct distance.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
 	}else{
-		// Determine the shortest rotation to make the robot face West (180 or -180 degrees).
+		// Determine the shortest rotation to make the robot face West (180 or -180 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
-		// Move west the correct distance.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
 	}
 }
 
@@ -83,7 +107,7 @@ void wakeUp()
 	while(true){
 		if(px>-3){
 			stopMove();
-			return 0;
+			return;
 		}
 	}
 }
@@ -170,8 +194,6 @@ while (ros::ok())
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 	
 	ros::spinOnce();
-
-	//ROS_INFO("Cycle %i - Resident co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;
