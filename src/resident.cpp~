@@ -38,7 +38,7 @@ void setOrientation(){
 
 // This function makes the robot move forward the way it is facing.
 void move(){
-	linear_x=0.500;
+	linear_x=2;
 }
 
 // This function makes the robot stop moving forward.
@@ -120,7 +120,7 @@ void navigate(int direction, double distance)
 	double dest = 0;
 
 	// Infrastructure
-	ros::Rate loop_rate(50); // DON'T TOUCH THIS LOOP RATE
+	ros::Rate loop_rate(looRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 

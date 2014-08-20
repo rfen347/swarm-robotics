@@ -120,7 +120,7 @@ void navigate(int direction, double distance)
 	double dest = 0;
 
 	// Infrastructure
-	ros::Rate loop_rate(looRate);
+	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
