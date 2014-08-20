@@ -103,12 +103,8 @@ while (ros::ok())
 
 	//ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
 
-	//Start cooking at 5 seconds (testing)
-	//if (count==50) {
-	//	cook();
-	//}
-
-
+	// The old time-dependent navigation:
+	/*
 	// start walking to the food storeage
 	// go straight
 	if(count==200){
@@ -245,7 +241,7 @@ while (ros::ok())
 	// reset the day
 	if(count==1050){
 		count = 0;
-	}
+	}*/
 	
 }
 
