@@ -3,7 +3,6 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-#include <tf/transform_broadcaster.h>
 #include <sstream>
 #include "math.h"
 
@@ -15,6 +14,74 @@ double angular_z;
 double px;
 double py;
 double theta;
+
+int loopRate = 10;
+
+void setOrientation(){
+	//Calculate the new value of theta
+	theta = theta + (angular_z/loopRate);
+	//Check for overflow
+	if(theta>M_PI){ 
+		theta = (theta-(M_PI*2));
+	}else if(theta<=(M_PI*-1)){
+		theta = theta + (M_PI*2);
+	}
+}
+
+void rotateToAngle(double angle){
+
+
+	//Calculate the angle to rotate
+	double difference = theta - angle;
+	//Don't rotate if we are at the correct angle
+	if (difference == 0.0){
+		return;
+	}
+
+
+	//Check for overflow
+	if(difference>M_PI){ 
+		difference = (difference-(M_PI*2));
+	}else if(difference<(M_PI*-1)){
+		difference = difference + (M_PI*2);
+	}
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+
+	
+	//Calculate the shortest angle velocity to rotate
+	if(difference>0){
+		angular_z = -M_PI/2;
+		
+	}else{
+		angular_z = M_PI/2;
+		
+	}
+
+
+
+		linear_x = 0;
+	//Rotate to the specified angle
+	while(theta!=angle){
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+	ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
+	angular_z = 0;
+	linear_x = 2;
+
+}
+
 
 
 void cook() {
@@ -79,7 +146,7 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
 
-ros::Rate loop_rate(10);
+ros::Rate loop_rate(loopRate);
 
 //a count of howmany messages we have sent
 int count = 0;
