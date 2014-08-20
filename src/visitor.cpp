@@ -44,17 +44,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	
 	//QuaternionMsgToRPY(msg.pose.pose.orientation, roll, pitch, yaw);
 
-	//theta = RadiansToDegrees(yaw);
-
-//# TODO 
-	static tf::TransformBroadcaster br;
-	tf::Transform transform;
-	transform.setOrigin(tf::Vector3(px, px, 0.0));
-	tf::Quaternion q;
-	q.setRPY(0,0,theta);
-	transform.setRotation(q);
-	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(),"myworld", "Resident1"));
-//TODO DELETE
 }
 
 
@@ -110,7 +99,14 @@ while (ros::ok())
 	ROS_INFO("Visitor theta: %f",theta * 180 / M_PI);
 	//}
 
-	angular_z=M_PI/20;
+	if(count == 50){
+		angular_z=M_PI/20;
+	}
+
+	if(theta>=M_PI){
+		angular_z=0;
+		linear_x = 2;
+	}
 
 	setOrientation();
 
