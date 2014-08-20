@@ -24,7 +24,7 @@ void setOrientation(){
 	//Check for overflow
 	if(theta>M_PI){ 
 		theta = (theta-(M_PI*2));
-	}else if(theta<(M_PI*-1)){
+	}else if(theta<=(M_PI*-1)){
 		theta = theta + (M_PI*2);
 	}
 }
@@ -44,9 +44,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 
-	
-	//QuaternionMsgToRPY(msg.pose.pose.orientation, roll, pitch, yaw);
-
 }
 
 
@@ -60,27 +57,27 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 
 void rotateToAngle(double angle){
 
-	ROS_INFO("Entered");
+
 	//Calculate the angle to rotate
 	double difference = theta - angle;
 	//Don't rotate if we are at the correct angle
 	if (difference == 0.0){
 		return;
 	}
-	ROS_INFO("Not the same angle, difference: %f", difference);
+
 
 	//Check for overflow
 	if(difference>M_PI){ 
-		theta = (theta-(M_PI*2));
+		difference = (difference-(M_PI*2));
 	}else if(difference<(M_PI*-1)){
-		theta = theta + (M_PI*2);
+		difference = difference + (M_PI*2);
 	}
 
 	// Infrastructure
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
 
 	
 	//Calculate the shortest angle velocity to rotate
@@ -91,13 +88,12 @@ void rotateToAngle(double angle){
 		angular_z = M_PI/2;
 		
 	}
-	ROS_INFO("angular_z: %f", angular_z);
+
 
 
 		linear_x = 0;
 	//Rotate to the specified angle
 	while(theta!=angle){
-		ROS_INFO("ROTATING: %f", RobotNode_cmdvel.angular.z);
 
 		// Infrastructure
 		RobotNode_cmdvel.linear.x = linear_x;
@@ -157,26 +153,20 @@ geometry_msgs::Twist RobotNode_cmdvel;
 while (ros::ok())
 {
 
+	//TO TEST rotateToAngle
+	if(count == 60){
+		rotateToAngle(0);
 	
+		rotateToAngle(-M_PI/2);
+		rotateToAngle(M_PI);
+		rotateToAngle(M_PI/2);
 
-	//if(theta%M_PI==0){
-	// ROS_INFO("Visitor theta: %f",theta * 180 / M_PI);
-	//}
-/*
-	if(count == 50){
-		angular_z=M_PI/20;
-	}
-
-	if(theta>=M_PI){
-		angular_z=0;
-		linear_x = 2;
-	}
-*/
-
-
-	if(count == 50){
+		rotateToAngle(M_PI/2);
+		rotateToAngle(M_PI);
+		rotateToAngle(-M_PI/2);
 		rotateToAngle(0);
 	}
+
 
 	// linear_x = 10;
 	// rotateToAngle(M_PI/-2);
