@@ -45,16 +45,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//QuaternionMsgToRPY(msg.pose.pose.orientation, roll, pitch, yaw);
 
 	//theta = RadiansToDegrees(yaw);
-
-//# TODO 
-	static tf::TransformBroadcaster br;
-	tf::Transform transform;
-	transform.setOrigin(tf::Vector3(px, px, 0.0));
-	tf::Quaternion q;
-	q.setRPY(0,0,theta);
-	transform.setRotation(q);
-	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(),"myworld", "Resident1"));
-//TODO DELETE
 }
 
 

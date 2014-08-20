@@ -46,6 +46,7 @@ void stopRotation(){
 	angular_z=0;
 }
 
+/*
 void rotateClockwise(){
 	// Infrastructure
 	ros::Rate loop_rate(20);
@@ -65,7 +66,7 @@ void rotateClockwise(){
 		++rotate_cycle_count;
 	}
 	stopRotation();
-}
+}*/
 
 void rotateAnticlockwise(){
 	angular_z = M_PI / 2;
@@ -101,9 +102,9 @@ void navigate(int direction, double distance)
 	// rotateClockwise();
 
 	if (direction==0){ // Move East/right.
-		// Determine the shortest rotation to make the robot face East (0 degrees).
+		/*
+		Rione's rotation stuff. This is tested to rotate south.
 
-		// Actually carry out the rotation.
 		angular_z = -M_PI/2;
 
 		while(theta>-M_PI/2){
@@ -119,7 +120,7 @@ void navigate(int direction, double distance)
 			ROS_INFO("I'm rotating to go South");
 		}
 		ROS_INFO("I've stopped rotating. Theta is %f",theta);
-		angular_z = 0;
+		angular_z = 0;*/
 
 		// Determine the destination co-ordinates.
 		dest = px + distance;
@@ -143,38 +144,69 @@ void navigate(int direction, double distance)
 		// Determine the shortest rotation to make the robot face North (90 degrees).
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
+		
+		dest = py + distance;
 
-		// move();
-		// while(true){
-			// if(px or py has reached destination){
-				// stopMove();
-				// return 0;
-			// }
-		// }
+		move();
+		while(py<dest){
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+		stopMove();
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		ros::spinOnce();
+		loop_rate.sleep();
 	}else if (direction==2){ // Move West/left.
 		// Determine the shortest rotation to make the robot face West (180/-180 degrees).
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
 
-		// move();
-		// while(true){
-			// if(px or py has reached destination){
-				// stopMove();
-				// return 0;
-			// }
-		// }
+		dest = px - distance;
+
+		move();
+		while(px>dest){
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+		stopMove();
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		ros::spinOnce();
+		loop_rate.sleep();
+
 	}else{ // Move South/down.
 		// Determine the shortest rotation to make the robot face South (-90 degrees).
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
 
-		// move();
-		// while(true){
-			// if(px or py has reached destination){
-				// stopMove();
-				// return 0;
-			// }
-		// }
+		dest = py + distance;
+
+		move();
+		while(py>dest){
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+		stopMove();
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		ros::spinOnce();
+		loop_rate.sleep();
 	}
 }
 
