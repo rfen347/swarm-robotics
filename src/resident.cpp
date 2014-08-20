@@ -5,6 +5,7 @@
 #include <sensor_msgs/LaserScan.h>
 #include <tf/transform_broadcaster.h>
 
+
 #include <sstream>
 #include "math.h"
 //#include "cookingrobot.h"
@@ -42,60 +43,60 @@ void stopSpin(){
 	angular_z=0;
 }
 
-void navigate(char direction[], float distance)
+void navigate(char direction[], double distance)
 //Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
 {
-	// Determine the current angle.
+// 	// Determine the current angle.
 
-	if (direction=="north"){
-		// Determine the shortest rotation to make the robot face North (90 degrees). Maybe consider reverse movement too?
-		// Actually carry out the rotation.
-		// Determine the destination co-ordinates.
+// 	if (direction=="north"){
+// 		// Determine the shortest rotation to make the robot face North (90 degrees). Maybe consider reverse movement too?
+// 		// Actually carry out the rotation.
+// 		// Determine the destination co-ordinates.
 
-		// move();
-		// while(true){
-			// if(px or py has reached destination){
-				// stopMove();
-				// return 0;
-			// }
-		// }
-	}else if (direction=="east"){
-		// Determine the shortest rotation to make the robot face East (0 degrees). Maybe consider reverse movement too?
-		// Actually carry out the rotation.
-		// Determine the destination co-ordinates.
+// 		// move();
+// 		// while(true){
+// 			// if(px or py has reached destination){
+// 				// stopMove();
+// 				// return 0;
+// 			// }
+// 		// }
+// 	}else if (direction=="east"){
+// 		// Determine the shortest rotation to make the robot face East (0 degrees). Maybe consider reverse movement too?
+// 		// Actually carry out the rotation.
+// 		// Determine the destination co-ordinates.
 
-		// move();
-		// while(true){
-			// if(px or py has reached destination){
-				// stopMove();
-				// return 0;
-			// }
-		// }
-	}else if (direction=="south"){
-		// Determine the shortest rotation to make the robot face South (-90 degrees). Maybe consider reverse movement too?
-		// Actually carry out the rotation.
-		// Determine the destination co-ordinates.
+// 		// move();
+// 		// while(true){
+// 			// if(px or py has reached destination){
+// 				// stopMove();
+// 				// return 0;
+// 			// }
+// 		// }
+// 	}else if (direction=="south"){
+// 		// Determine the shortest rotation to make the robot face South (-90 degrees). Maybe consider reverse movement too?
+// 		// Actually carry out the rotation.
+// 		// Determine the destination co-ordinates.
 
-		// move();
-		// while(true){
-			// if(px or py has reached destination){
-				// stopMove();
-				// return 0;
-			// }
-		// }
-	}else{
-		// Determine the shortest rotation to make the robot face West (180 or -180 degrees). Maybe consider reverse movement too?
-		// Actually carry out the rotation.
-		// Determine the destination co-ordinates.
+// 		// move();
+// 		// while(true){
+// 			// if(px or py has reached destination){
+// 				// stopMove();
+// 				// return 0;
+// 			// }
+// 		// }
+// 	}else{
+// 		// Determine the shortest rotation to make the robot face West (180 or -180 degrees). Maybe consider reverse movement too?
+// 		// Actually carry out the rotation.
+// 		// Determine the destination co-ordinates.
 
-		// move();
-		// while(true){
-			// if(px or py has reached destination){
-				// stopMove();
-				// return 0;
-			// }
-		// }
-	}
+// 		// move();
+// 		// while(true){
+// 			// if(px or py has reached destination){
+// 				// stopMove();
+// 				// return 0;
+// 			// }
+// 		// }
+// 	}
 }
 
 void wakeUp()
@@ -138,6 +139,8 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//This is the call back function to process odometry messages coming from Stage. 	
 	px = -6.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
+	
+
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -200,7 +203,7 @@ while (ros::ok())
 
 	wakeUp();
 
-	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
+	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f), (%f)",count,px,py, theta);
 }
 
 return 0;
