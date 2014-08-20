@@ -16,9 +16,11 @@ double px;
 double py;
 double theta;
 
+int loopRate = 10;
+
 void setOrientation(){
 	//Calculate the new value of theta
-	theta = theta + (angular_z/10);
+	theta = theta + (angular_z/loopRate);
 	//Check for overflow
 	if(theta>M_PI){ 
 		theta = (theta-(M_PI*2));
@@ -26,6 +28,7 @@ void setOrientation(){
 		theta = theta + (M_PI*2);
 	}
 }
+
 
 
 // TO-DO:
@@ -52,6 +55,62 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	//This is the callback function to process laser scan messages
 	//you can access the range data from msg.ranges[i]. i = sample number
 	
+}
+
+
+void rotateToAngle(double angle){
+
+	ROS_INFO("Entered");
+	//Calculate the angle to rotate
+	double difference = theta - angle;
+	//Don't rotate if we are at the correct angle
+	if (difference == 0.0){
+		return;
+	}
+	ROS_INFO("Not the same angle, difference: %f", difference);
+
+	//Check for overflow
+	if(difference>M_PI){ 
+		theta = (theta-(M_PI*2));
+	}else if(difference<(M_PI*-1)){
+		theta = theta + (M_PI*2);
+	}
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
+
+	
+	//Calculate the shortest angle velocity to rotate
+	if(difference>0){
+		angular_z = -M_PI/2;
+		
+	}else{
+		angular_z = M_PI/2;
+		
+	}
+	ROS_INFO("angular_z: %f", angular_z);
+
+
+		linear_x = 0;
+	//Rotate to the specified angle
+	while(theta!=angle){
+		ROS_INFO("ROTATING: %f", RobotNode_cmdvel.angular.z);
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+	ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
+	angular_z = 0;
+	linear_x = 2;
+
 }
 
 int main(int argc, char **argv)
@@ -81,7 +140,7 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_2/base_scan",1000,StageLaser_callback);
 
-ros::Rate loop_rate(10);
+ros::Rate loop_rate(loopRate);
 
 //a count of howmany messages we have sent
 int count = 0;
@@ -90,15 +149,20 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
+
+
+
+
 while (ros::ok())
 {
 
 	
 
 	//if(theta%M_PI==0){
-	ROS_INFO("Visitor theta: %f",theta * 180 / M_PI);
+	// ROS_INFO("Visitor theta: %f",theta * 180 / M_PI);
 	//}
-
+/*
 	if(count == 50){
 		angular_z=M_PI/20;
 	}
@@ -107,6 +171,20 @@ while (ros::ok())
 		angular_z=0;
 		linear_x = 2;
 	}
+*/
+
+
+	if(count == 50){
+		rotateToAngle(0);
+	}
+
+	// linear_x = 10;
+	// rotateToAngle(M_PI/-2);
+
+	// rotateToAngle(M_PI);
+	// rotateToAngle(M_PI/2);
+
+
 
 	setOrientation();
 
