@@ -16,16 +16,19 @@ double px;
 double py;
 double theta;
 
+int loopRate = 10;
+
 void setOrientation(){
 	//Calculate the new value of theta
-	theta = theta + (angular_z/10);
+	theta = theta + (angular_z/loopRate);
 	//Check for overflow
 	if(theta>M_PI){ 
 		theta = (theta-(M_PI*2));
-	}else if(theta<(M_PI*-1)){
+	}else if(theta<=(M_PI*-1)){
 		theta = theta + (M_PI*2);
 	}
 }
+
 
 
 // TO-DO:
@@ -41,20 +44,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 
-	
-	//QuaternionMsgToRPY(msg.pose.pose.orientation, roll, pitch, yaw);
-
-	//theta = RadiansToDegrees(yaw);
-
-//# TODO 
-	static tf::TransformBroadcaster br;
-	tf::Transform transform;
-	transform.setOrigin(tf::Vector3(px, px, 0.0));
-	tf::Quaternion q;
-	q.setRPY(0,0,theta);
-	transform.setRotation(q);
-	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(),"myworld", "Resident1"));
-//TODO DELETE
 }
 
 
@@ -63,6 +52,61 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	//This is the callback function to process laser scan messages
 	//you can access the range data from msg.ranges[i]. i = sample number
 	
+}
+
+
+void rotateToAngle(double angle){
+
+
+	//Calculate the angle to rotate
+	double difference = theta - angle;
+	//Don't rotate if we are at the correct angle
+	if (difference == 0.0){
+		return;
+	}
+
+
+	//Check for overflow
+	if(difference>M_PI){ 
+		difference = (difference-(M_PI*2));
+	}else if(difference<(M_PI*-1)){
+		difference = difference + (M_PI*2);
+	}
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+
+	
+	//Calculate the shortest angle velocity to rotate
+	if(difference>0){
+		angular_z = -M_PI/2;
+		
+	}else{
+		angular_z = M_PI/2;
+		
+	}
+
+
+
+		linear_x = 0;
+	//Rotate to the specified angle
+	while(theta!=angle){
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+	ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
+	angular_z = 0;
+	linear_x = 2;
+
 }
 
 int main(int argc, char **argv)
@@ -92,7 +136,7 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_2/base_scan",1000,StageLaser_callback);
 
-ros::Rate loop_rate(10);
+ros::Rate loop_rate(loopRate);
 
 //a count of howmany messages we have sent
 int count = 0;
@@ -101,16 +145,36 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
+
+
+
+
 while (ros::ok())
 {
 
+	//TO TEST rotateToAngle
+	if(count == 60){
+		rotateToAngle(0);
 	
+		rotateToAngle(-M_PI/2);
+		rotateToAngle(M_PI);
+		rotateToAngle(M_PI/2);
 
-	//if(theta%M_PI==0){
-	ROS_INFO("Visitor theta: %f",theta * 180 / M_PI);
-	//}
+		rotateToAngle(M_PI/2);
+		rotateToAngle(M_PI);
+		rotateToAngle(-M_PI/2);
+		rotateToAngle(0);
+	}
 
-	angular_z=M_PI/20;
+
+	// linear_x = 10;
+	// rotateToAngle(M_PI/-2);
+
+	// rotateToAngle(M_PI);
+	// rotateToAngle(M_PI/2);
+
+
 
 	setOrientation();
 
