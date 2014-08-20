@@ -7,8 +7,6 @@
 
 #include <sstream>
 #include "math.h"
-//#include "cookingrobot.h"
-
 
 //velocity of the robot
 double linear_x;
@@ -30,12 +28,37 @@ void stopMove(){
 	linear_x = 0;
 }
 
-void spin(){
-	angular_z=2;
+void stopRotation(){
+	angular_z=0;
 }
 
-void stopSpin(){
-	angular_z=0;
+void rotateClockwise(){
+	// Infrastructure
+	ros::Rate loop_rate(20);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
+
+	angular_z = -M_PI / 2;
+	int rotate_cycle_count = 0;
+
+	while(rotate_cycle_count<20){
+		// Infrastructure
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		ros::spinOnce();
+		loop_rate.sleep();
+		++rotate_cycle_count;
+	}
+	stopRotation();
+}
+
+void rotateAnticlockwise(){
+	angular_z = M_PI / 2;
+}
+
+void rotateFast(){
+	angular_z=2;
 }
 
 void navigate(int direction, double distance)
@@ -51,12 +74,15 @@ void navigate(int direction, double distance)
 	int dest = 0;
 
 	// Infrastructure
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(50);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
 
 	// Determine the current angle.
+
+	// Testing: Rotate clockwise south.
+	rotateClockwise();
 
 	if (direction==0){ // Move East/right.
 		// Determine the shortest rotation to make the robot face East (0 degrees).
@@ -138,19 +164,6 @@ void getReadyToEat()
 	// Navigate from bedroom to dining table, and then stop.
 	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
 	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
-}
-
-
-void eat()
-{
-	// Spin to show that the resident is eating.
-	spin();
-}
-
-void stopEating()
-{
-	// Stop spinning to show that the resident has stopped eating.
-	stopSpin();
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
