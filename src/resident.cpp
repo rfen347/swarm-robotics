@@ -7,6 +7,7 @@
 
 #include <sstream>
 #include "math.h"
+//#include "cookingrobot.h"
 
 
 //velocity of the robot
@@ -21,48 +22,61 @@ double theta;
 void StageLaser_callback(sensor_msgs::LaserScan msg);
 void StageOdom_callback(nav_msgs::Odometry msg);
 
+void move(){
+	linear_x=2;
+}
+
+void stopMove(){
+	linear_x=0;
+}
+
+void spin(){
+	angular_z=2;
+}
+
+void stopSpin(){
+	angular_z=0;
+}
+
 void wakeUp()
 {
 	// Triggered by schedule.
 	// Navigate to sofa, and then stop.
-	linear_x = 2;
-	
-	// Navigate from (-6.8,4.5) to (-3.5, 4.5), which is 3.3 units East.
+	// Navigate from (-6.5, 4.5) to (-3.5, 4.5), which is 3 units East.
+	move();
+	while(true){
+		if(px>-3){
+			stopMove();
+			return 0;
+		}
+	}
 }
 
 void getReadyToEat()
 {
 	// Triggered by robot message.
-	// Navigate to dining table, and then stop.
+	// Navigate from bedroom to dining table, and then stop.
+	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
+	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
 }
 
-
-void stopEating()
-{
-	angular_z=0;
-}
 
 void eat()
 {
-	// Triggered by robot call.
-	// Spin on the spot to show that resident is eating. 
-	angular_z = 2;
-	// Then after two seconds, it stops eating.
-
-	// Triggered by robot call.
-	// Navigate to dining table, and then stop.
-	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
-	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
-
-
+	spin();
 }
+
+void stopEating()
+{
+	// Stop spinning to show that the resident has stopped eating.
+	stopSpin();
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 0 + msg.pose.pose.position.x;
-	py =0 + msg.pose.pose.position.y;
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
+	px = -6.5 + msg.pose.pose.position.x;
+	py = 4.5 + msg.pose.pose.position.y;
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -83,7 +97,7 @@ int main(int argc, char **argv)
 	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 0;
+	linear_x = 2;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
@@ -268,6 +282,10 @@ while (ros::ok())
 		count = 0;
 	}
 
+	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
+
+
+	wakeUp();
 }
 
 return 0;

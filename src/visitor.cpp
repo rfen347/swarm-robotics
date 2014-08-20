@@ -22,8 +22,9 @@ double theta;
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 5 + msg.pose.pose.position.x;
-	py =10 + msg.pose.pose.position.y;
+	px = 7.0 + msg.pose.pose.position.x;
+	py =-4.5 + msg.pose.pose.position.y;
+
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 }
