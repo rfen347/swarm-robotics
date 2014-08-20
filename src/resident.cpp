@@ -27,12 +27,8 @@ void move(){
 	linear_x=2;
 }
 
-void moveReverse(){
-	linear_x=-2;
-}
-
 void stopMove(){
-	linear_x=0;
+	linear_x = 0;
 }
 
 void spin(){
@@ -43,60 +39,86 @@ void stopSpin(){
 	angular_z=0;
 }
 
-void navigate(char direction[], double distance)
+
+void navigate(int direction, double distance)
 //Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
+
+// Integer codes:
+// 0 = East/right
+// 1 = North/up
+// 2 = West/left
+// 3 = South/down
+
 {
-// 	// Determine the current angle.
 
-// 	if (direction=="north"){
-// 		// Determine the shortest rotation to make the robot face North (90 degrees). Maybe consider reverse movement too?
-// 		// Actually carry out the rotation.
-// 		// Determine the destination co-ordinates.
+	int dest = 0;
 
-// 		// move();
-// 		// while(true){
-// 			// if(px or py has reached destination){
-// 				// stopMove();
-// 				// return 0;
-// 			// }
-// 		// }
-// 	}else if (direction=="east"){
-// 		// Determine the shortest rotation to make the robot face East (0 degrees). Maybe consider reverse movement too?
-// 		// Actually carry out the rotation.
-// 		// Determine the destination co-ordinates.
+	// Infrastructure
+	ros::Rate loop_rate(10);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
 
-// 		// move();
-// 		// while(true){
-// 			// if(px or py has reached destination){
-// 				// stopMove();
-// 				// return 0;
-// 			// }
-// 		// }
-// 	}else if (direction=="south"){
-// 		// Determine the shortest rotation to make the robot face South (-90 degrees). Maybe consider reverse movement too?
-// 		// Actually carry out the rotation.
-// 		// Determine the destination co-ordinates.
+	// Determine the current angle.
 
-// 		// move();
-// 		// while(true){
-// 			// if(px or py has reached destination){
-// 				// stopMove();
-// 				// return 0;
-// 			// }
-// 		// }
-// 	}else{
-// 		// Determine the shortest rotation to make the robot face West (180 or -180 degrees). Maybe consider reverse movement too?
-// 		// Actually carry out the rotation.
-// 		// Determine the destination co-ordinates.
+	if (direction==0){ // Move East/right.
+		// Determine the shortest rotation to make the robot face East (0 degrees).
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+		dest = px + distance;
 
-// 		// move();
-// 		// while(true){
-// 			// if(px or py has reached destination){
-// 				// stopMove();
-// 				// return 0;
-// 			// }
-// 		// }
-// 	}
+		move();
+		while(px<dest){
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+		stopMove();
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		ros::spinOnce();
+		loop_rate.sleep();
+	}else if (direction==1){ // Move North/up.
+		// Determine the shortest rotation to make the robot face North (90 degrees).
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}else if (direction==2){ // Move West/left.
+		// Determine the shortest rotation to make the robot face West (180/-180 degrees).
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}else{ // Move South/down.
+		// Determine the shortest rotation to make the robot face South (-90 degrees).
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}
 }
 
 void wakeUp()
@@ -201,9 +223,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	wakeUp();
-
-	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f), (%f)",count,px,py, theta);
+	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
+	if(count==1){
+		navigate(0,2);
+	}
 }
 
 return 0;

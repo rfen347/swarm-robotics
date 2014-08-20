@@ -39,11 +39,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = 5.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 
-	// tf::Transform transform;
- 	// transform.setOrigin( tf::Vector3(msg->x, msg->y, 0.0) );
-	// tf::Quaternion q;
-	// theta = tf::getYaw(transform.getRotation());
-
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 }
