@@ -8,6 +8,7 @@
 
 #include <sstream>
 #include "math.h"
+#include <string>
 //#include "cookingrobot.h"
 
 
@@ -22,6 +23,18 @@ double theta;
 
 void StageLaser_callback(sensor_msgs::LaserScan msg);
 void StageOdom_callback(nav_msgs::Odometry msg);
+
+//Calculate the orientation of the robot
+void setOrientation(){
+	//Calculate the new value of theta
+	theta = theta + (angular_z/10);
+	//Check for overflow
+	if(theta>M_PI){ 
+		theta = (theta-(M_PI*2));
+	}else if(theta<(M_PI*-1)){
+		theta = theta + (M_PI*2);
+	}
+}
 
 void move(){
 	linear_x=2;
@@ -41,6 +54,7 @@ void stopSpin(){
 
 
 void navigate(int direction, double distance)
+
 //Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
 
 // Integer codes:
@@ -63,6 +77,7 @@ void navigate(int direction, double distance)
 
 	if (direction==0){ // Move East/right.
 		// Determine the shortest rotation to make the robot face East (0 degrees).
+
 		// Actually carry out the rotation.
 		// Determine the destination co-ordinates.
 		dest = px + distance;
@@ -158,11 +173,15 @@ void stopEating()
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
-	//This is the call back function to process odometry messages coming from Stage. 	
-	px = -6.5 + msg.pose.pose.position.x;
-	py = 4.5 + msg.pose.pose.position.y;
-	
+	double roll;
+	double pitch;
+	double yaw;
 
+	//This is the call back function to process odometry messages coming from Stage. 	
+	//ROS_INFO("Current x position is: %f", px);
+	//ROS_INFO("Current y position is: %f", py);
+	px = -6.5 + msg.pose.pose.position.x;
+	py = 4.5 + msg.pose.pose.position.y;	
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)

@@ -16,8 +16,21 @@ double px;
 double py;
 double theta;
 
+void setOrientation(){
+	//Calculate the new value of theta
+	theta = theta + (angular_z/10);
+	//Check for overflow
+	if(theta>M_PI){ 
+		theta = (theta-(M_PI*2));
+	}else if(theta<(M_PI*-1)){
+		theta = theta + (M_PI*2);
+	}
+}
+
+
 // TO-DO:
 // - Make visitor walk around without bumping into things.
+
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
@@ -27,6 +40,21 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
+
+	
+	//QuaternionMsgToRPY(msg.pose.pose.orientation, roll, pitch, yaw);
+
+	//theta = RadiansToDegrees(yaw);
+
+//# TODO 
+	static tf::TransformBroadcaster br;
+	tf::Transform transform;
+	transform.setOrigin(tf::Vector3(px, px, 0.0));
+	tf::Quaternion q;
+	q.setRPY(0,0,theta);
+	transform.setRotation(q);
+	br.sendTransform(tf::StampedTransform(transform, ros::Time::now(),"myworld", "Resident1"));
+//TODO DELETE
 }
 
 
@@ -75,6 +103,17 @@ geometry_msgs::Twist RobotNode_cmdvel;
 
 while (ros::ok())
 {
+
+	
+
+	//if(theta%M_PI==0){
+	ROS_INFO("Visitor theta: %f",theta * 180 / M_PI);
+	//}
+
+	angular_z=M_PI/20;
+
+	setOrientation();
+
 	//messages to stage
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
