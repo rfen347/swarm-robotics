@@ -7,6 +7,8 @@
 
 #include <sstream>
 #include "math.h"
+#include <string>
+//#include "cookingrobot.h"
 
 //velocity of the robot
 double linear_x;
@@ -19,6 +21,18 @@ double theta;
 
 void StageLaser_callback(sensor_msgs::LaserScan msg);
 void StageOdom_callback(nav_msgs::Odometry msg);
+
+//Calculate the orientation of the robot
+void setOrientation(){
+	//Calculate the new value of theta
+	theta = theta + (angular_z/10);
+	//Check for overflow
+	if(theta>M_PI){ 
+		theta = (theta-(M_PI*2));
+	}else if(theta<(M_PI*-1)){
+		theta = theta + (M_PI*2);
+	}
+}
 
 void move(){
 	linear_x=2;
@@ -61,7 +75,9 @@ void rotateFast(){
 	angular_z=2;
 }
 
+
 void navigate(int direction, double distance)
+
 //Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
 
 // Integer codes:
@@ -74,7 +90,7 @@ void navigate(int direction, double distance)
 	int dest = 0;
 
 	// Infrastructure
-	ros::Rate loop_rate(50);
+	ros::Rate loop_rate(10);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
@@ -82,11 +98,29 @@ void navigate(int direction, double distance)
 	// Determine the current angle.
 
 	// Testing: Rotate clockwise south.
-	rotateClockwise();
+	// rotateClockwise();
 
 	if (direction==0){ // Move East/right.
 		// Determine the shortest rotation to make the robot face East (0 degrees).
+
 		// Actually carry out the rotation.
+		angular_z = -M_PI/2;
+
+		while(theta>-M_PI/2){
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			setOrientation();
+			ros::spinOnce();
+			loop_rate.sleep();
+
+			
+			ROS_INFO("I'm rotating to go South");
+		}
+		ROS_INFO("I've stopped rotating. Theta is %f",theta);
+		angular_z = 0;
+
 		// Determine the destination co-ordinates.
 		dest = px + distance;
 
@@ -169,8 +203,10 @@ void getReadyToEat()
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
+	//ROS_INFO("Current x position is: %f", px);
+	//ROS_INFO("Current y position is: %f", py);
 	px = -6.5 + msg.pose.pose.position.x;
-	py = 4.5 + msg.pose.pose.position.y;
+	py = 4.5 + msg.pose.pose.position.y;	
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
