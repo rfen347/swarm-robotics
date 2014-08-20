@@ -26,6 +26,10 @@ void move(){
 	linear_x=2;
 }
 
+void moveReverse(){
+	linear_x=-2;
+}
+
 void stopMove(){
 	linear_x=0;
 }
@@ -36,6 +40,62 @@ void spin(){
 
 void stopSpin(){
 	angular_z=0;
+}
+
+void navigate(char[] direction, float distance)
+//Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
+{
+	// Determine the current angle.
+
+	if (char[]=={'n','o','r','t','h'}){
+		// Determine the shortest rotation to make the robot face North (90 degrees). Maybe consider reverse movement too?
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}else if (char[]=={'e','a','s','t'}){
+		// Determine the shortest rotation to make the robot face East (0 degrees). Maybe consider reverse movement too?
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}else if (char[]=={'s','o','u','t','h'}){
+		// Determine the shortest rotation to make the robot face South (-90 degrees). Maybe consider reverse movement too?
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}else{
+		// Determine the shortest rotation to make the robot face West (180 or -180 degrees). Maybe consider reverse movement too?
+		// Actually carry out the rotation.
+		// Determine the destination co-ordinates.
+
+		// move();
+		// while(true){
+			// if(px or py has reached destination){
+				// stopMove();
+				// return 0;
+			// }
+		// }
+	}
 }
 
 void wakeUp()
@@ -63,6 +123,7 @@ void getReadyToEat()
 
 void eat()
 {
+	// Spin to show that the resident is eating.
 	spin();
 }
 
