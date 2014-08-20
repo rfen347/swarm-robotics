@@ -7,6 +7,7 @@
 
 #include <sstream>
 #include "math.h"
+#include <string>
 //#include "cookingrobot.h"
 
 
@@ -42,11 +43,11 @@ void stopSpin(){
 	angular_z=0;
 }
 
-void navigate(char direction[], float distance)
+void navigate(char direction[], double distance)
 //Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
 {
 	// Determine the current angle.
-
+/*
 	if (direction=="north"){
 		// Determine the shortest rotation to make the robot face North (90 degrees). Maybe consider reverse movement too?
 		// Actually carry out the rotation.
@@ -96,6 +97,7 @@ void navigate(char direction[], float distance)
 			// }
 		// }
 	}
+	*/
 }
 
 void wakeUp()
@@ -135,11 +137,27 @@ void stopEating()
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
+	double roll;
+	double pitch;
+	double yaw;
+
 	//This is the call back function to process odometry messages coming from Stage. 	
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
 	px = -6.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
+	//QuaternionMsgToRPY(msg.pose.pose.orientation, roll, pitch, yaw);
+
+	//theta = RadiansToDegrees(yaw);
+
+	static tf::TransformBroadcaster br;
+	tf::Transform transform;
+	transform.setOrigin(tf::Vector3(msg->px, msg->px, 0.0));
+	tf::Quaternion q;
+	
+
+
+
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
