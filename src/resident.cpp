@@ -86,8 +86,6 @@ void rotateToAngle(double angle){
 		
 	}
 
-	linear_x = 0;
-
 	//Rotate to the specified angle
 	while(theta!=angle){
 
@@ -101,7 +99,6 @@ void rotateToAngle(double angle){
 	}
 	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
-	linear_x = 2;
 }
 
 
@@ -132,9 +129,8 @@ void navigate(int direction, double distance)
 		// Determine the destination co-ordinates.
 		dest = px + distance;
 
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
-
 		move();
+
 		while(px<dest){
 			ROS_INFO("Co-ordinates: %f,%f",px,py);
 
@@ -142,13 +138,14 @@ void navigate(int direction, double distance)
 			if((dest-px)<posAllowance){
 				break;
 			}
-
 			// Infrastructure
 			RobotNode_cmdvel.linear.x = linear_x;
 			RobotNode_cmdvel.angular.z = angular_z;
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
+
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
 
 	}else if (direction==1){ // Move North/up.
@@ -156,7 +153,6 @@ void navigate(int direction, double distance)
 		rotateToAngle(M_PI/2);
 
 		dest = py + distance;
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
 		while(py<dest){
@@ -172,13 +168,11 @@ void navigate(int direction, double distance)
 			loop_rate.sleep();
 		}
 
-		// stopMove();
 	}else if (direction==2){ // Move West/left.
 		// Rotating to face West with rotateToAngle().
 		rotateToAngle(M_PI);
 		
 		dest = px - distance;
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
 		while(px>dest){
@@ -195,13 +189,11 @@ void navigate(int direction, double distance)
 			loop_rate.sleep();
 		}
 
-		// stopMove();
 	}else{ // Move South/down.
 		// Rotating to face South with rotateToAngle().
 		rotateToAngle(-M_PI/2);
 		
 		dest = py - distance;
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
 		while(py>dest){
@@ -217,9 +209,8 @@ void navigate(int direction, double distance)
 			ros::spinOnce();
 			loop_rate.sleep();
 		}
-
-		
 	}
+
 	//Stop the robot's movement once at the destination
 	stopMove();
 
@@ -237,7 +228,6 @@ void navigate(int direction, double distance)
 	// RobotNode_stage_pub.publish(RobotNode_cmdvel);
 	ros::spinOnce();
 	loop_rate.sleep();
-
 }
 
 void wakeUp()
@@ -334,6 +324,7 @@ while (ros::ok())
 	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
 	if(count>50){
 		ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
+
 		navigate(0,2.0);
 		ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
 		navigate(3,1.0);
