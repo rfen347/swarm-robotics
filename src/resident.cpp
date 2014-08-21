@@ -20,112 +20,116 @@ double theta;
 void StageLaser_callback(sensor_msgs::LaserScan msg);
 void StageOdom_callback(nav_msgs::Odometry msg);
 
-//Calculate the orientation of the robot
+int loopRate = 10; // Setting the cycle rate per second.
+
+// This function updates the theta field so that the robot knows which angle it is facing.
 void setOrientation(){
 	//Calculate the new value of theta
-	theta = theta + (angular_z/10);
+	theta = theta + (angular_z/loopRate);
 	//Check for overflow
 	if(theta>M_PI){ 
 		theta = (theta-(M_PI*2));
-	}else if(theta<(M_PI*-1)){
+	}else if(theta<=(M_PI*-1)){
 		theta = theta + (M_PI*2);
 	}
 }
 
+// This function makes the robot move forward the way it is facing.
 void move(){
 	linear_x=2;
 }
 
+// This function makes the robot stop moving forward.
 void stopMove(){
 	linear_x = 0;
 }
 
+// This function makes the robot stop rotating.
 void stopRotation(){
 	angular_z=0;
 }
 
-/*
-OLD COUNT-BASED ROTATION.
-
-void rotateClockwise(){
-	// Infrastructure
-	ros::Rate loop_rate(20);
-	ros::NodeHandle n;
-	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
-
-	angular_z = -M_PI / 2;
-	int rotate_cycle_count = 0;
-
-	while(rotate_cycle_count<20){
-		// Infrastructure
-		RobotNode_cmdvel.angular.z = angular_z;
-		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		ros::spinOnce();
-		loop_rate.sleep();
-		++rotate_cycle_count;
-	}
-	stopRotation();
-}
-
-void rotateAnticlockwise(){
-	angular_z = M_PI / 2;
-}*/
-
+// This function makes the robot rotate fast.
 void rotateFast(){
 	angular_z=2;
 }
 
 
-void navigate(int direction, double distance)
+// This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
+void rotateToAngle(double angle){
+	//Calculate the angle to rotate
+	double difference = theta - angle;
+	//Don't rotate if we are at the correct angle
+	if (difference == 0.0){
+		return;
+	}
 
-//Inputs the direction to move (North, East, South or West) and the distance to move by. The robot will carry out this movement.
+	//Check for overflow
+	if(difference>M_PI){ 
+		difference = (difference-(M_PI*2));
+	}else if(difference<(M_PI*-1)){
+		difference = difference + (M_PI*2);
+	}
 
-// Integer codes:
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000);
+	
+	//Calculate the shortest angle velocity to rotate
+	if(difference>0){
+		angular_z = -M_PI/2;
+		
+	}else{
+		angular_z = M_PI/2;
+		
+	}
+
+	linear_x = 0;
+
+	//Rotate to the specified angle
+	while(theta!=angle){
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
+	angular_z = 0;
+	linear_x = 2;
+}
+
+
+// This function makes the robot move in an orthogonal direction (North, East, South or West). Input the direction to move and the distance to move by. The robot will rotate and carry out this movement.
+
+// Integer codes for direction:
 // 0 = East/right
 // 1 = North/up
 // 2 = West/left
 // 3 = South/down
 
+void navigate(int direction, double distance)
 {
-
-	int dest = 0;
+	double dest = 0;
 
 	// Infrastructure
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
 
-	// Determine the current angle.
-	// Do Rione's rotation thing.
-
 	if (direction==0){ // Move East/right.
-		// Determine the shortest rotation to make the robot face East (0 degrees).
-
-		// Actually carry out the rotation.
-		/*
-		RIONE'S ROTATION STUFF...
-		angular_z = -M_PI/2;
-
-		while(theta>-M_PI/2){
-			// Infrastructure
-			RobotNode_cmdvel.linear.x = linear_x;
-			RobotNode_cmdvel.angular.z = angular_z;
-			RobotNode_stage_pub.publish(RobotNode_cmdvel);
-			setOrientation();
-			ros::spinOnce();
-			loop_rate.sleep();
-
-			
-			ROS_INFO("I'm rotating to go South");
-		}
-		ROS_INFO("I've stopped rotating. Theta is %f",theta);
-		angular_z = 0;
-		*/
+		// Rotating to face East with rotateToAngle().
+		rotateToAngle(0);
 
 		// Determine the destination co-ordinates.
 		dest = px + distance;
+		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
 		while(px<dest){
@@ -143,10 +147,11 @@ void navigate(int direction, double distance)
 		ros::spinOnce();
 		loop_rate.sleep();
 	}else if (direction==1){ // Move North/up.
-		// Determine the shortest rotation to make the robot face North (90 degrees).
-		// Actually carry out the rotation.
-		
+		// Rotating to face East with rotateToAngle().
+		rotateToAngle(M_PI/2);
+
 		dest = py + distance;
+		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
 		while(py<dest){
@@ -164,10 +169,11 @@ void navigate(int direction, double distance)
 		ros::spinOnce();
 		loop_rate.sleep();
 	}else if (direction==2){ // Move West/left.
-		// Determine the shortest rotation to make the robot face West (180/-180 degrees).
-		// Actually carry out the rotation.
+		// Rotating to face East with rotateToAngle().
+		rotateToAngle(M_PI);
 		
 		dest = px - distance;
+		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
 		while(px>dest){
@@ -185,10 +191,11 @@ void navigate(int direction, double distance)
 		ros::spinOnce();
 		loop_rate.sleep();
 	}else{ // Move South/down.
-		// Determine the shortest rotation to make the robot face South (-90 degrees).
-		// Actually carry out the rotation.
+		// Rotating to face East with rotateToAngle().
+		rotateToAngle(-M_PI/2);
 		
-		dest = py + distance;
+		dest = py - distance;
+		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
 		while(py>dest){
@@ -297,9 +304,16 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
+	// ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
+
+	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
 	if(count==1){
-		navigate(0,2);
+		ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
+		navigate(0,1);
+		navigate(3,1);
+		navigate(2,1);
+		navigate(1,1);
+		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
 	}
 }
 
