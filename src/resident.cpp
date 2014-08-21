@@ -147,7 +147,7 @@ void navigate(int direction, double distance)
 		ros::spinOnce();
 		loop_rate.sleep();
 	}else if (direction==1){ // Move North/up.
-		// Rotating to face East with rotateToAngle().
+		// Rotating to face North with rotateToAngle().
 		rotateToAngle(M_PI/2);
 
 		dest = py + distance;
@@ -169,7 +169,7 @@ void navigate(int direction, double distance)
 		ros::spinOnce();
 		loop_rate.sleep();
 	}else if (direction==2){ // Move West/left.
-		// Rotating to face East with rotateToAngle().
+		// Rotating to face West with rotateToAngle().
 		rotateToAngle(M_PI);
 		
 		dest = px - distance;
@@ -191,7 +191,7 @@ void navigate(int direction, double distance)
 		ros::spinOnce();
 		loop_rate.sleep();
 	}else{ // Move South/down.
-		// Rotating to face East with rotateToAngle().
+		// Rotating to face South with rotateToAngle().
 		rotateToAngle(-M_PI/2);
 		
 		dest = py - distance;

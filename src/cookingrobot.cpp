@@ -76,7 +76,7 @@ void rotateToAngle(double angle){
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
-	ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
+	//ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
 	linear_x = 2;
 
@@ -316,7 +316,7 @@ while (ros::ok())
 		count = 0;
 	}*/
 	
-}
+//}
 
 return 0;
 
