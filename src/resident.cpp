@@ -23,7 +23,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg);
 void StageOdom_callback(nav_msgs::Odometry msg);
 
 int loopRate = 10; // Setting the cycle rate per second.
-
+double posAllowance = 0.005;
 // This function updates the theta field so that the robot knows which angle it is facing.
 void setOrientation(){
 	//Calculate the new value of theta
@@ -116,8 +116,10 @@ void navigate(int direction, double distance)
 {
 	double dest = 0;
 
+	distance = distance - 0.2;
+
 	// Infrastructure
-	ros::Rate loop_rate(50);
+	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
@@ -130,7 +132,14 @@ void navigate(int direction, double distance)
 		dest = px + distance;
 
 		move();
-		while(px<dest-0.05-std::numeric_limits<double>::epsilon()){
+
+		while(px<dest){
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
+
+			//Break at position that is close enough
+			if((dest-px)<posAllowance){
+				break;
+			}
 			// Infrastructure
 			RobotNode_cmdvel.linear.x = linear_x;
 			RobotNode_cmdvel.angular.z = angular_z;
@@ -144,10 +153,14 @@ void navigate(int direction, double distance)
 		// Rotating to face North with rotateToAngle().
 		rotateToAngle(M_PI/2);
 
-		dest = py + distance - 0.2;
+		dest = py + distance;
 
 		move();
 		while(py<dest){
+			//Break at position that is close enough
+			if((dest-py)<posAllowance){
+				break;
+			}
 			// Infrastructure
 			RobotNode_cmdvel.linear.x = linear_x;
 			RobotNode_cmdvel.angular.z = angular_z;
@@ -155,14 +168,20 @@ void navigate(int direction, double distance)
 			ros::spinOnce();
 			loop_rate.sleep();
 		}
+
 	}else if (direction==2){ // Move West/left.
 		// Rotating to face West with rotateToAngle().
 		rotateToAngle(M_PI);
 		
-		dest = px - distance + 0.2;
+		dest = px - distance;
 
 		move();
 		while(px>dest){
+			//Break at position that is close enough
+			if((px-dest)<posAllowance){
+				break;
+			}
+
 			// Infrastructure
 			RobotNode_cmdvel.linear.x = linear_x;
 			RobotNode_cmdvel.angular.z = angular_z;
@@ -170,14 +189,20 @@ void navigate(int direction, double distance)
 			ros::spinOnce();
 			loop_rate.sleep();
 		}
+
 	}else{ // Move South/down.
 		// Rotating to face South with rotateToAngle().
 		rotateToAngle(-M_PI/2);
 		
-		dest = py - distance + 0.2;
+		dest = py - distance;
 
 		move();
 		while(py>dest){
+			//Break at position that is close enough
+			if((py-dest)<posAllowance){
+				break;
+			}
+
 			// Infrastructure
 			RobotNode_cmdvel.linear.x = linear_x;
 			RobotNode_cmdvel.angular.z = angular_z;
@@ -187,11 +212,23 @@ void navigate(int direction, double distance)
 		}
 	}
 
+	//Stop the robot's movement once at the destination
 	stopMove();
-	ROS_INFO("Stopped at co-ordinates: %f,%f",px,py);
+
+	//Recalculate position
+	rotateToAngle(theta);
+	// Infrastructure
 	RobotNode_cmdvel.linear.x = linear_x;
+	RobotNode_cmdvel.angular.z = angular_z;
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	ROS_INFO("Returned at co-ordinates: %f,%f",px,py);
+	ros::spinOnce();
+	loop_rate.sleep();
+
+	// RobotNode_cmdvel.linear.x = linear_x;
+	// RobotNode_cmdvel.angular.z = angular_z;
+	// RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	ros::spinOnce();
+	loop_rate.sleep();
 }
 
 void wakeUp()
@@ -260,7 +297,7 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
 
-ros::Rate loop_rate(10);
+ros::Rate loop_rate(loopRate);
 
 //a count of how many messages we have sent
 int count = 0;
@@ -286,12 +323,17 @@ while (ros::ok())
 	// ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
 
 	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
-	if(count==1){
+	if(count>50){
 		ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
-		navigate(0,1);
-		navigate(3,1);
-		navigate(2,1);
-		navigate(1,1);
+
+		navigate(0,2.0);
+		ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
+		navigate(3,1.0);
+		ROS_INFO("MOVE2. Co-ordinates: %f,%f",px,py);
+		navigate(2,2.0);
+		ROS_INFO("MOVE3. Co-ordinates: %f,%f",px,py);
+		navigate(1,1.0);
+		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
 	}
 }
 

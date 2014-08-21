@@ -59,8 +59,42 @@ floorplan
 )
 # throw in a robot
 myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red")
-myRobot( pose [ 5.5 4.5 0 -90 ] name "r1" color "green")
-myRobot( pose [ 7.0 -4.5 0 90 ] name "r2" color "pink")
+
+myRobot( pose [ 5.5 4.5 0 -90 ] name "r1" color "green"
+	#Shape of robot, a triangle.
+
+	block
+	(
+		points 5
+
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
+myRobot( pose [ 7.0 -4.5 0 90 ] name "r2" color "pink"
+	#Shape of robot, a pentagon.
+
+	block
+	(
+		points 4
+
+		point[0] [0 0]
+		point[1] [0.5 0.5]
+		point[2] [0 1]
+		point[3] [1 0.5]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
 
 gui_disable 0
 gui_interval 100
