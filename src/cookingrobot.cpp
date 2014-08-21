@@ -285,7 +285,7 @@ int main(int argc, char **argv)
 	        
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		
+		setOrientation();
 		ros::spinOnce();
 
 		loop_rate.sleep();
