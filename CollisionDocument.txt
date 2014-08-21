@@ -1,0 +1,14 @@
+If you don't like all these collision robots or want to remove some of them
+(There are like 7 nodes in there... don't need all for testing)
+
+1) Remove robot from myworld.world (eg. remove "myRobot( pose [ 14.0 3.0 0 -90 ] name "r3" color "blue")")
+2) Remove executable from CMakeLists.txt (eg. remove "rosbuild_add_executable(R3 src/collisionrobot1.cpp)")
+3) OPTIONAL: Remove whole file from src (eg. remove "collisionrobot1.cpp" from src)
+
+	If you were using the 'se306_runnable_debug.sh' file to execute commands
+	1) Remove "killall R3" etc
+	2) Remove "gnome-terminal -e "./run_R3.sh" etc
+
+If you want to add more robots, do the opposite
+
+Side notes: I changed 'se306_runnable_debug.sh' file from "../../setup.bash" to "../setup.bash".
