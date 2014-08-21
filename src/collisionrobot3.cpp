@@ -76,7 +76,9 @@ int main(int argc, char **argv)
 	////messages
 	//velocity of this RobotNode
 	geometry_msgs::Twist RobotNode_cmdvel;
+	geometry_msgs::Pose2D Robot_pos;
 	
+
 	while (ros::ok())
 	{
 		//messages to stage
@@ -85,6 +87,14 @@ int main(int argc, char **argv)
 		
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		
+		//location message
+		Robot_pos.x = px;
+		Robot_pos.y = py;
+		Robot_pos.theta = theta;
+		
+		//publish the robot positions 
+		Robot_coord_pub.publish(Robot_pos);
 		
 		ros::spinOnce();
 		
