@@ -8,6 +8,18 @@
 #include <sstream>
 #include "math.h"
 
+//velocity of the robot
+double linear_x;
+double angular_z;
+
+//pose of the robot
+double px;
+double py;
+double theta;
+
+void StageLaser_callback(sensor_msgs::LaserScan msg);
+void StageOdom_callback(nav_msgs::Odometry msg);
+
 bool isClear (){
 
 }
@@ -41,3 +53,4 @@ if (Robot1 > Robot2)
 // Robot2 moves 
 
 }
+
