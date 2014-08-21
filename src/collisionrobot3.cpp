@@ -36,6 +36,16 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
+void collisionCallback(geometry_msgs::Pose2D msg)
+{
+
+	ROS_INFO("Received location for robot %lf %lf", msg.x, msg.y);
+	
+	
+
+}
+
+
 int main(int argc, char **argv)
 {
 	
@@ -78,6 +88,7 @@ int main(int argc, char **argv)
 	geometry_msgs::Twist RobotNode_cmdvel;
 	geometry_msgs::Pose2D Robot_pos;
 	
+
 
 	while (ros::ok())
 	{
