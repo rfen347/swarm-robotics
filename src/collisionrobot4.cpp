@@ -7,6 +7,7 @@
 #include <tf/transform_broadcaster.h>
 #include <sstream>
 #include "math.h"
+#include "project1/RobotMsg.h"
 
 //velocity of the robot
 double linear_x;
@@ -38,10 +39,10 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 }
 
 
-void collisionCallback(geometry_msgs::Pose2D msg)
+void collisionCallback(project1::RobotMsg msg)
 {
 
-	ROS_INFO("Received location for robot 5 at %lf %lf", msg.x, msg.y);
+	ROS_INFO("Received location for robot %d at %lf %lf", msg.robotNumber, msg.x, msg.y);
 	
 	
 
@@ -61,7 +62,7 @@ int main(int argc, char **argv)
 	angular_z = 0;
 	
 	//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-	ros::init(argc, argv, "RobotNode6");
+	ros::init(argc, argv, "Collision2");
 	
 	//NodeHandle is the main access point to communicate with ros.
 	ros::NodeHandle n;
@@ -74,9 +75,9 @@ int main(int argc, char **argv)
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_6/odom",1000, StageOdom_callback);
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_6/base_scan",1000,StageLaser_callback);
 	
-	ros::Subscriber Robot_coord_sub = n.subscribe<geometry_msgs::Pose2D>("robot_5/pos",1000, collisionCallback);
+	ros::Subscriber Robot_coord_sub = n.subscribe<project1::RobotMsg>("robot_5/pos",1000, collisionCallback);
 
-	ros::Publisher Robot_coord_pub = n.advertise<geometry_msgs::Pose2D>("robot_6/pos",1000);
+	ros::Publisher Robot_coord_pub = n.advertise<project1::RobotMsg>("robot_6/pos",1000);
 
 
 	ros::Rate loop_rate(10);
@@ -87,8 +88,9 @@ int main(int argc, char **argv)
 	////messages
 	//velocity of this RobotNode
 	geometry_msgs::Twist RobotNode_cmdvel;
-	geometry_msgs::Pose2D Robot_pos;
-	
+	project1::RobotMsg Robot_pos;
+	Robot_pos.robotNumber = 2;	
+
 	while (ros::ok())
 	{
 		//messages to stage
@@ -102,6 +104,7 @@ int main(int argc, char **argv)
 		Robot_pos.x = px;
 		Robot_pos.y = py;
 		Robot_pos.theta = theta;
+
 		
 		//publish the robot positions 
 		Robot_coord_pub.publish(Robot_pos);
