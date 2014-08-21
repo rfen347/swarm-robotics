@@ -65,6 +65,8 @@ myRobot( pose [ 14.0 3.0 0 -90 ] name "r3" color "blue")
 myRobot( pose [ 14.0 -3.0 0 90 ] name "r4" color "blue")
 myRobot( pose [ -0.5 -10.0 0 0 ] name "r5" color "yellow")
 myRobot( pose [ 2.0 -7.5 0 -90 ] name "r6" color "yellow")
+myRobot( pose [ 12.0 3.0 0 -90 ] name "r7" color "blue")
+myRobot( pose [ 12.0 -3.0 0 90 ] name "r8" color "blue")
 
 gui_disable 0
 gui_interval 100

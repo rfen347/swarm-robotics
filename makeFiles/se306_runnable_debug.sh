@@ -14,6 +14,8 @@ killall R3
 killall R4
 killall R5
 killall R6
+killall R7
+killall R8
 killall stageros
 killall roscore
 
@@ -40,6 +42,8 @@ gnome-terminal -e "./run_R3.sh"
 gnome-terminal -e "./run_R4.sh"
 gnome-terminal -e "./run_R5.sh"
 gnome-terminal -e "./run_R6.sh"
+gnome-terminal -e "./run_R7.sh"
+gnome-terminal -e "./run_R8.sh"
 
 read -p "Press any key to exit... " -n1 -s
 
@@ -51,6 +55,8 @@ killall R3
 killall R4
 killall R5
 killall R6
+killall R7
+killall R8
 killall stageros
 killall roscore
 killall gnome-terminal

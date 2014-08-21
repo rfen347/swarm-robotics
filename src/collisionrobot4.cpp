@@ -1,6 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/Pose2D.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
 #include <tf/transform_broadcaster.h>
@@ -40,7 +41,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 void collisionCallback(geometry_msgs::Pose2D msg)
 {
 
-	ROS_INFO("Received location for robot %lf %lf", msg.x, msg.y);
+	ROS_INFO("Received location for robot 5 at %lf %lf", msg.x, msg.y);
 	
 	
 
@@ -52,30 +53,30 @@ int main(int argc, char **argv)
 	//initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = -M_PI/2.0;
-	px = 14.0;
+	px = 12.0;
 	py = 3.0;
 	
 	//Initial velocity
-	linear_x = 0;
+	linear_x = 1;
 	angular_z = 0;
 	
 	//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-	ros::init(argc, argv, "RobotNode4");
+	ros::init(argc, argv, "RobotNode6");
 	
 	//NodeHandle is the main access point to communicate with ros.
 	ros::NodeHandle n;
 	
 	//advertise() function will tell ROS that you want to publish on a given topic_
 	//to stage
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_4/cmd_vel",1000);
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_6/cmd_vel",1000);
 	
 	//subscribe to listen to messages coming from stage
-	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_4/odom",1000, StageOdom_callback);
-	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_4/base_scan",1000,StageLaser_callback);
+	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_6/odom",1000, StageOdom_callback);
+	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_6/base_scan",1000,StageLaser_callback);
 	
-	ros::Subscriber Robot_coord_sub n.subscribe<geometry_msgs::Pose2D>("robot_3/pos",1000, collisionrobot4::collisionCallback);
+	ros::Subscriber Robot_coord_sub = n.subscribe<geometry_msgs::Pose2D>("robot_5/pos",1000, collisionCallback);
 
-	ros::Publisher Robot_coord_pub = n.advertise<geometry_msgs::Pose2D>("robot_4/pos",1000);
+	ros::Publisher Robot_coord_pub = n.advertise<geometry_msgs::Pose2D>("robot_6/pos",1000);
 
 
 	ros::Rate loop_rate(10);
@@ -103,7 +104,7 @@ int main(int argc, char **argv)
 		Robot_pos.theta = theta;
 		
 		//publish the robot positions 
-		Robot_coord_pub.publish(Robot_pos)
+		Robot_coord_pub.publish(Robot_pos);
 		
 		ros::spinOnce();
 		

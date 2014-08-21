@@ -10,6 +10,8 @@ killall R3
 killall R4
 killall R5
 killall R6
+killall R7
+killall R8
 killall stageros
 killall roscore
 
@@ -28,6 +30,8 @@ rosrun project1 R3 &
 rosrun project1 R4 &
 rosrun project1 R5 &
 rosrun project1 R6 &
+rosrun project1 R7 &
+rosrun project1 R8 &
 
 read -p "Press any key to exit... " -n1 -s
 killall R0
@@ -36,6 +40,8 @@ killall R2
 killall R4
 killall R5
 killall R6
+killall R7
+killall R8
 killall stageros
 killall roscore
 
