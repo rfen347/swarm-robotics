@@ -42,6 +42,17 @@ void stopMove(){
 	linear_x = 0;
 }
 
+
+// This function makes the robot stop rotating.
+void stopRotation(){
+	angular_z=0;
+}
+
+// This function makes the robot rotate fast.
+void rotateFast(){
+	angular_z=M_PI/2;
+}
+
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
 void rotateToAngle(double angle){
 	//Calculate the angle to rotate
