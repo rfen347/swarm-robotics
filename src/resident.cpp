@@ -134,6 +134,10 @@ void navigate(int direction, double distance)
 
 		move();
 		while(px<dest){
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
+			if (px >=dest) {
+				linear_x=0;
+			}
 			// Infrastructure
 			RobotNode_cmdvel.linear.x = linear_x;
 			RobotNode_cmdvel.angular.z = angular_z;
@@ -141,7 +145,7 @@ void navigate(int direction, double distance)
 			ros::spinOnce();
 			loop_rate.sleep();
 		}
-
+		ROS_INFO("BREAK. Co-ordinates: %f,%f",px,py);
 		stopMove();
 		RobotNode_cmdvel.linear.x = linear_x;
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
@@ -311,11 +315,12 @@ while (ros::ok())
 	if(count==20){
 		ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
 		navigate(0,1);
-		navigate(3,1);
-		navigate(2,1);
-		navigate(1,1);
-		navigate(1,0);
+		// navigate(3,1);
+		// navigate(2,1);
+		// navigate(1,1);
+		// navigate(1,0);
 		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
+
 	}
 }
 
