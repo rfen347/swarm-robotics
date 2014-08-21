@@ -88,8 +88,6 @@ void rotateToAngle(double angle){
 		
 	}
 
-	linear_x = 0;
-
 	//Rotate to the specified angle
 	while(theta!=angle){
 
@@ -103,7 +101,6 @@ void rotateToAngle(double angle){
 	}
 	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
-	linear_x = 2;
 }
 
 
@@ -120,7 +117,7 @@ void navigate(int direction, double distance)
 	double dest = 0;
 
 	// Infrastructure
-	ros::Rate loop_rate(looRate);
+	ros::Rate loop_rate(50);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
@@ -131,29 +128,27 @@ void navigate(int direction, double distance)
 
 		// Determine the destination co-ordinates.
 		dest = px + distance;
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
-		while(px<dest){
+		while(true){
 			// Infrastructure
 			RobotNode_cmdvel.linear.x = linear_x;
 			RobotNode_cmdvel.angular.z = angular_z;
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
-		}
 
-		stopMove();
-		RobotNode_cmdvel.linear.x = linear_x;
-		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		ros::spinOnce();
-		loop_rate.sleep();
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
+			if(px>=dest-0.05-std::numeric_limits<double>::epsilon()){
+				stopMove();
+				return;
+			}
+		}
 	}else if (direction==1){ // Move North/up.
-		// Rotating to face East with rotateToAngle().
+		// Rotating to face North with rotateToAngle().
 		rotateToAngle(M_PI/2);
 
-		dest = py + distance;
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
+		dest = py + distance - 0.2;
 
 		move();
 		while(py<dest){
@@ -164,18 +159,11 @@ void navigate(int direction, double distance)
 			ros::spinOnce();
 			loop_rate.sleep();
 		}
-
-		stopMove();
-		RobotNode_cmdvel.linear.x = linear_x;
-		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		ros::spinOnce();
-		loop_rate.sleep();
 	}else if (direction==2){ // Move West/left.
-		// Rotating to face East with rotateToAngle().
+		// Rotating to face West with rotateToAngle().
 		rotateToAngle(M_PI);
 		
-		dest = px - distance;
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
+		dest = px - distance + 0.2;
 
 		move();
 		while(px>dest){
@@ -186,18 +174,11 @@ void navigate(int direction, double distance)
 			ros::spinOnce();
 			loop_rate.sleep();
 		}
-
-		stopMove();
-		RobotNode_cmdvel.linear.x = linear_x;
-		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		ros::spinOnce();
-		loop_rate.sleep();
 	}else{ // Move South/down.
-		// Rotating to face East with rotateToAngle().
+		// Rotating to face South with rotateToAngle().
 		rotateToAngle(-M_PI/2);
 		
-		dest = py - distance;
-		ROS_INFO("Co-ordinates: %f,%f",px,py);
+		dest = py - distance + 0.2;
 
 		move();
 		while(py>dest){
@@ -208,13 +189,13 @@ void navigate(int direction, double distance)
 			ros::spinOnce();
 			loop_rate.sleep();
 		}
-
-		stopMove();
-		RobotNode_cmdvel.linear.x = linear_x;
-		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		ros::spinOnce();
-		loop_rate.sleep();
 	}
+
+	stopMove();
+	ROS_INFO("Stopped at co-ordinates: %f,%f",px,py);
+	RobotNode_cmdvel.linear.x = linear_x;
+	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	ROS_INFO("Returned at co-ordinates: %f,%f",px,py);
 }
 
 void wakeUp()
@@ -315,7 +296,6 @@ while (ros::ok())
 		navigate(3,1);
 		navigate(2,1);
 		navigate(1,1);
-		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
 	}
 }
 
