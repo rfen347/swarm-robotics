@@ -50,7 +50,7 @@ void rotateToAngle(double angle){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
 
 	
 	//Calculate the shortest angle velocity to rotate
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
-	theta = M_PI/2.0;
+	theta = -M_PI/2.0;
 	px = 5.5;
 	py = 4.5;
 	
@@ -168,6 +168,11 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+
+	if (count== 50) {}
+		rotateToAngle(0);
+		linear_x=2;
+	}
 
 	//ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
 
