@@ -129,6 +129,7 @@ void navigate(int direction, double distance)
 
 		// Determine the destination co-ordinates.
 		dest = px + distance;
+		ROS_INFO("dest: %f", dest);
 		ROS_INFO("Co-ordinates: %f,%f",px,py);
 
 		move();
@@ -307,12 +308,13 @@ while (ros::ok())
 	// ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
 
 	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
-	if(count==1){
+	if(count==20){
 		ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
 		navigate(0,1);
-		navigate(3,1);
+
+		// navigate(3,1);
 		navigate(2,1);
-		navigate(1,1);
+		// navigate(1,1);
 		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
 	}
 }
