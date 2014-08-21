@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_4/odom",1000, StageOdom_callback);
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_4/base_scan",1000,StageLaser_callback);
 	
-	ros::Subscriber Robot_coord_sub n.subscribe<geometry_msgs::Pose2D>("robot_3/pos",1000, collisionrobot3::collisionCallback);
+	ros::Subscriber Robot_coord_sub n.subscribe<geometry_msgs::Pose2D>("robot_3/pos",1000, collisionrobot4::collisionCallback);
 
 	ros::Publisher Robot_coord_pub = n.advertise<geometry_msgs::Pose2D>("robot_4/pos",1000);
 
@@ -76,6 +76,7 @@ int main(int argc, char **argv)
 	////messages
 	//velocity of this RobotNode
 	geometry_msgs::Twist RobotNode_cmdvel;
+	geometry_msgs::Pose2D Robot_pos;
 	
 	while (ros::ok())
 	{
@@ -85,6 +86,14 @@ int main(int argc, char **argv)
 		
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+
+		//location message
+		Robot_pos.x = px;
+		Robot_pos.y = py;
+		Robot_pos.theta = theta;
+		
+		//publish the robot positions 
+		Robot_coord_pub.publish(Robot_pos)
 		
 		ros::spinOnce();
 		
