@@ -106,6 +106,8 @@ myRobot( pose [ -10.5 4.5 0 0 ] name "r8" color "yellow")
 # Add a relative node (r9)
 myRobot( pose [ -8.5 4.5 0 0 ] name "r9" color "SpringGreen")
 
+# Add a relative node (r10)
+myRobot( pose [ -6.5 4.5 0 0 ] name "r10" color "SeaGreen")
 
 gui_disable 0
 gui_interval 100
