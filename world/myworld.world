@@ -82,17 +82,18 @@ myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "green"
 )
 
 #Add the visitor/friend (r2)
-myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "pink"
+myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "orange"
 	#Shape of robot, a pentagon.
 
 	block
 	(
-		points 4
+		points 5
 
 		point[0] [0 0]
-		point[1] [0.5 0.5]
-		point[2] [0 1]
+		point[1] [0 1]
+		point[2] [0.5 1]
 		point[3] [1 0.5]
+		point[4] [0.5 0]
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
@@ -134,13 +135,64 @@ myRobot( pose [ -8.5 -2.5 0 0 ] name "r7" color "pink"
 
 
 # Add a relative node (r8)
-myRobot( pose [ -10.5 4.5 0 0 ] name "r8" color "yellow")
+myRobot( pose [ -10.5 4.5 0 0 ] name "r8" color "yellow"
+#Shape of robot, a pentagon.
 
-# Add a relative node (r9)
-myRobot( pose [ -8.5 4.5 0 0 ] name "r9" color "SpringGreen")
+	block
+	(
+		points 5
 
-# Add a relative node (r10)
-myRobot( pose [ -6.5 4.5 0 0 ] name "r10" color "SeaGreen")
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
+
+# Add a doctor node (r9)
+myRobot( pose [ -8.5 4.5 0 0 ] name "r9" color "SpringGreen"
+#Shape of robot, a pentagon.
+
+	block
+	(
+		points 5
+
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
+
+# Add a nurse node (r10)
+myRobot( pose [ -6.5 4.5 0 0 ] name "r10" color "SeaGreen"
+#Shape of robot, a pentagon.
+
+	block
+	(
+		points 5
+
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
 
 gui_disable 0
 gui_interval 100
