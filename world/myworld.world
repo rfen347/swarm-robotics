@@ -62,7 +62,7 @@ floorplan
 myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red")
 
 myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "green"
-	#Shape of robot, a triangle.
+	#Shape of robot, a triangle
 
 	block
 	(
