@@ -302,8 +302,11 @@ int main(int argc, char **argv)
 
 		// testing
 		if (count == 20) {
+			ROS_INFO("Before moving: %f, %f",px,py);
 			navigate(3, 2.0);
+			ROS_INFO("After moving once: %f, %f",px,py);
 			navigate(0, 2.0);
+			ROS_INFO("After moving twice: %f, %f",px,py);
 		}
 	}
 
