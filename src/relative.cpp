@@ -232,6 +232,7 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
+//Schedule to call when the relative is to visit the resident
 void visit(){
 	ROS_INFO("Relative(r8) Enters");
 }

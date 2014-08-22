@@ -232,10 +232,12 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
+//Schedule to call when the resident gets ill
 void visitNormal(){
 	ROS_INFO("Doctor(r9) Enters Normal");
 }
 
+//Schedule to call when the resident gets seriously ill
 void visitSerious(){
 	ROS_INFO("Doctor(r9) Enters Seriously Ill");
 }

@@ -259,6 +259,10 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
+
+
+
+
 int main(int argc, char **argv)
 {
 // Create a schedule object
