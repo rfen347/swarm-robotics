@@ -5,8 +5,6 @@
 #include <sensor_msgs/LaserScan.h>
 #include <sstream>
 #include "math.h"
-#include <string>
-//#include "cookingrobot.h"
 
 //velocity of the robot
 double linear_x;
@@ -17,12 +15,9 @@ double px;
 double py;
 double theta;
 
-void StageLaser_callback(sensor_msgs::LaserScan msg);
-void StageOdom_callback(nav_msgs::Odometry msg);
-
-int loopRate = 10; // Setting the cycle rate per second.
+int loopRate = 10;
 double posAllowance = 0.005;
-// This function updates the theta field so that the robot knows which angle it is facing.
+
 void setOrientation(){
 	//Calculate the new value of theta
 	theta = theta + (angular_z/loopRate);
@@ -43,7 +38,6 @@ void move(){
 void stopMove(){
 	linear_x = 0;
 }
-
 // This function makes the robot stop rotating.
 void stopRotation(){
 	angular_z=0;
@@ -54,6 +48,24 @@ void rotateFast(){
 	angular_z=M_PI/2;
 }
 
+void StageOdom_callback(nav_msgs::Odometry msg)
+{
+	//This is the call back function to process odometry messages coming from Stage. 	
+	px = 7.0 + msg.pose.pose.position.x;
+	py =-4.5 + msg.pose.pose.position.y;
+
+	//ROS_INFO("Current x position is: %f", px);
+	//ROS_INFO("Current y position is: %f", py);
+
+}
+
+
+void StageLaser_callback(sensor_msgs::LaserScan msg)
+{
+	//This is the callback function to process laser scan messages
+	//you can access the range data from msg.ranges[i]. i = sample number
+	
+}
 
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
 void rotateToAngle(double angle){
@@ -75,7 +87,7 @@ void rotateToAngle(double angle){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000);
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000);
 	
 	//Calculate the shortest angle velocity to rotate
 	if(difference>0){
@@ -100,7 +112,6 @@ void rotateToAngle(double angle){
 	angular_z = 0;
 }
 
-
 // This function makes the robot move in an orthogonal direction (North, East, South or West). Input the direction to move and the distance to move by. The robot will rotate and carry out this movement.
 
 // Integer codes for direction:
@@ -119,7 +130,7 @@ void navigate(int direction, double distance)
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000); 
 
 	if (direction==0){ // Move East/right.
 		// Rotating to face East with rotateToAngle().
@@ -221,80 +232,47 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
-void wakeUp()
-{
-	// Triggered by schedule.
-	// Navigate to sofa, and then stop.
-	// Navigate from (-6.5, 4.5) to (-3.5, 4.5), which is 3 units East.
-	move();
-	while(true){
-		if(px>-3){
-			stopMove();
-			return;
-		}
-	}
-}
-
-void getReadyToEat()
-{
-	// Triggered by robot message.
-	// Navigate from bedroom to dining table, and then stop.
-	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
-	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
-}
-
-void StageOdom_callback(nav_msgs::Odometry msg)
-{
-	//This is the call back function to process odometry messages coming from Stage. 	
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
-	px = -6.5 + msg.pose.pose.position.x;
-	py = 4.5 + msg.pose.pose.position.y;	
-}
-
-void StageLaser_callback(sensor_msgs::LaserScan msg)
-{
-	//This is the callback function to process laser scan messages
-	//you can access the range data from msg.ranges[i]. i = sample number
-	
+void visit(){
+	ROS_INFO("Relative(r8) Enters");
 }
 
 int main(int argc, char **argv)
 {
-// Create a schedule object
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = -6.5;
-	py = 4.5;
+	px = 7;
+	py = -4.5;
 	
 	//Initial velocity
 	linear_x = 0;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "RobotNode0");
+ros::init(argc, argv, "RobotNode8");
 
 //NodeHandle is the main access point to communicate with ros.
 ros::NodeHandle n;
 
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000); 
 
 //subscribe to listen to messages coming from stage
-ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
-ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
+ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_8/odom",1000, StageOdom_callback);
+ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_8/base_scan",1000,StageLaser_callback);
 
 ros::Rate loop_rate(loopRate);
 
-//a count of how many messages we have sent
+//a count of howmany messages we have sent
 int count = 0;
 
 ////messages
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
+
+
 
 while (ros::ok())
 {
@@ -310,19 +288,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	// ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
-
-	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
-	if(count==50){
-		navigate(0,2.0);
-		navigate(3,1.0);
-		navigate(2,2.0);
-		navigate(1,1.0);
-	}
-
-
-	//ROS_INFO("Angle: %f", theta/M_PI * 180 );
-
+	rotateFast();
 }
 
 return 0;

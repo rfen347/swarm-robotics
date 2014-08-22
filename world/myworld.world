@@ -58,11 +58,12 @@ floorplan
   pose [ 0 0 0 0 ]
 )
 
-# throw in a robot
+# Add the resident node (r0)
 myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red")
 
+# Add the cooking robot (r1)
 myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "green"
-	#Shape of robot, a triangle
+	#Shape of robot, a pentagon
 
 	block
 	(
@@ -79,6 +80,8 @@ myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "green"
 	size [0.5 0.5 0.5]
 
 )
+
+#Add the visitor/friend (r2)
 myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "pink"
 	#Shape of robot, a pentagon.
 
@@ -96,6 +99,11 @@ myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "pink"
 	size [0.5 0.5 0.5]
 
 )
+
+# Add a relative node (r8)
+myRobot( pose [ -10.5 4.5 0 0 ] name "r8" color "yellow")
+
+
 
 gui_disable 0
 gui_interval 100
