@@ -314,18 +314,10 @@ while (ros::ok())
 
 	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
 	if(count>50){
-		ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
-
 		navigate(0,2.0);
-		ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
 		navigate(3,1.0);
-		ROS_INFO("MOVE2. Co-ordinates: %f,%f",px,py);
 		navigate(2,2.0);
-		ROS_INFO("MOVE3. Co-ordinates: %f,%f",px,py);
 		navigate(1,1.0);
-
-		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
-
 	}
 }
 

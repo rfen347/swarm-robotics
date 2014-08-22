@@ -293,11 +293,8 @@ int main(int argc, char **argv)
 
 		// testing
 		if (count == 20) {
-			ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
 			navigate(3, 2.0);
-			ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
 			navigate(0, 2.0);
-			ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
 			rotateToAngle(-M_PI/2.0);
 		}
 		if (count == 50) {
