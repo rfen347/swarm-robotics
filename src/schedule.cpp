@@ -56,7 +56,7 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
 
-ros::Rate loop_rate(loopRate);
+ros::Rate loop_rate(10);
 
 //a count of howmany messages we have sent
 int count = 0;
@@ -74,15 +74,10 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-	setOrientation();
-
 	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
-
-	//testing
-	rotateFast();
 }
 
 return 0;
