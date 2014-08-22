@@ -16,6 +16,10 @@ double py;
 double theta;
 
 int loopRate = 10;
+double posAllowance = 0.005;
+
+void StageLaser_callback(sensor_msgs::LaserScan msg);
+void StageOdom_callback(nav_msgs::Odometry msg);
 
 void setOrientation(){
 	//Calculate the new value of theta
@@ -28,16 +32,24 @@ void setOrientation(){
 	}
 }
 
+// This function makes the robot move forward the way it is facing.
+void move(){
+	linear_x=2;
+}
+
+// This function makes the robot stop moving forward.
+void stopMove(){
+	linear_x = 0;
+}
+
+// This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
 void rotateToAngle(double angle){
-
-
 	//Calculate the angle to rotate
 	double difference = theta - angle;
 	//Don't rotate if we are at the correct angle
 	if (difference == 0.0){
 		return;
 	}
-
 
 	//Check for overflow
 	if(difference>M_PI){ 
@@ -50,8 +62,7 @@ void rotateToAngle(double angle){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
-
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000);
 	
 	//Calculate the shortest angle velocity to rotate
 	if(difference>0){
@@ -62,9 +73,6 @@ void rotateToAngle(double angle){
 		
 	}
 
-
-
-		linear_x = 0;
 	//Rotate to the specified angle
 	while(theta!=angle){
 
@@ -76,19 +84,142 @@ void rotateToAngle(double angle){
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
-	//ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
+	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
-	linear_x = 2;
-
 }
 
+// This function makes the robot move in an orthogonal direction (North, East, South or West). Input the direction to move and the distance to move by. The robot will rotate and carry out this movement.
 
+// Integer codes for direction:
+// 0 = East/right
+// 1 = North/up
+// 2 = West/left
+// 3 = South/down
+
+void navigate(int direction, double distance)
+{
+	double dest = 0;
+
+	distance = distance - 0.2;
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
+
+	if (direction==0){ // Move East/right.
+		// Rotating to face East with rotateToAngle().
+		rotateToAngle(0);
+
+		// Determine the destination co-ordinates.
+		dest = px + distance;
+
+		move();
+
+		while(px<dest){
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
+
+			//Break at position that is close enough
+			if((dest-px)<posAllowance){
+				break;
+			}
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
+		}
+
+	}else if (direction==1){ // Move North/up.
+		// Rotating to face North with rotateToAngle().
+		rotateToAngle(M_PI/2);
+
+		dest = py + distance;
+
+		move();
+		while(py<dest){
+			//Break at position that is close enough
+			if((dest-py)<posAllowance){
+				break;
+			}
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+	}else if (direction==2){ // Move West/left.
+		// Rotating to face West with rotateToAngle().
+		rotateToAngle(M_PI);
+		
+		dest = px - distance;
+
+		move();
+		while(px>dest){
+			//Break at position that is close enough
+			if((px-dest)<posAllowance){
+				break;
+			}
+
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+	}else{ // Move South/down.
+		// Rotating to face South with rotateToAngle().
+		rotateToAngle(-M_PI/2);
+		
+		dest = py - distance;
+
+		move();
+		while(py>dest){
+			//Break at position that is close enough
+			if((py-dest)<posAllowance){
+				break;
+			}
+
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+	}
+
+	//Stop the robot's movement once at the destination
+	stopMove();
+
+	//Recalculate position
+	rotateToAngle(theta);
+	// Infrastructure
+	RobotNode_cmdvel.linear.x = linear_x;
+	RobotNode_cmdvel.angular.z = angular_z;
+	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	ros::spinOnce();
+	loop_rate.sleep();
+
+	// RobotNode_cmdvel.linear.x = linear_x;
+	// RobotNode_cmdvel.angular.z = angular_z;
+	// RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	ros::spinOnce();
+	loop_rate.sleep();
+}
 
 void cook() {
 
 	//navigate to food storage (7.35, -0.55)
-	linear_x = 2;
-	angular_z= 0.1;
+	
 
 	//indicate getting items from food storage
 	//navigate to fridge (8.6, 0.15)
@@ -122,7 +253,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 int main(int argc, char **argv)
 {
 
- //initialize robot parameters
+	//initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = -M_PI/2.0;
 	px = 5.5;
@@ -132,193 +263,51 @@ int main(int argc, char **argv)
 	linear_x = 0;
 	angular_z = 0;
 	
-//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "RobotNode1");
+	//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
+	ros::init(argc, argv, "RobotNode1");
 
-//NodeHandle is the main access point to communicate with ros.
-ros::NodeHandle n;
+	//NodeHandle is the main access point to communicate with ros.
+	ros::NodeHandle n;
 
-//advertise() function will tell ROS that you want to publish on a given topic_
-//to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
+	//advertise() function will tell ROS that you want to publish on a given topic_
+	//to stage
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
 
-//subscribe to listen to messages coming from stage
-ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
-ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
+	//subscribe to listen to messages coming from stage
+	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
+	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
 
-ros::Rate loop_rate(loopRate);
+	ros::Rate loop_rate(loopRate);
 
-//a count of howmany messages we have sent
-int count = 0;
+	//a count of howmany messages we have sent
+	int count = 0;
 
-////messages
-//velocity of this RobotNode
-geometry_msgs::Twist RobotNode_cmdvel;
+	////messages
+	//velocity of this RobotNode
+	geometry_msgs::Twist RobotNode_cmdvel;
 
-while (ros::ok())
-{
-	//messages to stage
-	RobotNode_cmdvel.linear.x = linear_x;
-	RobotNode_cmdvel.angular.z = angular_z;
-        
-	//publish the message
-	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	
-	ros::spinOnce();
+	while (ros::ok())
+	{
+		//messages to stage
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+	        
+		//publish the message
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		
+		ros::spinOnce();
 
-	loop_rate.sleep();
-	++count;
+		loop_rate.sleep();
+		++count;
 
-	if (count== 50) {}
-		rotateToAngle(0);
-		linear_x=2;
+		// testing
+		if (count == 20) {
+			navigate(3, 2.0);
+			navigate(0, 2.0);
+		}
 	}
 
-	//ROS_INFO("Cycle %i - Cooking robot co-ordinates - (%f, %f)",count,px,py);
-
-	// The old time-dependent navigation:
-	/*
-	// start walking to the food storeage
-	// go straight
-	if(count==200){
-		linear_x = 2;
-	}
-	// turn 90 degrees anti-clockwise
-	if(count==250){
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	} 
-	// go straight
-	if(count==260){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// start taking food
-	if(count==280){
-		ROS_INFO("ACTIVITY - Cooking robot starts taking food");
-		angular_z = M_PI / 2;;
-		linear_x = 0;
-	}
-	// finish taking food
-	if(count==330){
-		angular_z = 0;
-	}
-	// go straight to stove 
-	if(count==340){
-		linear_x = 2;
-	}
-	// start cooking
-	if(count==380){
-		ROS_INFO("ACTIVITY - Cooking robot starts cooking");
-		angular_z = - M_PI / 2;
-		linear_x = 0;
-	} 
-	// finish cooking
-	if(count==480){
-		ROS_INFO("ACTIVITY - Cooking robot stops cooking");
-		angular_z = 0;
-	}
-	// start taking food to dining table
-	//go straight
-	if(count==500){
-		ROS_INFO("ACTIVITY - Cooking robot takes food to dining table");
-		linear_x = 2;
-	}
-	// turn 90 degrees clockwise
-	if(count==540){
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	} 
-	// go straight
-	if(count==550){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees clockwise
-	if(count==600){
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==610){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees anti-clockwise
-	if(count==615){
-		linear_x = 0;
-		angular_z = M_PI / 2;
-	}
-	// go straight
-	if(count==625){
-		angular_z = 0;
-		linear_x = 2;
-	} 
-	// puts food on dining table(spin)
-	if(count==640){
-		ROS_INFO("ACTIVITY - Cooking robot puts food on dining table");
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	}
-	// finish put food
-	if(count==700){
-		angular_z = 0;
-	}
-	
-	// goes back to original position
-	// go straight
-	if(count==720){
-		ROS_INFO("ACTIVITY - Cooking robot goes back to original position");	
-		linear_x = 2;
-	}
-	// turn 90 degrees clockwise
-	if(count==750){
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	} 
-	// go straight
-	if(count==760){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees anti-clockwise
-	if(count==765){
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==775){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees anti-clockwise
-	if(count==790){
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==800){
-		angular_z = 0;
-		linear_x = 2;
-	} 
-	// back to the original facing direction
-	// turn 90 degrees clockwise 
-	if(count==850){
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	}
-	// stop
-	if(count==870){
-		angular_z = 0;
-	} 
-	// reset the day
-	if(count==1050){
-		count = 0;
-	}*/
-	
-//}
-
-return 0;
+	return 0;
 
 }
 
