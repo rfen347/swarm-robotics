@@ -305,6 +305,8 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 	
+	setOrientation();
+
 	ros::spinOnce();
 
 	loop_rate.sleep();

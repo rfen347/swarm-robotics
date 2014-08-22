@@ -277,6 +277,8 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 	
+	setOrientation();	
+
 	ros::spinOnce();
 
 	//ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
