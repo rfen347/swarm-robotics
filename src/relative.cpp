@@ -51,8 +51,8 @@ void rotateFast(){
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 7.0 + msg.pose.pose.position.x;
-	py =-4.5 + msg.pose.pose.position.y;
+	px = -10.5 + msg.pose.pose.position.x;
+	py = 4.5 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
@@ -87,7 +87,7 @@ void rotateToAngle(double angle){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000);
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000);
 	
 	//Calculate the shortest angle velocity to rotate
 	if(difference>0){
@@ -130,7 +130,7 @@ void navigate(int direction, double distance)
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000); 
 
 	if (direction==0){ // Move East/right.
 		// Rotating to face East with rotateToAngle().
@@ -232,9 +232,9 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
-//Schedule to call when the visitor(friend) is to visit the resident
+//Schedule to call when the relative is to visit the resident
 void visit(){
-	ROS_INFO("visitor(r2) Enters");
+	ROS_INFO("Relative(r8) Enters");
 }
 
 int main(int argc, char **argv)
@@ -243,26 +243,26 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = 7;
-	py = -4.5;
+	px = -10.5;
+	py = 4.5;
 	
 	//Initial velocity
 	linear_x = 0;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "RobotNode2");
+ros::init(argc, argv, "RobotNode8");
 
 //NodeHandle is the main access point to communicate with ros.
 ros::NodeHandle n;
 
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000); 
 
 //subscribe to listen to messages coming from stage
-ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
-ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_2/base_scan",1000,StageLaser_callback);
+ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_8/odom",1000, StageOdom_callback);
+ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_8/base_scan",1000,StageLaser_callback);
 
 ros::Rate loop_rate(loopRate);
 
@@ -273,6 +273,8 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
+
 while (ros::ok())
 {
 	//messages to stage
@@ -281,23 +283,13 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-
 	setOrientation();
-
 	ros::spinOnce();
-
-	//ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;
 
-	//TO TEST rotateToAngle
-	if(count == 60){
-		navigate(2, 3.0);
-		navigate(0, 3.0);
-	}
-	
-
+	rotateFast();
 }
 
 return 0;

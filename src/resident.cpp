@@ -221,26 +221,94 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
-void wakeUp()
-{
-	// Triggered by schedule.
-	// Navigate to sofa, and then stop.
-	// Navigate from (-6.5, 4.5) to (-3.5, 4.5), which is 3 units East.
-	move();
-	while(true){
-		if(px>-3){
-			stopMove();
-			return;
-		}
-	}
+//Schedule to call for the resident to start the day
+void wakeUp(){
+	ROS_INFO("Resident wakes up");
 }
 
-void getReadyToEat()
-{
-	// Triggered by robot message.
-	// Navigate from bedroom to dining table, and then stop.
-	// Navigate from (-3.5, 4.5) to (-3.5,-1.0), which is 5.5 units South.
-	// Navigate from (-3.5, -1.0) to (-0.5, -1.0), which is 3 units East.
+//Schedule to call for the resident to use the toilet
+void useToilet(){
+	ROS_INFO("Resident goes to the toilet");
+}
+
+//Schedule to call for the resident to use the sink
+void useSink(){
+	ROS_INFO("Resident goes to the sink");
+}
+
+//Schedule to call for the resident to shower
+void shower(){
+	ROS_INFO("Resident goes to the bath");
+}
+
+//Schedule to call for the resident to go to the lounge
+void bathroomToLounge(){
+	ROS_INFO("Resident leaves the bathroom and enters the lounge");
+}
+
+//Schedule to call for the resident to exercise
+void exercise(){
+	ROS_INFO("Resident exercises");	
+}
+
+//Schedule to call for the resident to go to the table
+void getReadyToEat(){
+	ROS_INFO("Resident goes to the table to eat");
+}
+
+// Schedule to call for the resident to eat
+void eat(){
+	ROS_INFO("Resident eats");
+}
+
+// Schedule to call for the resident to take medication
+void takeMedication(){
+	ROS_INFO("Resident takes medication");
+}
+
+// Schedule to call for the resident to go to the sofa
+void tableToSofa(){
+	ROS_INFO("Resident moves to the sofa");
+}
+
+// Schedule to call for the resident to talk to the caregiver
+void converseWithCaregiver(){
+	ROS_INFO("Resident converses with the caregiver");
+}
+
+// Schedule to call for the resident to talk to the visitors
+void converseWithVisitors(){
+	ROS_INFO("Resident converses with visitors");
+}
+
+// Schedule to call for the resident to accept entertainment from the entertainment robot
+void acceptEntertainment(){
+	ROS_INFO("Resident accepts Entertainment");
+}
+
+// Schedule to call for the resident to accept companionship robot
+void acceptCompanionship(){
+	ROS_INFO("Resident video chats/talks to companionship robot");
+}
+
+// Schedule to call for the resident to go to bed
+void goToBed(){
+	ROS_INFO("Resident goes to bed");
+}
+
+// Schedule to call for the resident to sleep
+void sleep(){
+	ROS_INFO("Resident is sleeping");
+}
+
+// Schedule to call for the resident to get sick
+void getSick(){
+	ROS_INFO("Resident is sick");
+}
+
+// Schedule to call for the resident to go to the ambulance and leave the house
+void goToAmbulance(){
+	ROS_INFO("Resident leaves: Too sick");
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
@@ -258,6 +326,10 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	//you can access the range data from msg.ranges[i]. i = sample number
 	
 }
+
+
+
+
 
 int main(int argc, char **argv)
 {
@@ -323,7 +395,7 @@ while (ros::ok())
 	}
 
 
-	ROS_INFO("Angle: %f", theta/M_PI * 180 );
+	//ROS_INFO("Angle: %f", theta/M_PI * 180 );
 
 }
 
