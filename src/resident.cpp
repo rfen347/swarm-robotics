@@ -3,8 +3,6 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-#include <tf/transform_broadcaster.h>
-
 #include <sstream>
 #include "math.h"
 #include <string>
@@ -149,6 +147,7 @@ void navigate(int direction, double distance)
 
 			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
+
 	}else if (direction==1){ // Move North/up.
 		// Rotating to face North with rotateToAngle().
 		rotateToAngle(M_PI/2);
@@ -333,7 +332,9 @@ while (ros::ok())
 		navigate(2,2.0);
 		ROS_INFO("MOVE3. Co-ordinates: %f,%f",px,py);
 		navigate(1,1.0);
+
 		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
+
 	}
 }
 

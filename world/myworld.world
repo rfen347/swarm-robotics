@@ -57,6 +57,7 @@ floorplan
   size [20.0 10.0 0.5]
   pose [ 0 0 0 0 ]
 )
+
 # throw in a robot
 myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red")
 

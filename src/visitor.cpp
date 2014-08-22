@@ -3,7 +3,6 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-#include <tf/transform_broadcaster.h>
 #include <sstream>
 #include "math.h"
 
@@ -38,7 +37,7 @@ void setOrientation(){
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 7.5 + msg.pose.pose.position.x;
+	px = 7.0 + msg.pose.pose.position.x;
 	py =-4.5 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
