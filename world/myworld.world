@@ -100,7 +100,19 @@ myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "pink"
 
 )
 
-#Caregiver
+# Schedule robot (r3)
+myRobot( pose [ -12.0 0 0 0 ] name "r4" color "red")
+
+# Medical robot (r4)
+myRobot( pose [ 1.5 -4.5 0 0 ] name "r4" color "green")
+
+# Entertainment robot (r5)
+myRobot( pose [ 2.5 4.5 0 0 ] name "r5" color "blue")
+
+# Companionship robot (r6)
+myRobot( pose [ -1.0 4.5 0 0 ] name "r6" color "violet")
+
+# Caregiver (r7)
 myRobot( pose [ -8.5 -2.5 0 0 ] name "r7" color "pink"
 	#Shape of robot, a pentagon.
 
