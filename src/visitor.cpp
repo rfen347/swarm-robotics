@@ -104,8 +104,6 @@ void rotateToAngle(double angle){
 	}
 	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
-	linear_x = 2;
-
 }
 
 int main(int argc, char **argv)
