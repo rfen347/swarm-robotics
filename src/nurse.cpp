@@ -232,9 +232,14 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
-void visit(){
-	ROS_INFO("Nurse(r10) Enters");
+void visitNormal(){
+	ROS_INFO("Nurse(r10) Enters Normal");
 }
+
+void visitSerious(){
+	ROS_INFO("Nurse(r10) Enters Seriously ill")
+}
+
 
 int main(int argc, char **argv)
 {
