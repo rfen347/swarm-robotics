@@ -24,7 +24,7 @@ define floorplan model
   color "gray30"
 
   # most maps will need a bounding box
-  boundary 1
+  boundary 0
   
   ranger_return 1
 )

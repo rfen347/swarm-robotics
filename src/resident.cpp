@@ -7,8 +7,12 @@
 #include <project1/move.h>
 #include <sstream>
 #include "math.h"
+#include <termios.h>
+#include <string>
+#include <sstream>
+#include <iostream>
 
-
+using namespace std;
 //velocity of the robot
 double linear_x;
 double angular_z;
@@ -120,6 +124,11 @@ while (ros::ok())
 	
 	ros::spinOnce();
 
+	String command;
+	cin >> command;
+	if (command == "m"){
+		linear_x = 7;
+	}
 
 	loop_rate.sleep();
 	++count;

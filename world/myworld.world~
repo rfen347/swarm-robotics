@@ -61,7 +61,7 @@ floorplan
 myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red")
 myRobot( pose [ 5.5 4.5 0 -90 ] name "r1" color "green")
 myRobot( pose [ 7.0 -4.5 0 90 ] name "r2" color "pink")
-myRobot( pose [ 7.0 -4.5 0 90 ] name "r3" color "pink")
+myRobot( pose [ 13.0 11 0 90 ] name "r3" color "white")
 
 gui_disable 0
 gui_interval 100

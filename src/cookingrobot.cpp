@@ -51,8 +51,8 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 }
 
 void chatterCallback(project1::move Mo){
-	ROS_INFO("Moving!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
-	linear_x = 3;
+	ROS_INFO("Fuck!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+	linear_x = 30;
 }
 
 int main(int argc, char **argv)
