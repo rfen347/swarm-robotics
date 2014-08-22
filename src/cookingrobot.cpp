@@ -84,7 +84,6 @@ void rotateToAngle(double angle){
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
-	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
 }
 
@@ -118,8 +117,6 @@ void navigate(int direction, double distance)
 		move();
 
 		while(px<dest){
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
-
 			//Break at position that is close enough
 			if((dest-px)<posAllowance){
 				break;
@@ -171,8 +168,6 @@ void navigate(int direction, double distance)
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
-
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
 
 	}else{ // Move South/down.
@@ -181,14 +176,11 @@ void navigate(int direction, double distance)
 		
 		dest = py - distance;
 
-		ROS_INFO("px:%f, py: %f, dest:%f", px,py,dest);
-
 		move();
 		while(py>dest){
 			//Break at position that is close enough
 			if((py-dest)<posAllowance){
 				break;
-				ROS_INFO("BREAK");
 			}
 
 			// Infrastructure
@@ -197,16 +189,12 @@ void navigate(int direction, double distance)
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
-
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
 	}
 
 	//Stop the robot's movement once at the destination
 	stopMove();
 
-	//Recalculate position
-	rotateToAngle(theta);
 	// Infrastructure
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
@@ -214,9 +202,7 @@ void navigate(int direction, double distance)
 	ros::spinOnce();
 	loop_rate.sleep();
 
-	// RobotNode_cmdvel.linear.x = linear_x;
-	// RobotNode_cmdvel.angular.z = angular_z;
-	// RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	//Spin again to ensure in correct position
 	ros::spinOnce();
 	loop_rate.sleep();
 }
