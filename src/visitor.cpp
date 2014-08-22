@@ -38,10 +38,15 @@ void move(){
 void stopMove(){
 	linear_x = 0;
 }
+// This function makes the robot stop rotating.
+void stopRotation(){
+	angular_z=0;
+}
 
-// TO-DO:
-// - Make visitor walk around without bumping into things.
-
+// This function makes the robot rotate fast.
+void rotateFast(){
+	angular_z=M_PI/2;
+}
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
@@ -276,8 +281,8 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	
-	setOrientation();	
+
+	setOrientation();
 
 	ros::spinOnce();
 

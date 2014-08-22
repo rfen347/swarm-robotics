@@ -51,7 +51,7 @@ void stopRotation(){
 
 // This function makes the robot rotate fast.
 void rotateFast(){
-	angular_z=2;
+	angular_z=M_PI/2;
 }
 
 
@@ -315,12 +315,16 @@ while (ros::ok())
 	// ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
 
 	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
-	if(count>50){
+	if(count==50){
 		navigate(0,2.0);
 		navigate(3,1.0);
 		navigate(2,2.0);
 		navigate(1,1.0);
 	}
+
+
+	ROS_INFO("Angle: %f", theta/M_PI * 180 );
+
 }
 
 return 0;

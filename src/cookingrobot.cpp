@@ -49,7 +49,7 @@ void stopRotation(){
 
 // This function makes the robot rotate fast.
 void rotateFast(){
-	angular_z=M_PI/2.0;
+	angular_z=M_PI/2;
 }
 
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
@@ -295,7 +295,7 @@ int main(int argc, char **argv)
 	        
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		
+
 		setOrientation();
 
 		ros::spinOnce();
