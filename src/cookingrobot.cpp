@@ -130,8 +130,6 @@ void navigate(int direction, double distance)
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
-
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
 
 	}else if (direction==1){ // Move North/up.
@@ -173,6 +171,8 @@ void navigate(int direction, double distance)
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
+
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
 
 	}else{ // Move South/down.
@@ -181,11 +181,14 @@ void navigate(int direction, double distance)
 		
 		dest = py - distance;
 
+		ROS_INFO("px:%f, py: %f, dest:%f", px,py,dest);
+
 		move();
 		while(py>dest){
 			//Break at position that is close enough
 			if((py-dest)<posAllowance){
 				break;
+				ROS_INFO("BREAK");
 			}
 
 			// Infrastructure
@@ -194,6 +197,8 @@ void navigate(int direction, double distance)
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
+
+			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
 	}
 
@@ -255,7 +260,7 @@ int main(int argc, char **argv)
 
 	//initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
-	theta = -M_PI/2.0;
+	theta = 0;
 	px = 5.5;
 	py = 4.5;
 	
@@ -302,12 +307,19 @@ int main(int argc, char **argv)
 
 		// testing
 		if (count == 20) {
+			ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
 			navigate(3, 2.0);
+			ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
 			navigate(0, 2.0);
+			ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
+			rotateToAngle(-M_PI/2.0);
+		}
+		if (count == 50) {
+			navigate(3, 1.0);
+			navigate(2, 1.0);
 		}
 	}
 
 	return 0;
 
 }
-
