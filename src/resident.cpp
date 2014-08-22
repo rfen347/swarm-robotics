@@ -221,18 +221,9 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
-void wakeUp()
-{
-	// Triggered by schedule.
-	// Navigate to sofa, and then stop.
-	// Navigate from (-6.5, 4.5) to (-3.5, 4.5), which is 3 units East.
-	move();
-	while(true){
-		if(px>-3){
-			stopMove();
-			return;
-		}
-	}
+//Schedule to call for the resident to start the day
+void wakeUp(){
+	ROS_INFO("Resident wakes up");
 }
 
 void getReadyToEat()

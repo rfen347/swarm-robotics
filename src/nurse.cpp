@@ -239,7 +239,7 @@ void visitNormal(){
 
 //Schedule to call when the resident gets seriously ill
 void visitSerious(){
-	ROS_INFO("Nurse(r10) Enters Seriously ill")
+	ROS_INFO("Nurse(r10) Enters Seriously ill");
 }
 
 
