@@ -58,11 +58,12 @@ floorplan
   pose [ 0 0 0 0 ]
 )
 
-# throw in a robot
+# Add the resident node (r0)
 myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red")
 
+# Add the cooking robot (r1)
 myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "green"
-	#Shape of robot, a triangle
+	#Shape of robot, a pentagon
 
 	block
 	(
@@ -79,8 +80,103 @@ myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "green"
 	size [0.5 0.5 0.5]
 
 )
-myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "pink"
+
+#Add the visitor/friend (r2)
+myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "orange"
 	#Shape of robot, a pentagon.
+
+	block
+	(
+		points 5
+
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
+
+# Schedule robot (r3)
+myRobot( pose [ -12.0 0 0 0 ] name "r4" color "red")
+
+# Medical robot (r4)
+myRobot( pose [ 1.5 -4.5 0 0 ] name "r4" color "green")
+
+# Entertainment robot (r5)
+myRobot( pose [ 2.5 4.5 0 0 ] name "r5" color "blue")
+
+# Companionship robot (r6)
+myRobot( pose [ -1.0 4.5 0 0 ] name "r6" color "violet")
+
+# Caregiver (r7)
+myRobot( pose [ -8.5 -2.5 0 0 ] name "r7" color "pink"
+	#Shape of robot, a pentagon.
+
+	block
+	(
+		points 5
+
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
+
+
+# Add a relative node (r8)
+myRobot( pose [ -10.5 4.5 0 0 ] name "r8" color "yellow"
+#Shape of robot, a pentagon.
+
+	block
+	(
+		points 5
+
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
+
+# Add a doctor node (r9)
+myRobot( pose [ -8.5 4.5 0 0 ] name "r9" color "SpringGreen"
+#Shape of robot, a pentagon.
+
+	block
+	(
+		points 5
+
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.5 0.5 0.5]
+
+)
+
+# Add a nurse node (r10)
+myRobot( pose [ -6.5 4.5 0 0 ] name "r10" color "SeaGreen"
+#Shape of robot, a pentagon.
 
 	block
 	(

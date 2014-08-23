@@ -232,6 +232,11 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
+//Schedule to call when the visitor(friend) is to visit the resident
+void visit(){
+	ROS_INFO("visitor(r2) Enters");
+}
+
 int main(int argc, char **argv)
 {
 
@@ -268,11 +273,6 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
-
-
-
-
-
 while (ros::ok())
 {
 	//messages to stage
@@ -281,7 +281,9 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+
 	setOrientation();
+
 	ros::spinOnce();
 
 	//ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
@@ -295,140 +297,6 @@ while (ros::ok())
 		navigate(0, 3.0);
 	}
 	
-	// The old time-dependent navigation:
-/*
-	// enters house
-	// go straight
-	if(count==100){
-		ROS_INFO("ACTIVITY - Visitor enters house");
-		linear_x = 2;
-	}
-	//turn 90 degrees anti-clockwise
-	if(count==110){
-		angular_z =  M_PI / 2;
-		linear_x = 0;
-	} 
-	// go straight
-	if(count==120){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees clockwise
-	if(count==155){
-		angular_z = - M_PI / 2;;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==165){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees anti-clockwise
-	if(count==235){
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==245){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// start wacthing TV (vibrate)
-	if(count > 265 && count < 640){
-		if (count == 266) {
-			ROS_INFO("ACTIVITY - Visitor is watching TV");
-		}
-		if (count == 639) {
-			ROS_INFO("ACTIVITY - Visitor has finished watching TV");
-		}
-		if (count % 2 < 1) {
-			linear_x = -10;
-		} else {linear_x = 10;}
-	}
-	// start walking to the dining table
-	// go straight 
-	if(count==640){
-		angular_z = 0;
-		linear_x = -2;
-	}
-	// turn 90 degrees anti-clockwise
-	if(count==660){
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==670){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	//turn 90 degrees clockwise
-	if(count==720){
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==730){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// start eating
-	// turn 90 degrees anti-clockwise
-	if(count==738){
-		ROS_INFO("ACTIVITY - Visitor is eating");
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	}
-	// finish eating and strat walking to the front door(leaving)
-	// go straight
-	if(count==798){
-		ROS_INFO("ACTIVITY - Visitor has finished eating");
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees clockwise
-	if(count==808){
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==818){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees anti-clockwise
-	if(count==838){
-		angular_z = M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==848){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees clockwise
-	if(count==882){
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	}
-	// go straight
-	if(count==892){
-		angular_z = 0;
-		linear_x = 2;
-	}
-	// turn 90 degrees clockwise (back to its original facing direction)
-	if(count==902){
-		ROS_INFO("ACTIVITY - Visitor leaves house");
-		angular_z = -M_PI / 2;
-		linear_x = 0;
-	}
-	// stop
-	if(count==922){
-		angular_z = 0;
-	}
-	// reset the day
-	if(count==1050){
-		count = 0;
-	}*/
 
 }
 

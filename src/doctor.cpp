@@ -18,9 +18,6 @@ double theta;
 int loopRate = 10;
 double posAllowance = 0.005;
 
-void StageLaser_callback(sensor_msgs::LaserScan msg);
-void StageOdom_callback(nav_msgs::Odometry msg);
-
 void setOrientation(){
 	//Calculate the new value of theta
 	theta = theta + (angular_z/loopRate);
@@ -41,7 +38,6 @@ void move(){
 void stopMove(){
 	linear_x = 0;
 }
-
 // This function makes the robot stop rotating.
 void stopRotation(){
 	angular_z=0;
@@ -50,6 +46,25 @@ void stopRotation(){
 // This function makes the robot rotate fast.
 void rotateFast(){
 	angular_z=M_PI/2;
+}
+
+void StageOdom_callback(nav_msgs::Odometry msg)
+{
+	//This is the call back function to process odometry messages coming from Stage. 	
+	px = -8.5 + msg.pose.pose.position.x;
+	py = 4.5 + msg.pose.pose.position.y;
+
+	//ROS_INFO("Current x position is: %f", px);
+	//ROS_INFO("Current y position is: %f", py);
+
+}
+
+
+void StageLaser_callback(sensor_msgs::LaserScan msg)
+{
+	//This is the callback function to process laser scan messages
+	//you can access the range data from msg.ranges[i]. i = sample number
+	
 }
 
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
@@ -72,7 +87,7 @@ void rotateToAngle(double angle){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000);
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_9/cmd_vel",1000);
 	
 	//Calculate the shortest angle velocity to rotate
 	if(difference>0){
@@ -115,7 +130,7 @@ void navigate(int direction, double distance)
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_9/cmd_vel",1000); 
 
 	if (direction==0){ // Move East/right.
 		// Rotating to face East with rotateToAngle().
@@ -136,7 +151,7 @@ void navigate(int direction, double distance)
 			RobotNode_cmdvel.angular.z = angular_z;
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
-			loop_rate.sleep();
+			loop_rate.sleep();			
 		}
 
 	}else if (direction==1){ // Move North/up.
@@ -217,102 +232,71 @@ void navigate(int direction, double distance)
 	loop_rate.sleep();
 }
 
-void cook() {
-
-	//navigate to food storage (7.35, -0.55)
-	
-
-	//indicate getting items from food storage
-	//navigate to fridge (8.6, 0.15)
-	//indicate getting items from fridge
-	//navigate to stovetop (8.6, 3.6)
-	//indicate cooking
-	//navigate to table (2.12, -1.44)
-	//inform resident food is served!
-	//navigate back to idle position (5.5, 4.5)
-
+//Schedule to call when the resident gets ill
+void visitNormal(){
+	ROS_INFO("Doctor(r9) Enters Normal");
 }
 
-void StageOdom_callback(nav_msgs::Odometry msg)
-{
-	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 5.5 + msg.pose.pose.position.x;
-	py = 4.5 + msg.pose.pose.position.y;
-
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
-}
-
-
-void StageLaser_callback(sensor_msgs::LaserScan msg)
-{
-	//This is the callback function to process laser scan messages
-	//you can access the range data from msg.ranges[i]. i = sample number
-	
+//Schedule to call when the resident gets seriously ill
+void visitSerious(){
+	ROS_INFO("Doctor(r9) Enters Seriously Ill");
 }
 
 int main(int argc, char **argv)
 {
 
-	//initialize robot parameters
+ //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = 5.5;
+	px = -8.5;
 	py = 4.5;
 	
 	//Initial velocity
 	linear_x = 0;
 	angular_z = 0;
 	
-	//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-	ros::init(argc, argv, "RobotNode1");
+//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
+ros::init(argc, argv, "RobotNode9");
 
-	//NodeHandle is the main access point to communicate with ros.
-	ros::NodeHandle n;
+//NodeHandle is the main access point to communicate with ros.
+ros::NodeHandle n;
 
-	//advertise() function will tell ROS that you want to publish on a given topic_
-	//to stage
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
+//advertise() function will tell ROS that you want to publish on a given topic_
+//to stage
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_9/cmd_vel",1000); 
 
-	//subscribe to listen to messages coming from stage
-	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
-	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
+//subscribe to listen to messages coming from stage
+ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_9/odom",1000, StageOdom_callback);
+ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_9/base_scan",1000,StageLaser_callback);
 
-	ros::Rate loop_rate(loopRate);
+ros::Rate loop_rate(loopRate);
 
-	//a count of howmany messages we have sent
-	int count = 0;
+//a count of howmany messages we have sent
+int count = 0;
 
-	////messages
-	//velocity of this RobotNode
-	geometry_msgs::Twist RobotNode_cmdvel;
+////messages
+//velocity of this RobotNode
+geometry_msgs::Twist RobotNode_cmdvel;
 
-	while (ros::ok())
-	{
-		//messages to stage
-		RobotNode_cmdvel.linear.x = linear_x;
-		RobotNode_cmdvel.angular.z = angular_z;
-	        
-		//publish the message
-		RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-		setOrientation();
 
-		ros::spinOnce();
+while (ros::ok())
+{
+	//messages to stage
+	RobotNode_cmdvel.linear.x = linear_x;
+	RobotNode_cmdvel.angular.z = angular_z;
+        
+	//publish the message
+	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	setOrientation();
+	ros::spinOnce();
 
-		loop_rate.sleep();
-		++count;
+	loop_rate.sleep();
+	++count;
 
-		// testing
-		if (count == 20) {
-			ROS_INFO("Before moving: %f, %f",px,py);
-			navigate(3, 2.0);
-			ROS_INFO("After moving once: %f, %f",px,py);
-			navigate(0, 2.0);
-			ROS_INFO("After moving twice: %f, %f",px,py);
-		}
-	}
+	rotateFast();
+}
 
-	return 0;
+return 0;
 
 }
