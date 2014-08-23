@@ -16,6 +16,7 @@ double py;
 double theta;
 
 int loopRate = 10;
+double posAllowance = 0.005;
 
 void setOrientation(){
 	//Calculate the new value of theta
@@ -28,11 +29,24 @@ void setOrientation(){
 	}
 }
 
+// This function makes the robot move forward the way it is facing.
+void move(){
+	linear_x=2;
+}
 
+// This function makes the robot stop moving forward.
+void stopMove(){
+	linear_x = 0;
+}
+// This function makes the robot stop rotating.
+void stopRotation(){
+	angular_z=0;
+}
 
-// TO-DO:
-// - Make visitor walk around without bumping into things.
-
+// This function makes the robot rotate fast.
+void rotateFast(){
+	angular_z=M_PI/2;
+}
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
@@ -53,17 +67,14 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
-
+// This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
 void rotateToAngle(double angle){
-
-
 	//Calculate the angle to rotate
 	double difference = theta - angle;
 	//Don't rotate if we are at the correct angle
 	if (difference == 0.0){
 		return;
 	}
-
 
 	//Check for overflow
 	if(difference>M_PI){ 
@@ -76,8 +87,7 @@ void rotateToAngle(double angle){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
-
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000);
 	
 	//Calculate the shortest angle velocity to rotate
 	if(difference>0){
@@ -88,9 +98,6 @@ void rotateToAngle(double angle){
 		
 	}
 
-
-
-		linear_x = 0;
 	//Rotate to the specified angle
 	while(theta!=angle){
 
@@ -102,10 +109,127 @@ void rotateToAngle(double angle){
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
-	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
-	linear_x = 2;
+}
 
+// This function makes the robot move in an orthogonal direction (North, East, South or West). Input the direction to move and the distance to move by. The robot will rotate and carry out this movement.
+
+// Integer codes for direction:
+// 0 = East/right
+// 1 = North/up
+// 2 = West/left
+// 3 = South/down
+
+void navigate(int direction, double distance)
+{
+	double dest = 0;
+
+	distance = distance - 0.2;
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
+
+	if (direction==0){ // Move East/right.
+		// Rotating to face East with rotateToAngle().
+		rotateToAngle(0);
+
+		// Determine the destination co-ordinates.
+		dest = px + distance;
+
+		move();
+
+		while(px<dest){
+			//Break at position that is close enough
+			if((dest-px)<posAllowance){
+				break;
+			}
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();			
+		}
+
+	}else if (direction==1){ // Move North/up.
+		// Rotating to face North with rotateToAngle().
+		rotateToAngle(M_PI/2);
+
+		dest = py + distance;
+
+		move();
+		while(py<dest){
+			//Break at position that is close enough
+			if((dest-py)<posAllowance){
+				break;
+			}
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+	}else if (direction==2){ // Move West/left.
+		// Rotating to face West with rotateToAngle().
+		rotateToAngle(M_PI);
+		
+		dest = px - distance;
+
+		move();
+		while(px>dest){
+			//Break at position that is close enough
+			if((px-dest)<posAllowance){
+				break;
+			}
+
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+
+	}else{ // Move South/down.
+		// Rotating to face South with rotateToAngle().
+		rotateToAngle(-M_PI/2);
+		
+		dest = py - distance;
+
+		move();
+		while(py>dest){
+			//Break at position that is close enough
+			if((py-dest)<posAllowance){
+				break;
+			}
+
+			// Infrastructure
+			RobotNode_cmdvel.linear.x = linear_x;
+			RobotNode_cmdvel.angular.z = angular_z;
+			RobotNode_stage_pub.publish(RobotNode_cmdvel);
+			ros::spinOnce();
+			loop_rate.sleep();
+		}
+	}
+
+	//Stop the robot's movement once at the destination
+	stopMove();
+
+	// Infrastructure
+	RobotNode_cmdvel.linear.x = linear_x;
+	RobotNode_cmdvel.angular.z = angular_z;
+	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	ros::spinOnce();
+	loop_rate.sleep();
+
+	//Spin again to ensure in correct position
+	ros::spinOnce();
+	loop_rate.sleep();
 }
 
 int main(int argc, char **argv)
@@ -113,7 +237,7 @@ int main(int argc, char **argv)
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
-	theta = M_PI/2.0;
+	theta = 0;
 	px = 7;
 	py = -4.5;
 	
@@ -151,45 +275,25 @@ geometry_msgs::Twist RobotNode_cmdvel;
 
 while (ros::ok())
 {
-
-	//TO TEST rotateToAngle
-	if(count == 60){
-		rotateToAngle(0);
-	
-		rotateToAngle(-M_PI/2);
-		rotateToAngle(M_PI);
-		rotateToAngle(M_PI/2);
-
-		rotateToAngle(M_PI/2);
-		rotateToAngle(M_PI);
-		rotateToAngle(-M_PI/2);
-		rotateToAngle(0);
-	}
-
-
-	// linear_x = 10;
-	// rotateToAngle(M_PI/-2);
-
-	// rotateToAngle(M_PI);
-	// rotateToAngle(M_PI/2);
-
-
-
-	setOrientation();
-
 	//messages to stage
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	
+	setOrientation();
 	ros::spinOnce();
 
 	//ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;
+
+	//TO TEST rotateToAngle
+	if(count == 60){
+		navigate(2, 3.0);
+		navigate(0, 3.0);
+	}
 	
 	// The old time-dependent navigation:
 /*

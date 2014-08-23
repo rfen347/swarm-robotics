@@ -51,7 +51,7 @@ void stopRotation(){
 
 // This function makes the robot rotate fast.
 void rotateFast(){
-	angular_z=2;
+	angular_z=M_PI/2;
 }
 
 
@@ -97,7 +97,6 @@ void rotateToAngle(double angle){
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
-	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
 }
 
@@ -132,8 +131,6 @@ void navigate(int direction, double distance)
 		move();
 
 		while(px<dest){
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
-
 			//Break at position that is close enough
 			if((dest-px)<posAllowance){
 				break;
@@ -143,9 +140,7 @@ void navigate(int direction, double distance)
 			RobotNode_cmdvel.angular.z = angular_z;
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
-			loop_rate.sleep();
-
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
+			loop_rate.sleep();			
 		}
 
 	}else if (direction==1){ // Move North/up.
@@ -214,8 +209,6 @@ void navigate(int direction, double distance)
 	//Stop the robot's movement once at the destination
 	stopMove();
 
-	//Recalculate position
-	rotateToAngle(theta);
 	// Infrastructure
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
@@ -223,9 +216,7 @@ void navigate(int direction, double distance)
 	ros::spinOnce();
 	loop_rate.sleep();
 
-	// RobotNode_cmdvel.linear.x = linear_x;
-	// RobotNode_cmdvel.angular.z = angular_z;
-	// RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	//Spin again to ensure in correct position
 	ros::spinOnce();
 	loop_rate.sleep();
 }
@@ -313,7 +304,7 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	
+	setOrientation();
 	ros::spinOnce();
 
 	loop_rate.sleep();
@@ -322,20 +313,16 @@ while (ros::ok())
 	// ROS_INFO("Cycle %i - Resident co-ordinates - (%f,%f)",count,px,py);
 
 	// TESTING. It should move in a square going 1 unit East, then 1 unit South, then 1 unit West, then 1 unit North back to its starting position.
-	if(count>50){
-		ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
-
+	if(count==50){
 		navigate(0,2.0);
-		ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
 		navigate(3,1.0);
-		ROS_INFO("MOVE2. Co-ordinates: %f,%f",px,py);
 		navigate(2,2.0);
-		ROS_INFO("MOVE3. Co-ordinates: %f,%f",px,py);
 		navigate(1,1.0);
-
-		ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
-
 	}
+
+
+	ROS_INFO("Angle: %f", theta/M_PI * 180 );
+
 }
 
 return 0;

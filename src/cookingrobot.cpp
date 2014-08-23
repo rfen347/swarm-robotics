@@ -42,6 +42,17 @@ void stopMove(){
 	linear_x = 0;
 }
 
+
+// This function makes the robot stop rotating.
+void stopRotation(){
+	angular_z=0;
+}
+
+// This function makes the robot rotate fast.
+void rotateFast(){
+	angular_z=M_PI/2;
+}
+
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
 void rotateToAngle(double angle){
 	//Calculate the angle to rotate
@@ -84,7 +95,6 @@ void rotateToAngle(double angle){
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
-	// ROS_INFO("I've stopped rotating. Theta is %f",theta * 180 / M_PI);
 	angular_z = 0;
 }
 
@@ -118,8 +128,6 @@ void navigate(int direction, double distance)
 		move();
 
 		while(px<dest){
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
-
 			//Break at position that is close enough
 			if((dest-px)<posAllowance){
 				break;
@@ -130,8 +138,6 @@ void navigate(int direction, double distance)
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
 			loop_rate.sleep();
-
-			ROS_INFO("Co-ordinates: %f,%f",px,py);
 		}
 
 	}else if (direction==1){ // Move North/up.
@@ -200,8 +206,6 @@ void navigate(int direction, double distance)
 	//Stop the robot's movement once at the destination
 	stopMove();
 
-	//Recalculate position
-	rotateToAngle(theta);
 	// Infrastructure
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
@@ -209,9 +213,7 @@ void navigate(int direction, double distance)
 	ros::spinOnce();
 	loop_rate.sleep();
 
-	// RobotNode_cmdvel.linear.x = linear_x;
-	// RobotNode_cmdvel.angular.z = angular_z;
-	// RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	//Spin again to ensure in correct position
 	ros::spinOnce();
 	loop_rate.sleep();
 }
@@ -255,7 +257,7 @@ int main(int argc, char **argv)
 
 	//initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
-	theta = -M_PI/2.0;
+	theta = 0;
 	px = 5.5;
 	py = 4.5;
 	
@@ -294,7 +296,7 @@ int main(int argc, char **argv)
 	        
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		
+		setOrientation();
 		ros::spinOnce();
 
 		loop_rate.sleep();
@@ -313,4 +315,3 @@ int main(int argc, char **argv)
 	return 0;
 
 }
-
