@@ -289,7 +289,6 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	rotateFast();
 }
 
 return 0;

@@ -290,12 +290,6 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-
-	//TO TEST rotateToAngle
-	if(count == 60){
-		navigate(2, 3.0);
-		navigate(0, 3.0);
-	}
 	
 
 }

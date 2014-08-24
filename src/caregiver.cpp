@@ -303,9 +303,6 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-
-	//testing
-	rotateFast();
 }
 
 return 0;
