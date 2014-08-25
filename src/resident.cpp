@@ -119,7 +119,7 @@ while (ros::ok())
 	RobotNode_cmdvel.linear.x = linear_x;
 	RobotNode_cmdvel.angular.z = angular_z;
         
-	//publish the message
+	//publish the messageh
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 	
 	ros::spinOnce();
