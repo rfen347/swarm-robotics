@@ -60,8 +60,8 @@ ros::NodeHandle n;
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
 
-ros::Publisher cooking_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
-
+ros::Publisher resident_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
+ros::Publisher caregiver_move = n.advertise<std_msgs::String>("robot_7/bbb",1000);
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
@@ -98,9 +98,10 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	if ( count == 30 ){
+	if ( count == 20 ){
 
-		cooking_move.publish(Mo);
+		resident_move.publish(Mo);
+		caregiver_move.publish(Mo);
 	}
 
 	ros::spinOnce();

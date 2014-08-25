@@ -384,7 +384,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 void chatterCallback(std_msgs::String Mo){
 	if (Mo.data == "wake up"){
 
-		ROS_INFO("wake up message received");
+		ROS_INFO("resident message received");
 	}
 	//linear_x = 2;
 }
