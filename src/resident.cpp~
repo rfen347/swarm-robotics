@@ -354,7 +354,7 @@ void getSick(){
 void goToAmbulance(){
 	ROS_INFO("Resident leaves: Too sick");
 	navigate(0,3);
-	navigate(3,9);
+	navigate(3,8);
 	navigate(0,10.5);
 	navigate(3,7);
 }
@@ -446,9 +446,11 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-	setOrientation();
 	mo.x = px;	
 	rmo.publish(mo);
+
+	setOrientation();
+
 
 	ros::spinOnce();
 

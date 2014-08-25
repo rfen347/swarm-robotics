@@ -235,6 +235,18 @@ void navigate(int direction, double distance)
 //Schedule to call when the visitor(friend) is to visit the resident
 void visit(){
 	ROS_INFO("visitor(r2) Enters");
+	navigate(0,1);
+	navigate(1,3.5);
+	navigate(2,4);
+	navigate(1,6.8);
+	navigate(2,1.1);
+	// Spin to show that visitor is watching TV and talking to resident.
+	navigate(0,1.1);
+	navigate(3,6.8);
+	navigate(0,4);
+	navigate(3,3.5);
+	navigate(2,1);
+	navigate(0,0);
 }
 
 int main(int argc, char **argv)
@@ -291,7 +303,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 	
-
+	/* TESTING
+	if(count==1){
+		visit();
+	}*/
 }
 
 return 0;
