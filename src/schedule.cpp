@@ -4,7 +4,7 @@
 #include <rosgraph_msgs/Clock.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-//#include <project1/move.h>
+#include <project1/move.h>
 #include <sstream>
 #include "math.h"
 #include <time.h>
@@ -30,6 +30,11 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 {
 	//This is the callback function to process laser scan messages
 	//you can access the range data from msg.ranges[i]. i = sample number	
+}
+
+void rmovecallback(project1::move mo)
+{
+	ROS_INFO("%f", mo.x);
 }
 
 int main(int argc, char **argv)
@@ -60,6 +65,8 @@ ros::Publisher cooking_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
+ros::Subscriber lrmo = n.subscribe<project1::move>("robot_0/rmove",1000, rmovecallback);
+
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
 
 ros::Rate loop_rate(10);
@@ -93,9 +100,7 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-
-	if (count == 60){
-
+	if ( count == 30 ){
 		cooking_move.publish(Mo);
 	}
 

@@ -6,6 +6,7 @@
 #include <sstream>
 #include "math.h"
 #include <string>
+#include <project1/move.h>
 
 #include <rosgraph_msgs/Clock.h>
 
@@ -367,7 +368,10 @@ ros::NodeHandle n;
 
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000);
+
+
+ros::Publisher rmo= n.advertise<project1::move>("robot_0/rmove",1000);  
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
@@ -385,6 +389,9 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+project1::move mo;
+
+
 while (ros::ok())
 {
 	//messages to stage
@@ -393,8 +400,12 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	
+
+	mo.x = px;	
+	rmo.publish(mo);
+
 	setOrientation();
+
 
 	ros::spinOnce();
 

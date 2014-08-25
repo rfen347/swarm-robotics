@@ -23,8 +23,8 @@ define floorplan model
   # sombre, sensible, artistic
   color "gray30"
 
-  # most maps will need a bounding box
-  boundary 1
+  # remove the boundry
+  boundary 0
   
   ranger_return 1
 )
@@ -91,7 +91,7 @@ myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "gray"
 )
 
 # VISITOR/FRIEND (r2)
-myRobot( pose [ 7.0 -4.5 0 0 ] name "r2" color "orange"
+myRobot( pose [ 6.0 -7.0 0 0 ] name "r2" color "orange"
 	#Pentagon because it's human.
 	block
 	(
@@ -113,7 +113,7 @@ myRobot( pose [ -20.0 0 0 0 ] name "r4" color "white"
 )
 
 # MEDICAL ROBOT (r4)
-myRobot( pose [ 1.5 -4.5 0 0 ] name "r4" color "green"
+myRobot( pose [ 2 -4.5 0 0 ] name "r4" color "green"
 	#Triangle because it's a robot.
 	block
 	(
@@ -128,7 +128,7 @@ myRobot( pose [ 1.5 -4.5 0 0 ] name "r4" color "green"
 )
 
 # ENTERTAINMENT ROBOT (r5)
-myRobot( pose [ 2.5 4.5 0 0 ] name "r5" color "blue"
+myRobot( pose [ 2.3 4.5 0 0 ] name "r5" color "blue"
 	#Triangle because it's a robot.
 	block
 	(
@@ -143,7 +143,7 @@ myRobot( pose [ 2.5 4.5 0 0 ] name "r5" color "blue"
 )
 
 # COMPANIONSHIP ROBOT (r6)
-myRobot( pose [ -1.0 4.5 0 0 ] name "r6" color "violet"
+myRobot( pose [ -0.7 4.5 0 0 ] name "r6" color "violet"
 	#Triangle because it's a robot.
 	block
 	(
@@ -158,7 +158,7 @@ myRobot( pose [ -1.0 4.5 0 0 ] name "r6" color "violet"
 )
 
 # CAREGIVER (r7)
-myRobot( pose [ -8.5 -2.5 0 0 ] name "r7" color "pink"
+myRobot( pose [ 6.0 -8.0 0 0 ] name "r7" color "pink"
 	#Pentagon because it's human.
 	block
 	(
@@ -176,7 +176,7 @@ myRobot( pose [ -8.5 -2.5 0 0 ] name "r7" color "pink"
 )
 
 # RELATIVE (r8)
-myRobot( pose [ -10.5 4.5 0 0 ] name "r8" color "yellow"
+myRobot( pose [ 6.0 -9.0 0 0 ] name "r8" color "yellow"
 	#Pentagon because it's human.
 	block
 	(
@@ -193,7 +193,7 @@ myRobot( pose [ -10.5 4.5 0 0 ] name "r8" color "yellow"
 )
 
 # DOCTOR (r9)
-myRobot( pose [ -8.5 4.5 0 0 ] name "r9" color "SpringGreen"
+myRobot( pose [ 6.0 -10.0 0 0 ] name "r9" color "SpringGreen"
 	#Pentagon because it's human.
 	block
 	(
@@ -210,7 +210,7 @@ myRobot( pose [ -8.5 4.5 0 0 ] name "r9" color "SpringGreen"
 )
 
 # NURSE (r10)
-myRobot( pose [ -6.5 4.5 0 0 ] name "r10" color "SeaGreen"
+myRobot( pose [ 6.0 -11.0 0 0 ] name "r10" color "SeaGreen"
 	#Pentagon because it's human.
 	block
 	(

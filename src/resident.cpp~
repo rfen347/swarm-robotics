@@ -6,6 +6,7 @@
 #include <sstream>
 #include "math.h"
 #include <string>
+#include <project1/move.h>
 
 #include <rosgraph_msgs/Clock.h>
 
@@ -333,10 +334,10 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
-void clockCallback(rosgraph_msgs::Clock clk){
-	ROS_INFO("clock start!!!!!!");
+//void clockCallback(rosgraph_msgs::Clock clk){
+//	ROS_INFO("clock start!!!!!!");
 	//linear_x = 2;
-}
+//}
 
 void chatterCallback(std_msgs::String Mo){
 	if (Mo.data == "wake up"){
@@ -370,14 +371,17 @@ ros::NodeHandle n;
 
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000);
+
+
+ros::Publisher rmo= n.advertise<project1::move>("robot_0/rmove",1000);  
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
 
 ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
-ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
+//ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
 
 
 ros::Rate loop_rate(loopRate);
@@ -389,6 +393,9 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+project1::move mo;
+
+
 while (ros::ok())
 {
 	//messages to stage
@@ -397,8 +404,10 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	
+
 	setOrientation();
+	mo.x = px;	
+	rmo.publish(mo);
 
 	ros::spinOnce();
 
