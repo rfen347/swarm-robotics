@@ -91,8 +91,10 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	if ( count == 30 ){
 
-	cooking_move.publish(Mo);
+		cooking_move.publish(Mo);
+	}
 
 	ros::spinOnce();
 
