@@ -230,91 +230,132 @@ void navigate(int direction, double distance)
 //Schedule to call for the resident to start the day
 void wakeUp(){
 	ROS_INFO("Resident wakes up");
+	navigate(0,3);
 }
 
 //Schedule to call for the resident to use the toilet
 void useToilet(){
 	ROS_INFO("Resident goes to the toilet");
+	navigate(3,5);
+	navigate(2,5);
+	navigate(3,2);
+	navigate(0,2.2);
+	// Spin for a little while.
 }
 
 //Schedule to call for the resident to use the sink
 void useSink(){
 	ROS_INFO("Resident goes to the sink");
+	navigate(2,2.6);
+	// Spin for a little while.
 }
 
 //Schedule to call for the resident to shower
 void shower(){
-	ROS_INFO("Resident goes to the bath");
+	ROS_INFO("Resident goes to the shower");
+	navigate(3,0.9);
+	// Spin for a little while.
 }
 
 //Schedule to call for the resident to go to the lounge
 void bathroomToLounge(){
 	ROS_INFO("Resident leaves the bathroom and enters the lounge");
+	navigate(1,0.9);
+	navigate(0,0.5);
+	navigate(1,2);
+	navigate(0,5);
 }
 
 //Schedule to call for the resident to exercise
 void exercise(){
 	ROS_INFO("Resident exercises");	
+	navigate(3,3);
+	navigate(0,10.5);
+	navigate(2,10.5);
+	navigate(0,10.5);
+	navigate(2,10.5);
 }
 
 //Schedule to call for the resident to go to the table
 void getReadyToEat(){
 	ROS_INFO("Resident goes to the table to eat");
+	navigate(1,3);
+	navigate(0,2.5);
 }
 
 // Schedule to call for the resident to eat
 void eat(){
 	ROS_INFO("Resident eats");
+	// Spin for a while to eat.
 }
 
 // Schedule to call for the resident to take medication
 void takeMedication(){
 	ROS_INFO("Resident takes medication");
+	// Spin for a while to take medication.
 }
 
 // Schedule to call for the resident to go to the sofa
 void tableToSofa(){
 	ROS_INFO("Resident moves to the sofa");
+	navigate(1,3.5);
+	navigate(0,1.6);
+	navigate(1,0);
 }
 
 // Schedule to call for the resident to talk to the caregiver
 void converseWithCaregiver(){
 	ROS_INFO("Resident converses with the caregiver");
+	// Spin for a while to converse.
 }
 
 // Schedule to call for the resident to talk to the visitors
 void converseWithVisitors(){
 	ROS_INFO("Resident converses with visitors");
+	// Spin for a while to converse.
 }
 
 // Schedule to call for the resident to accept entertainment from the entertainment robot
 void acceptEntertainment(){
 	ROS_INFO("Resident accepts Entertainment");
+	// Spin for a while to converse.
 }
 
 // Schedule to call for the resident to accept companionship robot
 void acceptCompanionship(){
 	ROS_INFO("Resident video chats/talks to companionship robot");
+	// Spin for a while to converse.
 }
 
 // Schedule to call for the resident to go to bed
 void goToBed(){
 	ROS_INFO("Resident goes to bed");
+	navigate(2,1.6);
+	navigate(3,3.5);
+	navigate(2,2.5);
+	navigate(1,5);
+	navigate(2,3);
 }
 
 // Schedule to call for the resident to sleep
 void sleep(){
 	ROS_INFO("Resident is sleeping");
+	// No movement needed
 }
 
 // Schedule to call for the resident to get sick
 void getSick(){
 	ROS_INFO("Resident is sick");
+	// No movement needed
 }
 
 // Schedule to call for the resident to go to the ambulance and leave the house
 void goToAmbulance(){
 	ROS_INFO("Resident leaves: Too sick");
+	navigate(0,3);
+	navigate(3,9);
+	navigate(0,10.5);
+	navigate(3,7);
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
@@ -333,10 +374,10 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
-void clockCallback(rosgraph_msgs::Clock clk){
-	ROS_INFO("clock start!!!!!!");
+//void clockCallback(rosgraph_msgs::Clock clk){
+//	ROS_INFO("clock start!!!!!!");
 	//linear_x = 2;
-}
+//}
 
 void chatterCallback(std_msgs::String Mo){
 	if (Mo.data == "wake up"){
@@ -377,7 +418,7 @@ ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",10
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
 
 ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
-ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
+//ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
 
 
 ros::Rate loop_rate(loopRate);
@@ -405,7 +446,21 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-
+	// Testing.
+	if(count==1){
+		wakeUp();
+		useToilet();
+		useSink();
+		shower();
+		bathroomToLounge();
+		exercise();
+		getReadyToEat();
+		eat();
+		takeMedication();
+		tableToSofa();
+		goToBed();
+		goToAmbulance();
+	}
 }
 
 return 0;
