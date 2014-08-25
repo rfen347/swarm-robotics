@@ -4,7 +4,7 @@
 #include <rosgraph_msgs/Clock.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
-//#include <project1/move.h>
+#include <project1/move.h>
 #include <sstream>
 #include "math.h"
 #include <time.h>

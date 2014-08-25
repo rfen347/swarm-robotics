@@ -4,6 +4,7 @@
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
 #include <sstream>
+#include <project1/move.h>
 #include "math.h"
 
 //velocity of the robot
