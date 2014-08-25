@@ -220,18 +220,17 @@ void navigate(int direction, double distance)
 
 void cook() {
 
-	//navigate to food storage (7.35, -0.55)
-	
-
-	//indicate getting items from food storage
-	//navigate to fridge (8.6, 0.15)
-	//indicate getting items from fridge
-	//navigate to stovetop (8.6, 3.6)
-	//indicate cooking
-	//navigate to table (2.12, -1.44)
-	//inform resident food is served!
-	//navigate back to idle position (5.5, 4.5)
-
+	navigate(3,5);
+	// Spin to indicate getting items from fridge
+	navigate(0,1.5);
+	// Spin to indicate getting items from food storage
+	navigate(1,3.9);
+	// Spin to indicate cooking.
+	navigate(3,3.9);
+	navigate(2,4.6);
+	// Spin to indicate serving food
+	navigate(0,2.9);
+	navigate(1,5);
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
@@ -303,7 +302,11 @@ int main(int argc, char **argv)
 
 		loop_rate.sleep();
 		++count;
-
+		
+		/* TESTING
+		if(count==1){
+			cook();
+		}*/
 	}
 
 	return 0;

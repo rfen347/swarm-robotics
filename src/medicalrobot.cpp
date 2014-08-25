@@ -236,11 +236,24 @@ void navigate(int direction, double distance)
 //Schedule to call when resident is to take medication
 void giveMedication(){
 	ROS_INFO("Medical robot gives resident medication");
+	// Spin to show robot is getting medicine.
+	navigate(1,1);
+	navigate(0,1);
+	navigate(1,3);
+	navigate(2,0.6);
+	// Spin to show robot is delivering medicine.
+	navigate(0,0.6);
+	navigate(3,3);
+	navigate(2,1);
+	navigate(3,1);
 }
 
 //Schedule to call when resident is ill and doctor is needed
 void callDoctor(){
 	ROS_INFO("Medical robot calls doctor");
+	navigate(2,0.6);
+	// Spin to show robot is using the phone.
+	navigate(0,0.6);
 }
 
 int main(int argc, char **argv)
@@ -294,6 +307,12 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+
+	/* TESTING
+	if(count==1){
+		giveMedication();
+		callDoctor();
+	}*/
 }
 
 return 0;

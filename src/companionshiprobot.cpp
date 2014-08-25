@@ -236,6 +236,9 @@ void navigate(int direction, double distance)
 //Schedule to call when resident needs entertainment
 void giveCompanionship(){
 	ROS_INFO("Resident uses skype with the Companionship robot");
+	navigate(3,1);
+	// Spin to show that it is running *generic video messaging service*.
+	navigate(1,1);
 }
 
 int main(int argc, char **argv)
@@ -290,7 +293,9 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-
+	if(count==1){
+		giveCompanionship();
+	}
 }
 
 return 0;

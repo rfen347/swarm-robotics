@@ -31,7 +31,7 @@ define floorplan model
 
 define my_block model
 (
-  size [0.5 0.5 0.5]
+  size [0.4 0.4 0.4]
   gui_nose 0
 )
 
@@ -72,7 +72,7 @@ myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # COOKING ROBOT (r1)
@@ -87,7 +87,7 @@ myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "gray"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # VISITOR/FRIEND (r2)
@@ -104,7 +104,7 @@ myRobot( pose [ 6.0 -7.0 0 0 ] name "r2" color "orange"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # SCHEDULE ROBOT (r3)
@@ -113,7 +113,7 @@ myRobot( pose [ -20.0 0 0 0 ] name "r4" color "white"
 )
 
 # MEDICAL ROBOT (r4)
-myRobot( pose [ 2 -4.5 0 0 ] name "r4" color "green"
+myRobot( pose [ 1.9 -4.4 0 0 ] name "r4" color "green"
 	#Triangle because it's a robot.
 	block
 	(
@@ -124,7 +124,7 @@ myRobot( pose [ 2 -4.5 0 0 ] name "r4" color "green"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # ENTERTAINMENT ROBOT (r5)
@@ -139,7 +139,7 @@ myRobot( pose [ 2.3 4.5 0 0 ] name "r5" color "blue"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # COMPANIONSHIP ROBOT (r6)
@@ -154,7 +154,7 @@ myRobot( pose [ -0.7 4.5 0 0 ] name "r6" color "violet"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # CAREGIVER (r7)
@@ -171,7 +171,7 @@ myRobot( pose [ 6.0 -8.0 0 0 ] name "r7" color "pink"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 
 )
 
@@ -189,7 +189,7 @@ myRobot( pose [ 6.0 -9.0 0 0 ] name "r8" color "yellow"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # DOCTOR (r9)
@@ -206,7 +206,7 @@ myRobot( pose [ 6.0 -10.0 0 0 ] name "r9" color "SpringGreen"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 # NURSE (r10)
@@ -223,7 +223,7 @@ myRobot( pose [ 6.0 -11.0 0 0 ] name "r10" color "SeaGreen"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.5 0.5 0.5]
+	size [0.4 0.4 0.4]
 )
 
 gui_disable 0

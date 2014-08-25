@@ -32,6 +32,11 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	//you can access the range data from msg.ranges[i]. i = sample number	
 }
 
+void rmovecallback(project1::move mo)
+{
+	ROS_INFO("%f", mo.x);
+}
+
 int main(int argc, char **argv)
 {
 
@@ -55,11 +60,13 @@ ros::NodeHandle n;
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
 
-ros::Publisher cooking_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
-
+ros::Publisher resident_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
+ros::Publisher caregiver_move = n.advertise<std_msgs::String>("robot_7/bbb",1000);
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
+ros::Subscriber lrmo = n.subscribe<project1::move>("robot_0/rmove",1000, rmovecallback);
+
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
 
 ros::Rate loop_rate(10);
@@ -91,9 +98,10 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	if ( count == 30 ){
+	if ( count == 20 ){
 
-		cooking_move.publish(Mo);
+		resident_move.publish(Mo);
+		caregiver_move.publish(Mo);
 	}
 
 	ros::spinOnce();

@@ -236,6 +236,7 @@ void navigate(int direction, double distance)
 //Schedule to call when resident needs entertainment
 void giveEntertainment(){
 	ROS_INFO("Entertainment robot gives resident entertainment");
+	// Spin to show that the entertainment robot is giving entertainment through the TV.
 }
 
 int main(int argc, char **argv)
