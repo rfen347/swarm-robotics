@@ -5,7 +5,7 @@
 #include <sensor_msgs/LaserScan.h>
 #include <sstream>
 #include "math.h"
-
+#include <project1/move.h>
 //velocity of the robot
 double linear_x;
 double angular_z;
@@ -290,6 +290,13 @@ int main(int argc, char **argv)
 
 	while (ros::ok())
 	{
+
+		//Testing
+		if(count == 20){
+			rotateToAngle(M_PI);
+			linear_x=2;
+		}
+
 		//messages to stage
 		RobotNode_cmdvel.linear.x = linear_x;
 		RobotNode_cmdvel.angular.z = angular_z;

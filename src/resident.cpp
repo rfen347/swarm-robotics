@@ -10,6 +10,9 @@
 
 #include <rosgraph_msgs/Clock.h>
 
+#include <project1/move.h>
+
+
 //velocity of the robot
 double linear_x;
 double angular_z;
