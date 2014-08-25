@@ -9,10 +9,6 @@
 
 #include <rosgraph_msgs/Clock.h>
 
-
-
-//#include "cookingrobot.h"
-
 //velocity of the robot
 double linear_x;
 double angular_z;
@@ -333,6 +329,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
+
 //void clockCallback(rosgraph_msgs::Clock clk){
 //	ROS_INFO("clock start!!!!!!");
 	//linear_x = 2;
@@ -378,7 +375,6 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 
 ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
 //ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
-
 
 ros::Rate loop_rate(loopRate);
 
