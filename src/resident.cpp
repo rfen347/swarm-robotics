@@ -6,6 +6,11 @@
 #include <sstream>
 #include "math.h"
 #include <string>
+
+#include <rosgraph_msgs/Clock.h>
+
+
+
 //#include "cookingrobot.h"
 
 //velocity of the robot
@@ -33,6 +38,7 @@ void setOrientation(){
 		theta = theta + (M_PI*2);
 	}
 }
+
 
 // This function makes the robot move forward the way it is facing.
 void move(){
@@ -327,7 +333,18 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
+//void clockCallback(rosgraph_msgs::Clock clk){
+//	ROS_INFO("clock start!!!!!!");
+	//linear_x = 2;
+//}
 
+void chatterCallback(std_msgs::String Mo){
+	if (Mo.data == "wake up"){
+
+		ROS_INFO("wake up message received");
+	}
+	//linear_x = 2;
+}
 
 
 
@@ -358,6 +375,10 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
+
+ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
+//ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
+
 
 ros::Rate loop_rate(loopRate);
 

@@ -1,10 +1,13 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include <geometry_msgs/Twist.h>
+#include <rosgraph_msgs/Clock.h>
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
+//#include <project1/move.h>
 #include <sstream>
 #include "math.h"
+#include <time.h>
 
 //velocity of the robot
 double linear_x;
@@ -50,7 +53,10 @@ ros::NodeHandle n;
 
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000); 
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
+
+ros::Publisher cooking_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
+
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
@@ -65,6 +71,18 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+// move
+//project1::move Mo;
+std_msgs::String Mo;
+
+std::stringstream ss;
+ss << "wake up";
+Mo.data = ss.str();
+
+//rosgraph_msgs::Clock clk;
+
+//c.publish(clk);
+
 while (ros::ok())
 {
 	//messages to stage
@@ -73,6 +91,8 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+
+	cooking_move.publish(Mo);
 
 	ros::spinOnce();
 
