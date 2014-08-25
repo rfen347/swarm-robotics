@@ -289,6 +289,13 @@ int main(int argc, char **argv)
 
 	while (ros::ok())
 	{
+
+		//Testing
+		if(count == 20){
+			rotateToAngle(M_PI);
+			linear_x=2;
+		}
+
 		//messages to stage
 		RobotNode_cmdvel.linear.x = linear_x;
 		RobotNode_cmdvel.angular.z = angular_z;

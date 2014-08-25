@@ -76,7 +76,7 @@ myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red"
 )
 
 # COOKING ROBOT (r1)
-myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "gray"
+myRobot( pose [ -3.5 4.5 0 0 ] name "r1" color "gray"
 	#Triangle because it's a robot.
 	block
 	(
