@@ -83,6 +83,8 @@ Mo.data = ss.str();
 
 //c.publish(clk);
 
+//cooking_move.publish(Mo);
+
 while (ros::ok())
 {
 	//messages to stage
@@ -91,8 +93,9 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	if ( count == 30 ){
+	if ( count == 30 ){}
 
+	if (count == 60){
 		cooking_move.publish(Mo);
 	}
 

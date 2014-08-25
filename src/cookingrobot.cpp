@@ -291,7 +291,7 @@ int main(int argc, char **argv)
 	{
 
 		//Testing
-		if (count == 20){
+		if(count == 20){
 			rotateToAngle(M_PI);
 			linear_x=2;
 		}
