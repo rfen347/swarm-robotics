@@ -244,21 +244,44 @@ void navigate(int direction, double distance)
 //Schedule to call when resident is to take a shower
 void helpShower(){
 	ROS_INFO("Caregiver helps resident take a shower");
+	navigate(0,1);
+	navigate(1,4.5);
+	navigate(2,10.5);
+	navigate(1,3);
+	navigate(2,5);
+	navigate(3,3);
+	// Spin to show that caregiver is helping the resident shower.
 }
 
 //Schedule to call when resident is to eat a meal
 void helpEat(){
 	ROS_INFO("Caregiver helps resident to eat meal");
+	navigate(1,3);
+	navigate(0,5);
+	navigate(3,1);
+	navigate(0,3);
+	// Spin to show that caregiver is helping the resident eat.
 }
 
 //Schedule to call when resident is to exercise
 void helpExercise(){
 	ROS_INFO("Caregiver helps resident with exercise");
+	navigate(3,2);
+	navigate(0,6);
+	navigate(2,10);
+	navigate(0,10);
+	navigate(2,10);
 }
 
 //Schedule to call when resident needs conversation or moral support
 void giveMoralSupport(){
 	ROS_INFO("Caregiver has conversation with resident and gives moral support");
+	navigate(1,3);
+	navigate(0,3);
+	navigate(1,4);
+	navigate(0,0.5);
+	// Spin to show that caregiver is talking to resident.
+	// Then leave the house.
 }
 
 int main(int argc, char **argv)
@@ -318,6 +341,13 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+	
+	if(count==1){
+		helpShower();
+		helpEat();
+		helpExercise();
+		giveMoralSupport();
+	}
 }
 
 return 0;
