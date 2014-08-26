@@ -53,6 +53,34 @@ void rotateFast(){
 	angular_z=M_PI/2;
 }
 
+// Spin for the number of cycles specified
+void spin(int cycles){
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
+
+	linear_x = 0;
+	rotateFast(); 			// start spinning
+	int counter = 0;
+		
+	while (counter < cycles) {
+		counter++;
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+	stopRotation(); // stop spinning
+}
+
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
 void rotateToAngle(double angle){
 	//Calculate the angle to rotate
@@ -222,13 +250,17 @@ void cook() {
 
 	navigate(3,5);
 	// Spin to indicate getting items from fridge
+	spin(40);
 	navigate(0,1.5);
 	// Spin to indicate getting items from food storage
+	spin(40);
 	navigate(1,3.9);
 	// Spin to indicate cooking.
+	spin(80);
 	navigate(3,3.9);
 	navigate(2,4.6);
 	// Spin to indicate serving food
+	spin(40);
 	navigate(0,3.1);
 	navigate(1,5);
 }
@@ -303,10 +335,11 @@ int main(int argc, char **argv)
 		loop_rate.sleep();
 		++count;
 		
-		/* TESTING
-		if(count==1){
+		 //TESTING
+		if(count==30){
 			cook();
-		}*/
+		}
+		
 	}
 
 	return 0;

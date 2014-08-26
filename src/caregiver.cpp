@@ -49,6 +49,33 @@ void rotateFast(){
 	angular_z=M_PI/2;
 }
 
+// Spin for the number of cycles specified
+void spin(int cycles){
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_7/cmd_vel",1000); 
+
+	rotateFast(); 			// start spinning
+	int counter = 0;
+		
+	while (counter < cycles) {
+		counter++;
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+	stopRotation(); // stop spinning
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
@@ -266,22 +293,27 @@ void helpEat(){
 //Schedule to call when resident is to exercise
 void helpExercise(){
 	ROS_INFO("Caregiver helps resident with exercise");
-	navigate(3,2);
+	navigate(3,1.5);
 	navigate(0,6);
-	navigate(2,10);
-	navigate(0,10);
-	navigate(2,10);
+	navigate(2,9);
+	navigate(0,9);
+	navigate(2,9);
 }
 
 //Schedule to call when resident needs conversation or moral support
 void giveMoralSupport(){
 	ROS_INFO("Caregiver has conversation with resident and gives moral support");
-	navigate(1,3);
+	navigate(1,2);
 	navigate(0,3);
-	navigate(1,4);
-	navigate(0,0.5);
+	navigate(1,4.5);
+	navigate(0,1);
 	// Spin to show that caregiver is talking to resident.
 	// Then leave the house.
+	navigate(0,3.5);
+	navigate(3,7);
+	navigate(0,3);
+	navigate(3,4.5);
+	navigate(2,1);
 }
 
 int main(int argc, char **argv)
@@ -307,13 +339,13 @@ ros::NodeHandle n;
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_7/cmd_vel",1000);
 
-//ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);   
+ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);   
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_7/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_7/base_scan",1000,StageLaser_callback);
 
-ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
+//ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
 
 ros::Rate loop_rate(loopRate);
 
@@ -323,7 +355,7 @@ int count = 0;
 ////messages
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
-//project1::move mo;
+project1::move mo;
 while (ros::ok())
 {
 	//messages to stage
@@ -335,8 +367,10 @@ while (ros::ok())
 
 	setOrientation();
 	
-	//smo.x = px;	
-	//rmo.publish(mo);
+	mo.x = px;
+	mo.y = py;
+	mo.theta = theta;	
+	rmo.publish(mo);
 	ros::spinOnce();
 
 	loop_rate.sleep();

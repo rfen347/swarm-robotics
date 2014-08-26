@@ -5,6 +5,7 @@
 #include <sensor_msgs/LaserScan.h>
 #include <sstream>
 #include "math.h"
+#include <project1/move.h>
 #include <string>
 #include <project1/move.h>
 
@@ -384,7 +385,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 void chatterCallback(std_msgs::String Mo){
 	if (Mo.data == "wake up"){
 
-		ROS_INFO("wake up message received");
+		ROS_INFO("resident message received");
 	}
 	//linear_x = 2;
 }
@@ -402,7 +403,7 @@ int main(int argc, char **argv)
 	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 0;
+	linear_x = 2;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
@@ -422,7 +423,7 @@ ros::Publisher rmo= n.advertise<project1::move>("robot_0/rmove",1000);
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
 
-ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
+//ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
 //ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
 
 
@@ -447,7 +448,9 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-	mo.x = px;	
+	mo.x = px;
+	mo.y = py;
+	mo.theta = theta;	
 	rmo.publish(mo);
 
 	setOrientation();
