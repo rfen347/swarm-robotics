@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
 
 	//ros::Publisher resident_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
-	//ros::Publisher caregiver_move = n.advertise<std_msgs::String>("robot_7/bbb",1000);
+	ros::Publisher resident_ill = n.advertise<std_msgs::String>("robot_0/ill",1000);
 
 	//subscribe to listen to messages coming from stage
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
@@ -90,11 +90,11 @@ int main(int argc, char **argv)
 
 	// move
 	//project1::move Mo;
-	//std_msgs::String Mo;
+	std_msgs::String illMessage;
 
-	//std::stringstream ss;
-	//ss << "wake up";
-	//Mo.data = ss.str();
+	std::stringstream ss;
+	ss << "Call Ill";
+	illMessage.data = ss.str();
 
 	while (ros::ok())
 	{
@@ -112,6 +112,7 @@ int main(int argc, char **argv)
 		cin >>command;
 		if(command=="ill"){
 			ill=true;
+			resident_ill.publish(illMessage);
 		}
 		
 		ros::spinOnce();

@@ -6,7 +6,6 @@
 #include <sstream>
 #include <project1/move.h>
 #include "math.h"
-#include <project1/move.h>
 
 //velocity of the robot
 double linear_x;
@@ -80,11 +79,12 @@ void spin(int cycles){
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
+
 	px = 6.0 + msg.pose.pose.position.x;
 	py =-8.0 + msg.pose.pose.position.y;
 
-	ROS_INFO("Current x robot 7 is: %f", px);
-	ROS_INFO("Current y robot 7 is: %f", py);
+	//ROS_INFO("Current x robot 7 is: %f", px);
+	//ROS_INFO("Current y robot 7 is: %f", py);
 
 }
 void dangerCallBack(){
@@ -93,23 +93,6 @@ void dangerCallBack(){
 
 
 
-void collision_StageOdom_callback(nav_msgs::Odometry msg)
-{
-	//This is the call back function to process odometry messages coming from Stage. 
-	double delta_x;
-	double delta_y;
-	//double distance;
-	double rx;
-	double ry;	
-	rx = 6.0 + msg.pose.pose.position.x;
-	ry = -7.0 + msg.pose.pose.position.y;
-	delta_x = px - rx;
-	delta_y = py - ry;
-	//distance = sqrt(delta_x*delta_x + delta_y*delta_y);
-	/*if (distance<1.5){
-		dangerCallBack();
-}*/
-}
 
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -124,7 +107,20 @@ void chatterCallback(std_msgs::String Mo){
 
 		ROS_INFO("caregiver message received");
 	}
-	//linear_x = 2;
+}
+
+
+//Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
+void coordinateCallBack(project1::move mo)
+{	
+	double delta_x;
+	double delta_y;
+	double distance;
+	delta_x = px - mo.x;
+	delta_y = py - mo.y;
+	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
+
+
 }
 
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
@@ -313,7 +309,7 @@ void navigate(int direction, double distance)
 //Schedule to call when resident is to take a shower
 void helpShower(){
 	ROS_INFO("Caregiver helps resident take a shower");
- 
+
 	navigate(0,1);
 	navigate(1,4.5);
 	navigate(2,10.5);
@@ -330,7 +326,6 @@ void helpShower(){
 void helpEat(){
 	ROS_INFO("Caregiver helps resident to eat meal");
 
-
 	navigate(1,3);
 	navigate(0,5);
 	navigate(3,1);
@@ -343,12 +338,16 @@ void helpEat(){
 //Schedule to call when resident is to exercise
 void helpExercise(){
 	ROS_INFO("Caregiver helps resident with exercise");
+	navigate(3,1.5);
+	navigate(0,6);
+	navigate(2,9);
+	navigate(0,9);
+	navigate(2,9);
 }
 
 //Schedule to call when resident needs conversation or moral support
 void giveMoralSupport(){
 	ROS_INFO("Caregiver has conversation with resident and gives moral support");
-
 
 	navigate(1,2);
 	navigate(0,3);
@@ -362,14 +361,8 @@ void giveMoralSupport(){
 	navigate(0,3);
 	navigate(3,4.5);
 	navigate(2,1);
-
 }
 
-void coordinateCallback(project1::move mo)
-{
-	ROS_INFO("Caregiver sees robot at %f %f %f", mo.x, mo.y, mo.theta);
-
-}
 
 //void poop(nav_msgs::Odometry msg){
 //	ROS_INFO("%f", msg.pose.pose.position.x);
@@ -399,8 +392,9 @@ ros::NodeHandle n;
 
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_7/cmd_vel",1000); 
 
+ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_7/cmd_vel",1000);
+ros::Publisher coordPublisher= n.advertise<project1::move>("robot_7/coord",1000);   
 ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);    
 
 
@@ -413,9 +407,18 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_7/ba
 
 //ros::Subscriber 1StageOdo_sub = n.subscribe<nav_msgs::Odometry>("globalrobot/odom",1000, poop);
 
-ros::Subscriber collision_StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, collision_StageOdom_callback);
 
-ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
+ros::Subscriber residentCoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallBack);	
+ros::Subscriber cookingCoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallBack);	
+ros::Subscriber vistorCoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallBack);	
+ros::Subscriber scheduleCoordSub = n.subscribe<project1::move>("robot_3/coord",1000, coordinateCallBack);	
+ros::Subscriber medicalCoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallBack);	
+ros::Subscriber entertainmentCoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallBack);	
+ros::Subscriber companionshipCoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallBack);	
+ros::Subscriber relativeCoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallBack);	
+ros::Subscriber doctorCoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallBack);	
+ros::Subscriber nurseCoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallBack);	
+
 
 ros::Rate loop_rate(loopRate);
 
@@ -424,22 +427,10 @@ int count = 0;
 
 ////messages
 //velocity of this RobotNode
+
 geometry_msgs::Twist RobotNode_cmdvel; 
 
-project1::move coord;
-
-ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_7/coord",1000);  
-
-ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
-ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
-ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
-ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
-ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
-ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
-ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
-ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
-ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
-ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);		
+project1::move coord;	
 
 
 
@@ -455,13 +446,15 @@ while (ros::ok())
 	coord.x = px;
 	coord.y = py;
 	coord.theta = theta;	
-	coordinatePublisher.publish(coord);
+	coordPublisher.publish(coord);
+
 
 	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
 	
+
 	// TESTING
 	// if(count==1){
 	// 	helpShower();
@@ -469,6 +462,7 @@ while (ros::ok())
 	// 	helpExercise();
 	// 	giveMoralSupport();
 	// }
+
 
 }
 
