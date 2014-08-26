@@ -348,10 +348,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	if(count==40){
-		//TESTING
-		giveCompanionship();
-	}
+	// if(count==40){
+	// 	//TESTING
+	// 	giveCompanionship();
+	// }
 }
 
 return 0;

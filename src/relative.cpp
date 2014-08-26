@@ -269,6 +269,7 @@ void visit(){
 	navigate(1,7);
 	navigate(0,1);
 	// Spin to show that relative is talking to resident.
+	spin(60);
 	// Leave
 	navigate(2,1);
 	navigate(3,7);
@@ -355,10 +356,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	/* TESTING
-	if(count==1){
-		visit();
-	}*/
+	//TESTING
+	// if(count==1){
+	// 	visit();
+	// }
 }
 
 return 0;

@@ -242,6 +242,7 @@ void visit(){
 	navigate(1,6.8);
 	navigate(2,1.1);
 	// Spin to show that visitor is watching TV and talking to resident.
+	spin(60);
 	navigate(0,1.1);
 	navigate(3,6.8);
 	navigate(0,4);
@@ -331,25 +332,12 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-	
-	
-	if(count>50){
-		//Mo.x = px;
-		//Mo.y = py;
-		//schedule_print.publish(Mo);
-		//ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
 
-		navigate(0,3.0);
-		//ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
-		navigate(3,1.0);
-		//ROS_INFO("MOVE2. Co-ordinates: %f,%f",px,py);
-		navigate(2,3.0);
-		//ROS_INFO("MOVE3. Co-ordinates: %f,%f",px,py);
-		navigate(1,1.0);
+	//TESTING	
+	// if(count==1){
+	// 	visit();
+	// }
 
-		//ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
-
-	}
 }
 
 return 0;

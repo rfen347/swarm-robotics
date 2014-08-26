@@ -25,7 +25,7 @@ roscd
 
 rosrun stage_ros stageros project1/world/myworld.world &
 sleep 5
-#rosrun project1 R0 &
+rosrun project1 R0 &
 #rosrun project1 R1 &
 rosrun project1 R2 &
 #rosrun project1 R3 &

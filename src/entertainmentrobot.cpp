@@ -264,6 +264,7 @@ void navigate(int direction, double distance)
 void giveEntertainment(){
 	ROS_INFO("Entertainment robot gives resident entertainment");
 	// Spin to show that the entertainment robot is giving entertainment through the TV.
+	spin(80);
 }
 
 void coordinateCallback(project1::move mo)
@@ -344,6 +345,11 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+
+	//TESTING
+	// if (count==1){
+	// 	giveEntertainment();
+	// }
 
 }
 

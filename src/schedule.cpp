@@ -8,10 +8,16 @@
 #include <sstream>
 #include "math.h"
 #include <time.h>
+#include <string>
 
+
+using namespace std;
 //velocity of the robot
 double linear_x;
 double angular_z;
+
+
+
 
 //pose of the robot
 double px;
@@ -40,6 +46,9 @@ void coordinateCallback(project1::move mo)
 
 int main(int argc, char **argv)
 {
+	//command ill
+	string command="";
+	bool ill=false;
 
 	 //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
@@ -100,7 +109,11 @@ int main(int argc, char **argv)
 		//resident_move.publish(Mo);
 		//caregiver_move.publish(Mo);
 		//s}
-
+		cin >>command;
+		if(command=="ill"){
+			ill=true;
+		}
+		
 		ros::spinOnce();
 
 		loop_rate.sleep();

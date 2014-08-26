@@ -286,11 +286,31 @@ void navigate(int direction, double distance)
 //Schedule to call when resident is to take a shower
 void helpShower(){
 	ROS_INFO("Caregiver helps resident take a shower");
+ 
+	navigate(0,1);
+	navigate(1,4.5);
+	navigate(2,10.5);
+	navigate(1,3);
+	navigate(2,5);
+	navigate(3,3);
+	// Spin to show that caregiver is helping the resident shower.
+	spin(40);
+
+
 }
 
 //Schedule to call when resident is to eat a meal
 void helpEat(){
 	ROS_INFO("Caregiver helps resident to eat meal");
+
+
+	navigate(1,3);
+	navigate(0,5);
+	navigate(3,1);
+	navigate(0,3);
+	// Spin to show that caregiver is helping the resident eat.
+	spin(40);
+
 }
 
 //Schedule to call when resident is to exercise
@@ -301,6 +321,21 @@ void helpExercise(){
 //Schedule to call when resident needs conversation or moral support
 void giveMoralSupport(){
 	ROS_INFO("Caregiver has conversation with resident and gives moral support");
+
+
+	navigate(1,2);
+	navigate(0,3);
+	navigate(1,4.5);
+	navigate(0,1);
+	// Spin to show that caregiver is talking to resident.
+	spin(50);
+	// Then leave the house.
+	navigate(0,3.5);
+	navigate(3,7);
+	navigate(0,3);
+	navigate(3,4.5);
+	navigate(2,1);
+
 }
 
 void coordinateCallback(project1::move mo)
@@ -399,24 +434,15 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
+	
+	// TESTING
+	// if(count==1){
+	// 	helpShower();
+	// 	helpEat();
+	// 	helpExercise();
+	// 	giveMoralSupport();
+	// }
 
-	if(count>50){
-		//Mo.x = px;
-		//Mo.y = py;
-		//schedule_print.publish(Mo);
-		//ROS_INFO("Before moving. Co-ordinates: %f,%f",px,py);
-
-		navigate(2,3.0);
-		//ROS_INFO("MOVE1. Co-ordinates: %f,%f",px,py);
-		navigate(1,1.0);
-		//ROS_INFO("MOVE2. Co-ordinates: %f,%f",px,py);
-		navigate(0,3.0);
-		//ROS_INFO("MOVE3. Co-ordinates: %f,%f",px,py);
-		navigate(3,1.0);
-
-		//ROS_INFO("After moving. Co-ordinates: %f,%f",px,py);
-
-	}
 }
 
 return 0;
