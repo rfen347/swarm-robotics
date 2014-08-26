@@ -416,6 +416,11 @@ void chatterCallback(std_msgs::String Mo){
 	//linear_x = 2;
 }
 
+void coordinateCallback(project1::move mo)
+{
+	ROS_INFO("%f %f %f", mo.x, mo.y, mo.theta);
+
+}
 
 
 int main(int argc, char **argv)
@@ -443,7 +448,7 @@ ros::NodeHandle n;
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000);
 
 
-ros::Publisher rmo= n.advertise<project1::move>("robot_0/rmove",1000);  
+ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_0/coord",1000);  
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
@@ -451,6 +456,19 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 
 //ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
 //ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
+
+ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
+ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
+ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
+ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
+ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
+ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
+ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
+ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
+ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
+ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);		
+
+	
 
 
 ros::Rate loop_rate(loopRate);
@@ -462,7 +480,7 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
-project1::move mo;
+project1::move coord;
 
 
 while (ros::ok())
@@ -474,10 +492,10 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-	mo.x = px;
-	mo.y = py;
-	mo.theta = theta;	
-	rmo.publish(mo);
+	coord.x = px;
+	coord.y = py;
+	coord.theta = theta;	
+	coordinatePublisher.publish(coord);
 
 	setOrientation();
 
