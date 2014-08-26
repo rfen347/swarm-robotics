@@ -53,6 +53,34 @@ void rotateFast(){
 	angular_z=M_PI/2;
 }
 
+// Spin for the number of cycles specified
+void spin(int cycles){
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
+
+	linear_x = 0;
+	rotateFast(); 			// start spinning
+	int counter = 0;
+		
+	while (counter < cycles) {
+		counter++;
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+	stopRotation(); // stop spinning
+}
+
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
 void rotateToAngle(double angle){
 	//Calculate the angle to rotate
@@ -222,14 +250,18 @@ void cook() {
 
 	navigate(3,5);
 	// Spin to indicate getting items from fridge
+	spin(40);
 	navigate(0,1.5);
 	// Spin to indicate getting items from food storage
+	spin(40);
 	navigate(1,3.9);
 	// Spin to indicate cooking.
+	spin(70);
 	navigate(3,3.9);
 	navigate(2,4.6);
 	// Spin to indicate serving food
-	navigate(0,2.9);
+	spin(50);
+	navigate(0,3.1);
 	navigate(1,5);
 }
 
@@ -249,6 +281,11 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	//This is the callback function to process laser scan messages
 	//you can access the range data from msg.ranges[i]. i = sample number
 	
+}
+void coordinateCallback(project1::move mo)
+{
+	ROS_INFO("cookingrobot sees robot at %f %f %f", mo.x, mo.y, mo.theta);
+
 }
 
 int main(int argc, char **argv)
@@ -287,6 +324,22 @@ int main(int argc, char **argv)
 	//velocity of this RobotNode
 	geometry_msgs::Twist RobotNode_cmdvel;
 
+ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_1/coord",1000);  
+
+ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
+ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
+ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
+ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
+ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
+ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
+ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
+ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
+ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
+ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);
+
+project1::move coord;
+
+
 	while (ros::ok())
 	{
 		//messages to stage
@@ -296,17 +349,25 @@ int main(int argc, char **argv)
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
+		
+
 		setOrientation();
 
 		ros::spinOnce();
+		
+		coord.x = px;
+		coord.y = py;
+		coord.theta = theta;	
+		coordinatePublisher.publish(coord);
 
 		loop_rate.sleep();
 		++count;
 		
-		/* TESTING
-		if(count==1){
+		 //TESTING
+		/*if(count==30){
 			cook();
 		}*/
+		
 	}
 
 	return 0;

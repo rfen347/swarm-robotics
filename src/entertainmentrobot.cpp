@@ -49,10 +49,37 @@ void rotateFast(){
 	angular_z=M_PI/2;
 }
 
+// Spin for the number of cycles specified
+void spin(int cycles){
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_5/cmd_vel",1000); 
+
+	rotateFast(); 			// start spinning
+	int counter = 0;
+		
+	while (counter < cycles) {
+		counter++;
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+	stopRotation(); // stop spinning
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = 2.5 + msg.pose.pose.position.x;
+	px = 2.3 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
@@ -237,6 +264,13 @@ void navigate(int direction, double distance)
 void giveEntertainment(){
 	ROS_INFO("Entertainment robot gives resident entertainment");
 	// Spin to show that the entertainment robot is giving entertainment through the TV.
+	spin(80);
+}
+
+void coordinateCallback(project1::move mo)
+{
+	ROS_INFO("entertainmentrobot sees robot at %f %f %f", mo.x, mo.y, mo.theta);
+
 }
 
 int main(int argc, char **argv)
@@ -245,7 +279,7 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = 2.5;
+	px = 2.3;
 	py = 4.5;
 	
 	//Initial velocity
@@ -275,6 +309,22 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
+ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_5/coord",1000);  
+
+ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
+ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
+ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
+ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
+ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
+ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
+ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
+ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
+ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
+ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);
+
+project1::move coord;
+
 while (ros::ok())
 {
 	//messages to stage
@@ -286,10 +336,20 @@ while (ros::ok())
 
 	setOrientation();
 
+	coord.x = px;
+	coord.y = py;
+	coord.theta = theta;	
+	coordinatePublisher.publish(coord);
+
 	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
+
+	//TESTING
+	// if (count==1){
+	// 	giveEntertainment();
+	// }
 
 }
 

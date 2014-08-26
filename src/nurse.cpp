@@ -49,11 +49,38 @@ void rotateFast(){
 	angular_z=M_PI/2;
 }
 
+// Spin for the number of cycles specified
+void spin(int cycles){
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_10/cmd_vel",1000); 
+
+	rotateFast(); 			// start spinning
+	int counter = 0;
+		
+	while (counter < cycles) {
+		counter++;
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+	stopRotation(); // stop spinning
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = -6.5 + msg.pose.pose.position.x;
-	py = 4.5 + msg.pose.pose.position.y;
+	px = 6 + msg.pose.pose.position.x;
+	py = -11 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
@@ -234,15 +261,32 @@ void navigate(int direction, double distance)
 }
 
 //Schedule to call when the resident gets ill
-void visitNormal(){
-	ROS_INFO("Nurse(r10) Enters Normal");
+void visit(){
+	ROS_INFO("Nurse(r10) visits when resident is ill");
+	navigate(0,1);
+	navigate(1,7.5);
+	navigate(2,4);
+	ROS_INFO("Nurse(r10) is getting medicine");
+	// Spin to show that nurse is getting medicine.
+	spin(40);
+	navigate(2,6.5);
+	navigate(1,6.4);
+	navigate(2,3);
+	// Spin to show that nurse is treating patient.
+	spin(60);
+	// Leave.
+	navigate(0,3);
+	navigate(3,6.4);
+	navigate(0,10.5);
+	navigate(3,7.5);
+	navigate(2,1);
 }
 
-//Schedule to call when the resident gets seriously ill
-void visitSerious(){
-	ROS_INFO("Nurse(r10) Enters Seriously ill");
-}
+void coordinateCallback(project1::move mo)
+{
+	ROS_INFO("nurse sees robot at %f %f %f", mo.x, mo.y, mo.theta);
 
+}
 
 int main(int argc, char **argv)
 {
@@ -250,8 +294,8 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = -6.5;
-	py = 4.5;
+	px = 6;
+	py = -11;
 	
 	//Initial velocity
 	linear_x = 0;
@@ -280,6 +324,20 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_10/coord",1000);  
+
+ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
+ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
+ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
+ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
+ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
+ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
+ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
+ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
+ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
+ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);
+
+project1::move coord;
 
 
 while (ros::ok())
@@ -291,11 +349,21 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 	setOrientation();
+
+	coord.x = px;
+	coord.y = py;
+	coord.theta = theta;	
+	coordinatePublisher.publish(coord);
+
 	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
 
+	// TESTING
+	// if(count==1){
+	// 	visit();
+	// }
 }
 
 return 0;
