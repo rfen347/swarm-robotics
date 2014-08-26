@@ -269,6 +269,7 @@ void visit(){
 	navigate(1,6.8);
 	navigate(2,1.1);
 	// Spin to show that visitor is watching TV and talking to resident.
+	spin(60);
 	navigate(0,1.1);
 	navigate(3,6.8);
 	navigate(0,4);
@@ -331,6 +332,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 	
+	//TESTING	
 	if(count==1){
 		visit();
 	}
