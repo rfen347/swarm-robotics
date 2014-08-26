@@ -395,12 +395,12 @@ while (ros::ok())
 	++count;
 	
 	// TESTING
-	if(count==1){
-		helpShower();
-		helpEat();
-		helpExercise();
-		giveMoralSupport();
-	}
+	// if(count==1){
+	// 	helpShower();
+	// 	helpEat();
+	// 	helpExercise();
+	// 	giveMoralSupport();
+	// }
 }
 
 return 0;
