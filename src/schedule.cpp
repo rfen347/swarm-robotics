@@ -66,7 +66,6 @@ int main(int argc, char **argv)
 
 	//subscribe to listen to messages coming from stage
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
-	ros::Subscriber coordSub = n.subscribe<project1::move>("robot_0/rmove",1000, coordinateCallback);
 	//ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_7/rmove",1000, coordinateCallback);	
 
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
