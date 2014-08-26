@@ -418,7 +418,7 @@ void chatterCallback(std_msgs::String Mo){
 
 void coordinateCallback(project1::move mo)
 {
-	ROS_INFO("%f %f %f", mo.x, mo.y, mo.theta);
+	ROS_INFO("Resident sees robot at %f %f %f", mo.x, mo.y, mo.theta);
 
 }
 
@@ -457,7 +457,7 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 //ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
 //ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
 
-ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
+//ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
 ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
 ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
 ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
@@ -491,16 +491,14 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	
+	setOrientation();
+	ros::spinOnce();
 
 	coord.x = px;
 	coord.y = py;
 	coord.theta = theta;	
 	coordinatePublisher.publish(coord);
-
-	setOrientation();
-
-
-	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
