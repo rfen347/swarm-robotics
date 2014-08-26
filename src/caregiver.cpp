@@ -73,7 +73,12 @@ void chatterCallback(std_msgs::String Mo){
 
 		ROS_INFO("caregiver message received");
 	}
-	//linear_x = 2;
+}
+
+void coordinateCallback(project1::move mo)
+{
+	ROS_INFO("%f %f %f", mo.x, mo.y, mo.theta);
+
 }
 
 // This function makes the robot rotate to a specific angle. The input is the angle measured in radians, where 0 is East/right and positive values are anticlockwise.
@@ -283,14 +288,24 @@ ros::NodeHandle n;
 //advertise() function will tell ROS that you want to publish on a given topic_
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_7/cmd_vel",1000);
-
-ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);   
+ros::Publisher coordPublisher= n.advertise<project1::move>("robot_7/coord",1000);   
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_7/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_7/base_scan",1000,StageLaser_callback);
 
-//ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
+//ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/coord", 1000, chatterCallback);
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_3/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);	
+ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);	
+
 
 ros::Rate loop_rate(loopRate);
 
