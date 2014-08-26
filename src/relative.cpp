@@ -329,9 +329,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+	/* TESTING
 	if(count==1){
 		visit();
-	}
+	}*/
 }
 
 return 0;

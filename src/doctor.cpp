@@ -261,13 +261,20 @@ void navigate(int direction, double distance)
 }
 
 //Schedule to call when the resident gets ill
-void visitNormal(){
-	ROS_INFO("Doctor(r9) Enters Normal");
-}
-
-//Schedule to call when the resident gets seriously ill
-void visitSerious(){
-	ROS_INFO("Doctor(r9) Enters Seriously Ill");
+void visit(){
+	ROS_INFO("Doctor(r9) enters when resident is ill");
+	navigate(0,1);
+	navigate(1,6.5);
+	navigate(2,10.5);
+	navigate(1,7.1);
+	navigate(2,3);
+	// Spin to show that the doctor is treating the resident.
+	// Leave
+	navigate(0,3);
+	navigate(3,7.1);
+	navigate(0,10.5);
+	navigate(3,6.5);
+	navigate(2,1);
 }
 
 int main(int argc, char **argv)
@@ -322,6 +329,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+	/*TESTING
+	if(count==1){
+		visit();
+	}*/
 }
 
 return 0;
