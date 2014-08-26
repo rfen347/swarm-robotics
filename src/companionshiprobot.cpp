@@ -321,7 +321,7 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	if(count==30){
+	if(count==40){
 		giveCompanionship();
 	}
 }

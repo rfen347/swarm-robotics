@@ -60,8 +60,9 @@ void spin(int cycles){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_6/cmd_vel",1000); 
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_1/cmd_vel",1000); 
 
+	linear_x = 0;
 	rotateFast(); 			// start spinning
 	int counter = 0;
 		
@@ -249,13 +250,17 @@ void cook() {
 
 	navigate(3,5);
 	// Spin to indicate getting items from fridge
+	spin(40);
 	navigate(0,1.5);
 	// Spin to indicate getting items from food storage
+	spin(40);
 	navigate(1,3.9);
 	// Spin to indicate cooking.
+	spin(80);
 	navigate(3,3.9);
 	navigate(2,4.6);
 	// Spin to indicate serving food
+	spin(40);
 	navigate(0,2.9);
 	navigate(1,5);
 }
