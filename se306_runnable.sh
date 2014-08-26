@@ -32,8 +32,8 @@ sleep 5
 #rosrun project1 R4 &
 #rosrun project1 R5 &
 #rosrun project1 R6 &
-rosrun project1 R7 &
-#rosrun project1 R8 &
+#rosrun project1 R7 &
+rosrun project1 R8 &
 #rosrun project1 R9 &
 #rosrun project1 R10 &
 

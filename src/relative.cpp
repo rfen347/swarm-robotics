@@ -263,6 +263,18 @@ void navigate(int direction, double distance)
 //Schedule to call when the relative is to visit the resident
 void visit(){
 	ROS_INFO("Relative(r8) Enters");
+	navigate(0,1);
+	navigate(1,5.5);
+	navigate(2,7.5);
+	navigate(1,7);
+	navigate(0,1);
+	// Spin to show that relative is talking to resident.
+	// Leave
+	navigate(2,1);
+	navigate(3,7);
+	navigate(0,7.5);
+	navigate(3,5.5);
+	navigate(2,1);
 }
 
 int main(int argc, char **argv)
@@ -317,6 +329,9 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+	if(count==1){
+		visit();
+	}
 }
 
 return 0;

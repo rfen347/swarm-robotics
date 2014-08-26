@@ -376,12 +376,13 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 	
+	/* TESTING
 	if(count==1){
 		helpShower();
 		helpEat();
 		helpExercise();
 		giveMoralSupport();
-	}
+	}*/
 }
 
 return 0;
