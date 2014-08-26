@@ -449,7 +449,7 @@ ros::Publisher rmo= n.advertise<project1::move>("robot_0/rmove",1000);
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);
 
-ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
+//ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
 //ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
 
 
@@ -474,8 +474,10 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-	mo.x = px;	
-	//rmo.publish(mo);
+	mo.x = px;
+	mo.y = py;
+	mo.theta = theta;	
+	rmo.publish(mo);
 
 	setOrientation();
 

@@ -79,7 +79,7 @@ void spin(int cycles){
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = -1.0 + msg.pose.pose.position.x;
+	px = -0.7 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
@@ -275,7 +275,7 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = -1.0;
+	px = -0.7;
 	py = 4.5;
 	
 	//Initial velocity
@@ -322,6 +322,7 @@ while (ros::ok())
 	++count;
 
 	if(count==40){
+		//TESTING
 		giveCompanionship();
 	}
 }

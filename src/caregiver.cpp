@@ -6,7 +6,6 @@
 #include <sstream>
 #include <project1/move.h>
 #include "math.h"
-#include <project1/move.h>
 
 //velocity of the robot
 double linear_x;
@@ -80,8 +79,8 @@ void spin(int cycles){
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = -8.5 + msg.pose.pose.position.x;
-	py =-2.5 + msg.pose.pose.position.y;
+	px = 6 + msg.pose.pose.position.x;
+	py =-8 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
@@ -295,8 +294,8 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = -8.5;
-	py = -2.5;
+	px = 6;
+	py = -8;
 	
 	//Initial velocity
 	linear_x = 0;
@@ -318,7 +317,7 @@ ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_7/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_7/base_scan",1000,StageLaser_callback);
 
-ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
+//ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
 
 ros::Rate loop_rate(loopRate);
 
@@ -340,7 +339,9 @@ while (ros::ok())
 
 	setOrientation();
 	
-	mo.x = px;	
+	mo.x = px;
+	mo.y = py;
+	mo.theta = theta;	
 	rmo.publish(mo);
 	ros::spinOnce();
 

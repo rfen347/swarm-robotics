@@ -261,7 +261,7 @@ void cook() {
 	navigate(2,4.6);
 	// Spin to indicate serving food
 	spin(40);
-	navigate(0,2.9);
+	navigate(0,3.1);
 	navigate(1,5);
 }
 
