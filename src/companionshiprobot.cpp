@@ -293,9 +293,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
+	/* TESTING
 	if(count==1){
 		giveCompanionship();
-	}
+	}*/
 }
 
 return 0;
