@@ -94,11 +94,11 @@ int main(int argc, char **argv)
         
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		if ( count == 20 ){
+		//if ( count == 20 ){
 
-			resident_move.publish(Mo);
-			caregiver_move.publish(Mo);
-		}
+		resident_move.publish(Mo);
+		caregiver_move.publish(Mo);
+		//s}
 
 		ros::spinOnce();
 
