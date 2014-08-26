@@ -6,7 +6,6 @@
 #include <sstream>
 #include <project1/move.h>
 #include "math.h"
-#include <project1/move.h>
 
 //velocity of the robot
 double linear_x;
@@ -285,7 +284,7 @@ ros::NodeHandle n;
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_7/cmd_vel",1000);
 
-ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);   
+//ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);   
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_7/odom",1000, StageOdom_callback);
@@ -301,7 +300,7 @@ int count = 0;
 ////messages
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
-project1::move mo;
+//project1::move mo;
 while (ros::ok())
 {
 	//messages to stage
@@ -313,8 +312,8 @@ while (ros::ok())
 
 	setOrientation();
 	
-	mo.x = px;	
-	rmo.publish(mo);
+	//smo.x = px;	
+	//rmo.publish(mo);
 	ros::spinOnce();
 
 	loop_rate.sleep();
