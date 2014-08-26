@@ -50,66 +50,62 @@ int main(int argc, char **argv)
 	linear_x = 0;
 	angular_z = 0;
 	
-//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
-ros::init(argc, argv, "RobotNode3");
+	//You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
+	ros::init(argc, argv, "RobotNode3");
 
-//NodeHandle is the main access point to communicate with ros.
-ros::NodeHandle n;
+	//NodeHandle is the main access point to communicate with ros.
+	ros::NodeHandle n;
 
-//advertise() function will tell ROS that you want to publish on a given topic_
-//to stage
-ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
+	//advertise() function will tell ROS that you want to publish on a given topic_
+	//to stage
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
 
-ros::Publisher resident_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
-ros::Publisher caregiver_move = n.advertise<std_msgs::String>("robot_7/bbb",1000);
+	ros::Publisher resident_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
+	ros::Publisher caregiver_move = n.advertise<std_msgs::String>("robot_7/bbb",1000);
 
-//subscribe to listen to messages coming from stage
-ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
-ros::Subscriber lrmo = n.subscribe<project1::move>("robot_0/rmove",1000, rmovecallback);
+	//subscribe to listen to messages coming from stage
+	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
+	ros::Subscriber lrmo = n.subscribe<project1::move>("robot_0/rmove",1000, rmovecallback);
 
-ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
+	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
 
-ros::Rate loop_rate(10);
+	ros::Rate loop_rate(10);
 
-//a count of howmany messages we have sent
-int count = 0;
+	//a count of howmany messages we have sent
+	int count = 0;
 
-////messages
-//velocity of this RobotNode
-geometry_msgs::Twist RobotNode_cmdvel;
+	//messages
+	//velocity of this RobotNode
+	geometry_msgs::Twist RobotNode_cmdvel;
 
-// move
-//project1::move Mo;
-std_msgs::String Mo;
+	// move
+	//project1::move Mo;
+	std_msgs::String Mo;
 
-std::stringstream ss;
-ss << "wake up";
-Mo.data = ss.str();
+	std::stringstream ss;
+	ss << "wake up";
+	Mo.data = ss.str();
 
-//rosgraph_msgs::Clock clk;
-
-//c.publish(clk);
-
-while (ros::ok())
-{
-	//messages to stage
-	RobotNode_cmdvel.linear.x = linear_x;
-	RobotNode_cmdvel.angular.z = angular_z;
+	while (ros::ok())
+	{
+		//messages to stage
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
         
-	//publish the message
-	RobotNode_stage_pub.publish(RobotNode_cmdvel);
-	if ( count == 20 ){
+		//publish the message
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		if ( count == 20 ){
 
-		resident_move.publish(Mo);
-		caregiver_move.publish(Mo);
+			resident_move.publish(Mo);
+			caregiver_move.publish(Mo);
+		}
+
+		ros::spinOnce();
+
+		loop_rate.sleep();
+		++count;
 	}
 
-	ros::spinOnce();
-
-	loop_rate.sleep();
-	++count;
-}
-
-return 0;
+	return 0;
 
 }
