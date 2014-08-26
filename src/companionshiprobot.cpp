@@ -87,7 +87,7 @@ void rotateToAngle(double angle){
 	ros::Rate loop_rate(loopRate);
 	ros::NodeHandle n;
 	geometry_msgs::Twist RobotNode_cmdvel;
-	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_5/cmd_vel",1000);
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_6/cmd_vel",1000);
 	
 	//Calculate the shortest angle velocity to rotate
 	if(difference>0){
