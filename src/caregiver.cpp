@@ -284,13 +284,13 @@ ros::NodeHandle n;
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_7/cmd_vel",1000);
 
-//ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);   
+ros::Publisher rmo= n.advertise<project1::move>("robot_7/rmove",1000);   
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_7/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_7/base_scan",1000,StageLaser_callback);
 
-ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
+//ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_7/bbb", 1000, chatterCallback);
 
 ros::Rate loop_rate(loopRate);
 
@@ -300,7 +300,7 @@ int count = 0;
 ////messages
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
-//project1::move mo;
+project1::move mo;
 while (ros::ok())
 {
 	//messages to stage
@@ -312,8 +312,10 @@ while (ros::ok())
 
 	setOrientation();
 	
-	//smo.x = px;	
-	//rmo.publish(mo);
+	mo.x = px;
+	mo.y = py;
+	mo.theta = theta;	
+	rmo.publish(mo);
 	ros::spinOnce();
 
 	loop_rate.sleep();
