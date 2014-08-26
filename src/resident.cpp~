@@ -390,6 +390,11 @@ void chatterCallback(std_msgs::String Mo){
 	//linear_x = 2;
 }
 
+void coordinateCallback(project1::move mo)
+{
+	ROS_INFO("%f %f %f", mo.x, mo.y, mo.theta);
+
+}
 
 
 int main(int argc, char **argv)
@@ -403,7 +408,7 @@ int main(int argc, char **argv)
 	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 2;
+	linear_x = 0;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
@@ -425,6 +430,19 @@ ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/ba
 
 //ros::Subscriber sub = n.subscribe<std_msgs::String>("robot_0/bbb", 1000, chatterCallback);
 //ros::Subscriber clk = n.subscribe<rosgraph_msgs::Clock>("/clock", 1000, clockCallback);
+
+ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
+ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
+ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
+ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
+ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
+ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
+ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
+ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
+ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
+ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);		
+
+	
 
 
 ros::Rate loop_rate(loopRate);
