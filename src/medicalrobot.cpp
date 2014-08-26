@@ -339,10 +339,10 @@ while (ros::ok())
 	++count;
 
 	//TESTING
-	if(count==1){
-		giveMedication();
-		callDoctor();
-	}
+	// if(count==1){
+	// 	giveMedication();
+	// 	callDoctor();
+	// }
 }
 
 return 0;
