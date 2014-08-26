@@ -53,8 +53,8 @@ void rotateFast(){
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = -8.5 + msg.pose.pose.position.x;
-	py =-2.5 + msg.pose.pose.position.y;
+	px = 6 + msg.pose.pose.position.x;
+	py =-8 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
@@ -268,8 +268,8 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = -8.5;
-	py = -2.5;
+	px = 6;
+	py = -8;
 	
 	//Initial velocity
 	linear_x = 0;
