@@ -256,11 +256,11 @@ void cook() {
 	spin(40);
 	navigate(1,3.9);
 	// Spin to indicate cooking.
-	spin(80);
+	spin(70);
 	navigate(3,3.9);
 	navigate(2,4.6);
 	// Spin to indicate serving food
-	spin(40);
+	spin(50);
 	navigate(0,3.1);
 	navigate(1,5);
 }
