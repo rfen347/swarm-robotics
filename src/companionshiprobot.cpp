@@ -5,6 +5,7 @@
 #include <sensor_msgs/LaserScan.h>
 #include <sstream>
 #include "math.h"
+#include <project1/move.h>
 
 //velocity of the robot
 double linear_x;

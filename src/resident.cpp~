@@ -241,21 +241,21 @@ void useToilet(){
 	navigate(2,5);
 	navigate(3,2);
 	navigate(0,2.2);
-	// Spin for a little while.
+	rotateFast();
 }
 
 //Schedule to call for the resident to use the sink
 void useSink(){
 	ROS_INFO("Resident goes to the sink");
 	navigate(2,2.6);
-	// Spin for a little while.
+	rotateFast();
 }
 
 //Schedule to call for the resident to shower
 void shower(){
 	ROS_INFO("Resident goes to the shower");
 	navigate(3,0.9);
-	// Spin for a little while.
+	rotateFast();
 }
 
 //Schedule to call for the resident to go to the lounge
@@ -287,13 +287,14 @@ void getReadyToEat(){
 // Schedule to call for the resident to eat
 void eat(){
 	ROS_INFO("Resident eats");
-	// Spin for a while to eat.
+	rotateFast();
 }
 
 // Schedule to call for the resident to take medication
 void takeMedication(){
 	ROS_INFO("Resident takes medication");
-	// Spin for a while to take medication.
+	navigate(0,0);
+	rotateFast();
 }
 
 // Schedule to call for the resident to go to the sofa
@@ -307,25 +308,25 @@ void tableToSofa(){
 // Schedule to call for the resident to talk to the caregiver
 void converseWithCaregiver(){
 	ROS_INFO("Resident converses with the caregiver");
-	// Spin for a while to converse.
+	rotateFast();
 }
 
 // Schedule to call for the resident to talk to the visitors
 void converseWithVisitors(){
 	ROS_INFO("Resident converses with visitors");
-	// Spin for a while to converse.
+	rotateFast();
 }
 
 // Schedule to call for the resident to accept entertainment from the entertainment robot
 void acceptEntertainment(){
 	ROS_INFO("Resident accepts Entertainment");
-	// Spin for a while to converse.
+	rotateFast();
 }
 
 // Schedule to call for the resident to accept companionship robot
 void acceptCompanionship(){
 	ROS_INFO("Resident video chats/talks to companionship robot");
-	// Spin for a while to converse.
+	rotateFast();
 }
 
 // Schedule to call for the resident to go to bed
@@ -456,22 +457,6 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-
-	// Testing.
-	if(count==1){
-		wakeUp();
-		useToilet();
-		useSink();
-		shower();
-		bathroomToLounge();
-		exercise();
-		getReadyToEat();
-		eat();
-		takeMedication();
-		tableToSofa();
-		goToBed();
-		goToAmbulance();
-	}
 }
 
 return 0;
