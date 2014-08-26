@@ -283,6 +283,7 @@ void helpShower(){
 	navigate(2,5);
 	navigate(3,3);
 	// Spin to show that caregiver is helping the resident shower.
+	spin(40);
 }
 
 //Schedule to call when resident is to eat a meal
@@ -293,6 +294,7 @@ void helpEat(){
 	navigate(3,1);
 	navigate(0,3);
 	// Spin to show that caregiver is helping the resident eat.
+	spin(40);
 }
 
 //Schedule to call when resident is to exercise
@@ -313,6 +315,7 @@ void giveMoralSupport(){
 	navigate(1,4.5);
 	navigate(0,1);
 	// Spin to show that caregiver is talking to resident.
+	spin(50);
 	// Then leave the house.
 	navigate(0,3.5);
 	navigate(3,7);
@@ -391,13 +394,13 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 	
-	/* TESTING
+	// TESTING
 	if(count==1){
 		helpShower();
 		helpEat();
 		helpExercise();
 		giveMoralSupport();
-	}*/
+	}
 }
 
 return 0;

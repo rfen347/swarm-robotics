@@ -333,9 +333,9 @@ while (ros::ok())
 	++count;
 	
 	//TESTING	
-	if(count==1){
-		visit();
-	}
+	// if(count==1){
+	// 	visit();
+	// }
 }
 
 return 0;
