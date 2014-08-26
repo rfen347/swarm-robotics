@@ -417,7 +417,7 @@ ros::NodeHandle n;
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000);
 
 
-ros::Publisher rmo= n.advertise<project1::move>("robot_0/rmove",1000);  
+ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_0/coord",1000);  
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
@@ -451,7 +451,7 @@ while (ros::ok())
 	mo.x = px;
 	mo.y = py;
 	mo.theta = theta;	
-	rmo.publish(mo);
+	coordinatePublisher.publish(mo);
 
 	setOrientation();
 

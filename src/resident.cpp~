@@ -403,7 +403,7 @@ int main(int argc, char **argv)
 	py = 4.5;
 	
 	//Initial velocity
-	linear_x = 2;
+	linear_x = 0;
 	angular_z = 0;
 	
 //You must call ros::init() first of all. ros::init() function needs to see argc and argv. The third argument is the name of the node
