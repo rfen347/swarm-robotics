@@ -336,9 +336,9 @@ int main(int argc, char **argv)
 		++count;
 		
 		 //TESTING
-		if(count==30){
+		/*if(count==30){
 			cook();
-		}
+		}*/
 		
 	}
 

@@ -269,6 +269,7 @@ void visit(){
 	navigate(1,7.1);
 	navigate(2,3);
 	// Spin to show that the doctor is treating the resident.
+	spin(60);
 	// Leave
 	navigate(0,3);
 	navigate(3,7.1);
@@ -329,10 +330,10 @@ while (ros::ok())
 	loop_rate.sleep();
 	++count;
 
-	/*TESTING
-	if(count==1){
-		visit();
-	}*/
+	//TESTING
+	// if(count==1){
+	// 	visit();
+	// }
 }
 
 return 0;
