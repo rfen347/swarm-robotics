@@ -268,21 +268,21 @@ void useToilet(){
 	navigate(2,5);
 	navigate(3,2);
 	navigate(0,2.2);
-	rotateFast();
+	spin(40);
 }
 
 //Schedule to call for the resident to use the sink
 void useSink(){
 	ROS_INFO("Resident goes to the sink");
 	navigate(2,2.6);
-	rotateFast();
+	spin(40);
 }
 
 //Schedule to call for the resident to shower
 void shower(){
 	ROS_INFO("Resident goes to the shower");
 	navigate(3,0.9);
-	rotateFast();
+	spin(40);
 }
 
 //Schedule to call for the resident to go to the lounge
@@ -314,14 +314,14 @@ void getReadyToEat(){
 // Schedule to call for the resident to eat
 void eat(){
 	ROS_INFO("Resident eats");
-	rotateFast();
+	spin(40);
 }
 
 // Schedule to call for the resident to take medication
 void takeMedication(){
 	ROS_INFO("Resident takes medication");
 	navigate(0,0);
-	rotateFast();
+	spin(50);
 }
 
 // Schedule to call for the resident to go to the sofa
@@ -335,25 +335,25 @@ void tableToSofa(){
 // Schedule to call for the resident to talk to the caregiver
 void converseWithCaregiver(){
 	ROS_INFO("Resident converses with the caregiver");
-	rotateFast();
+	spin(50);
 }
 
 // Schedule to call for the resident to talk to the visitors
 void converseWithVisitors(){
 	ROS_INFO("Resident converses with visitors");
-	rotateFast();
+	spin(60);
 }
 
 // Schedule to call for the resident to accept entertainment from the entertainment robot
 void acceptEntertainment(){
 	ROS_INFO("Resident accepts Entertainment");
-	rotateFast();
+	spin(80);
 }
 
 // Schedule to call for the resident to accept companionship robot
 void acceptCompanionship(){
 	ROS_INFO("Resident video chats/talks to companionship robot");
-	rotateFast();
+	spin(50);
 }
 
 // Schedule to call for the resident to go to bed
@@ -424,6 +424,7 @@ void coordinateCallback(project1::move mo)
 	delta_x = px - mo.x;
 	delta_y = py - mo.y;
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
+
 }
 
 
@@ -494,23 +495,30 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+	setOrientation();
+	ros::spinOnce();
 
 	coord.x = px;
 	coord.y = py;
 	coord.theta = theta;	
 	coordinatePublisher.publish(coord);
 
-	setOrientation();
-
-
-	ros::spinOnce();
-
 	loop_rate.sleep();
 	++count;
+
 
 	/*if (count == 20){
 		exercise();
 }*/
+
+	//TESTING
+	// if (count==1){
+	// 	wakeUp();
+	// 	useToilet();
+	// 	useSink();
+	// 	shower();
+	// }
+
 }
 
 return 0;

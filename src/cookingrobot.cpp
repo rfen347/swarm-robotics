@@ -256,11 +256,11 @@ void cook() {
 	spin(40);
 	navigate(1,3.9);
 	// Spin to indicate cooking.
-	spin(80);
+	spin(70);
 	navigate(3,3.9);
 	navigate(2,4.6);
 	// Spin to indicate serving food
-	spin(40);
+	spin(50);
 	navigate(0,3.1);
 	navigate(1,5);
 }
@@ -285,14 +285,15 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
-{
+{	
+	double distance_limit = 0.8;
 	double delta_x;
 	double delta_y;
 	double distance;
 	delta_x = px - mo.x;
 	delta_y = py - mo.y;
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
-	if (distance< 0.8){
+	if (distance< distance_limit){
 		stopMove();
 }
 
@@ -326,8 +327,6 @@ int main(int argc, char **argv)
 	//subscribe to listen to messages coming from stage
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
-
-	
 	ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
 	ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
 	ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
@@ -346,7 +345,8 @@ int main(int argc, char **argv)
 	//velocity of this RobotNode
 	geometry_msgs::Twist RobotNode_cmdvel;
 
-	project1::move coord;
+project1::move coord;
+
 
 	while (ros::ok())
 	{
@@ -357,14 +357,15 @@ int main(int argc, char **argv)
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-		coord.x = px;
-		coord.y = py;
-		coord.theta = theta;	
-		coordinatePublisher.publish(coord);
 
 		setOrientation();
 
 		ros::spinOnce();
+		
+		coord.x = px;
+		coord.y = py;
+		coord.theta = theta;	
+		coordinatePublisher.publish(coord);
 
 		loop_rate.sleep();
 		++count;

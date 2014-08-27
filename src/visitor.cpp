@@ -82,8 +82,8 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = 6.0 + msg.pose.pose.position.x;
 	py =-7.0 + msg.pose.pose.position.y;
 
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
+	//ROS_INFO("Current x robot 2 is: %f", px);
+	//ROS_INFO("Current y robot 2 is: %f", py);
 
 }
 
@@ -269,6 +269,7 @@ void visit(){
 	navigate(1,6.8);
 	navigate(2,1.1);
 	// Spin to show that visitor is watching TV and talking to resident.
+	spin(60);
 	navigate(0,1.1);
 	navigate(3,6.8);
 	navigate(0,4);
@@ -288,14 +289,20 @@ void coordinateCallBack(project1::move mo)
 
 }
 
+void coordinateCallback(project1::move mo)
+{
+	ROS_INFO("visitor sees robot at %f %f %f", mo.x, mo.y, mo.theta);
+
+}
+
 int main(int argc, char **argv)
 {
 
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = 6;
-	py = -7;
+	px = 6.0;
+	py = -7.0;
 	
 	//Initial velocity
 	linear_x = 0;
@@ -311,6 +318,8 @@ ros::NodeHandle n;
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/cmd_vel",1000); 
 ros::Publisher coordPublisher= n.advertise<project1::move>("robot_2/coord",1000); 
+
+//ros::Publisher 1RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("globalrobot/cmd_vel",1000);
 
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
@@ -335,7 +344,10 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
+
 project1::move coord;
+
 while (ros::ok())
 {
 	//messages to stage
@@ -351,16 +363,18 @@ while (ros::ok())
 	coord.theta = theta;	
 	coordPublisher.publish(coord);
 
+
 	ros::spinOnce();
 
 	//ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;
-	
-	/*if(count==1){
-		visit();
-	}*/
+	//TESTING	
+	// if(count==1){
+	// 	visit();
+	// }
+
 }
 
 return 0;

@@ -284,6 +284,7 @@ void coordinateCallback(project1::move mo)
 
 }
 
+
 int main(int argc, char **argv)
 {
 
@@ -333,6 +334,7 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
 project1::move coord;
 
 while (ros::ok())
@@ -344,22 +346,25 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
+	setOrientation();
+
+	ros::spinOnce();
+
 	coord.x = px;
 	coord.y = py;
 	coord.theta = theta;	
 	coordinatePublisher.publish(coord);
 
-	setOrientation();
-
-	ros::spinOnce();
-
+	
 	loop_rate.sleep();
 	++count;
+
 
 	/*if(count==40){
 		//TESTING
 		giveCompanionship();
 	}*/
+
 
 
 }

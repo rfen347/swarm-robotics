@@ -268,10 +268,12 @@ void visit(){
 	navigate(2,4);
 	ROS_INFO("Nurse(r10) is getting medicine");
 	// Spin to show that nurse is getting medicine.
+	spin(40);
 	navigate(2,6.5);
 	navigate(1,6.4);
 	navigate(2,3);
 	// Spin to show that nurse is treating patient.
+	spin(60);
 	// Leave.
 	navigate(0,3);
 	navigate(3,6.4);
@@ -291,7 +293,6 @@ void coordinateCallback(project1::move mo)
 
 
 }
-
 
 int main(int argc, char **argv)
 {
@@ -344,6 +345,7 @@ geometry_msgs::Twist RobotNode_cmdvel;
 
 project1::move coord;
 
+
 while (ros::ok())
 {
 	//messages to stage
@@ -359,15 +361,23 @@ while (ros::ok())
 	coordinatePublisher.publish(coord);
 
 	setOrientation();
+
+	coord.x = px;
+	coord.y = py;
+	coord.theta = theta;	
+	coordinatePublisher.publish(coord);
+
 	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
 
-	/* TESTING
-	if(count==1){
-		visit();
-	}*/
+
+	// TESTING
+	// if(count==1){
+	// 	visit();
+	// }
+
 }
 
 return 0;

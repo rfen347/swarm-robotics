@@ -37,6 +37,7 @@ rosrun project1 R8 &
 rosrun project1 R9 &
 rosrun project1 R10 &
 
+
 read -p "Press any key to exit... " -n1 -s
 killall R0
 killall R1

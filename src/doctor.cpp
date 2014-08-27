@@ -269,6 +269,7 @@ void visit(){
 	navigate(1,7.1);
 	navigate(2,3);
 	// Spin to show that the doctor is treating the resident.
+	spin(60);
 	// Leave
 	navigate(0,3);
 	navigate(3,7.1);
@@ -286,7 +287,6 @@ void coordinateCallback(project1::move mo)
 	delta_y = py - mo.y;
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
 	
-
 }
 
 
@@ -339,7 +339,9 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
 project1::move coord;
+
 
 while (ros::ok())
 {
@@ -357,15 +359,20 @@ while (ros::ok())
 
 	setOrientation();
 	ros::spinOnce();
+	
+	coord.x = px;
+	coord.y = py;
+	coord.theta = theta;	
+	coordinatePublisher.publish(coord);
 
 	loop_rate.sleep();
 	++count;
 
-	/*TESTING
-	if(count==1){
-		visit();
-	}*/
 
+	//TESTING
+	// if(count==1){
+	// 	visit();
+	// }
 
 }
 

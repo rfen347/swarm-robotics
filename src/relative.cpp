@@ -269,6 +269,7 @@ void visit(){
 	navigate(1,7);
 	navigate(0,1);
 	// Spin to show that relative is talking to resident.
+	spin(60);
 	// Leave
 	navigate(2,1);
 	navigate(3,7);
@@ -338,7 +339,9 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
+
 project1::move coord;
+
 
 while (ros::ok())
 {
@@ -355,15 +358,21 @@ while (ros::ok())
 	coordinatePublisher.publish(coord);
 
 	setOrientation();
+
+	coord.x = px;
+	coord.y = py;
+	coord.theta = theta;	
+	coordinatePublisher.publish(coord);
+
 	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
 
-	/* TESTING
-	if(count==1){
-		visit();
-	}*/
+	//TESTING
+	// if(count==1){
+	// 	visit();
+	// }
 }
 
 return 0;

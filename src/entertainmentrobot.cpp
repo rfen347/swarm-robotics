@@ -264,18 +264,21 @@ void navigate(int direction, double distance)
 void giveEntertainment(){
 	ROS_INFO("Entertainment robot gives resident entertainment");
 	// Spin to show that the entertainment robot is giving entertainment through the TV.
+	spin(80);
 }
+
 
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
-{
+{	
+	double distance_limit = 0.8;
 	double delta_x;
 	double delta_y;
 	double distance;
 	delta_x = px - mo.x;
 	delta_y = py - mo.y;
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
-	if (distance< 0.8){
+	if (distance< distance_limit){
 		stopMove();
 }
 
@@ -339,12 +342,13 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
+
+	setOrientation();
+
 	coord.x = px;
 	coord.y = py;
 	coord.theta = theta;	
 	coordinatePublisher.publish(coord);
-
-	setOrientation();
 
 	ros::spinOnce();
 
@@ -352,7 +356,10 @@ while (ros::ok())
 	++count;
 
 
-
+	//TESTING
+	// if (count==1){
+	// 	giveEntertainment();
+	// }
 
 }
 

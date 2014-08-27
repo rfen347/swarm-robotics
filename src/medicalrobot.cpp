@@ -264,11 +264,13 @@ void navigate(int direction, double distance)
 void giveMedication(){
 	ROS_INFO("Medical robot gives resident medication");
 	// Spin to show robot is getting medicine.
+	spin(40);
 	navigate(1,1);
 	navigate(0,1);
 	navigate(1,3);
 	navigate(2,0.6);
 	// Spin to show robot is delivering medicine.
+	spin(50);
 	navigate(0,0.6);
 	navigate(3,3);
 	navigate(2,1);
@@ -280,19 +282,21 @@ void callDoctor(){
 	ROS_INFO("Medical robot calls doctor");
 	navigate(2,0.6);
 	// Spin to show robot is using the phone.
+	spin(50);
 	navigate(0,0.6);
 }
 
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
-{
+{	
+	double distance_limit = 0.8;
 	double delta_x;
 	double delta_y;
 	double distance;
 	delta_x = px - mo.x;
 	delta_y = py - mo.y;
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
-	if (distance< 0.8){
+	if (distance< distance_limit){
 		stopMove();
 }
 
@@ -347,6 +351,7 @@ int count = 0;
 geometry_msgs::Twist RobotNode_cmdvel;
 project1::move coord;
 
+
 while (ros::ok())
 {
 	//messages to stage
@@ -356,12 +361,13 @@ while (ros::ok())
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
+	
+	setOrientation();
+	
 	coord.x = px;
 	coord.y = py;
 	coord.theta = theta;	
-	coordinatePublisher.publish(coord);	
-	
-	setOrientation();
+	coordinatePublisher.publish(coord);
 
 	ros::spinOnce();
 
@@ -373,6 +379,7 @@ while (ros::ok())
 		giveMedication();
 		callDoctor();
 	}*/
+
 
 
 
