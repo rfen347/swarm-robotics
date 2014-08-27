@@ -1,5 +1,8 @@
 <launch>
 	<node name="resident" pkg="project1" type="resident" />
 	<test test-name="residentTest" pkg="project1" type="residentTest" />
-
+		<node name="cookingrobot" pkg="project1" type="cookingrobot" />
+	<test test-name="cookingRobotTest" pkg="project1" type="cookingRobotTest" />
+		<node name="visitor" pkg="project1" type="visitor" />
+	<test test-name="visitorTest" pkg="project1" type="visitorTest" />
 </launch>
