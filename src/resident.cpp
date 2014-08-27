@@ -408,12 +408,11 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	//linear_x = 2;
 //}
 
-void chatterCallback(std_msgs::String Mo){
-	if (Mo.data == "wake up"){
+void illCallback(std_msgs::String M){
+	if (M.data == "Call Ill"){
 
-		ROS_INFO("resident message received");
+		ROS_INFO("resident gets ill");
 	}
-	//linear_x = 2;
 }
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
 void coordinateCallback(project1::move mo)
@@ -470,7 +469,12 @@ ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coo
 ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
 ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
 ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
-ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);		
+ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);
+
+
+ros::Subscriber residentIllsub = n.subscribe<std_msgs::String>("robot_0/ill", 1000, illCallback);
+
+		
 
 	
 
