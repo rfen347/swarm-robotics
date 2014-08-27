@@ -140,13 +140,11 @@ int main(int argc, char **argv)
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
-		if (count == 5){
-
+		if (count == 20){
 			resident_wake.publish(Mo);
-
 		}
 
-		if (count == 25){
+		if (count == 55){
 			resident_useToilet.publish(Mo);
 			robot_cooking.publish(Mo);
 		}

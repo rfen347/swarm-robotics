@@ -6,33 +6,22 @@
 #include <sstream>
 #include "math.h"
 #include <project1/move.h>
-#include <string>
-#include <project1/move.h>
-
-#include <rosgraph_msgs/Clock.h>
-
-
-
-//#include "cookingrobot.h"
 
 //velocity of the robot
 double linear_x;
 double angular_z;
-
-bool ill = false;
-bool emergency = false;
 
 //pose of the robot
 double px;
 double py;
 double theta;
 
+int loopRate = 10;
+double posAllowance = 0.005;
+
 void StageLaser_callback(sensor_msgs::LaserScan msg);
 void StageOdom_callback(nav_msgs::Odometry msg);
 
-int loopRate = 10; // Setting the cycle rate per second.
-double posAllowance = 0.005;
-// This function updates the theta field so that the robot knows which angle it is facing.
 void setOrientation(){
 	//Calculate the new value of theta
 	theta = theta + (angular_z/loopRate);
@@ -43,7 +32,6 @@ void setOrientation(){
 		theta = theta + (M_PI*2);
 	}
 }
-
 
 // This function makes the robot move forward the way it is facing.
 void move(){
@@ -74,6 +62,7 @@ void spin(int cycles){
 	geometry_msgs::Twist RobotNode_cmdvel;
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_0/cmd_vel",1000); 
 
+	linear_x = 0;
 	rotateFast(); 			// start spinning
 	int counter = 0;
 		
@@ -137,7 +126,6 @@ void rotateToAngle(double angle){
 	angular_z = 0;
 }
 
-
 // This function makes the robot move in an orthogonal direction (North, East, South or West). Input the direction to move and the distance to move by. The robot will rotate and carry out this movement.
 
 // Integer codes for direction:
@@ -177,7 +165,7 @@ void navigate(int direction, double distance)
 			RobotNode_cmdvel.angular.z = angular_z;
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
-			loop_rate.sleep();			
+			loop_rate.sleep();
 		}
 
 	}else if (direction==1){ // Move North/up.
@@ -242,7 +230,7 @@ void navigate(int direction, double distance)
 			loop_rate.sleep();
 		}
 	}
-
+ROS_INFO("should stop");
 	//Stop the robot's movement once at the destination
 	stopMove();
 
@@ -257,6 +245,7 @@ void navigate(int direction, double distance)
 	ros::spinOnce();
 	loop_rate.sleep();
 }
+
 
 //Schedule to call for the resident to start the day
 void wakeUp(){
@@ -392,6 +381,8 @@ void goToAmbulance(){
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {	
+	px = 5.5 + msg.pose.pose.position.x;
+	py = 4.5 + msg.pose.pose.position.y;
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -405,12 +396,12 @@ void illCallback(std_msgs::String msg){
 	if (msg.data == "emergency"){
 
 		ROS_INFO("There is emergency");
-		emergency=true;
+		bool emergency=true;
 	}
 	else if (msg.data == "Call Ill"){
 
 		ROS_INFO("resident gets ill");
-		ill=true;
+		bool ill=true;
 	}
 	
 }
