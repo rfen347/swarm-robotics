@@ -412,16 +412,18 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 //}
 
 void illCallback(std_msgs::String msg){
+
+	if (msg.data == "emergency"){
+
+		ROS_INFO("There is emergency");
+		emergency=true;
+	}
 	if (msg.data == "Call Ill"){
 
 		ROS_INFO("resident gets ill");
 		ill=true;
 	}
-	else if (msg.data == "emergency"){
-
-		ROS_INFO("There is emergency");
-		emergency=true;
-	}
+	
 }
 
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.

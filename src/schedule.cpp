@@ -89,7 +89,7 @@ int main(int argc, char **argv)
 
 	// move
 	//project1::move Mo;
-	std_msgs::String msg;
+	//std_msgs::String msg;
 
 	std::stringstream ss;
 	//ss << "Call Ill";
@@ -111,6 +111,9 @@ int main(int argc, char **argv)
 		//caregiver_move.publish(Mo);
 		//s}
 		cin >>command;
+		
+		std::stringstream ss;
+		
 		if(command=="ill"){
 			ss << "Call Ill";
 			
@@ -119,6 +122,7 @@ int main(int argc, char **argv)
 			ss << "emergency";
 			
 		}
+		
 		msg.data = ss.str();
 
 		resident_ill.publish(msg);
