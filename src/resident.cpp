@@ -19,6 +19,9 @@
 double linear_x;
 double angular_z;
 
+bool ill = false;
+bool emergency = false;
+
 //pose of the robot
 double px;
 double py;
@@ -408,12 +411,19 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	//linear_x = 2;
 //}
 
-void illCallback(std_msgs::String M){
-	if (M.data == "Call Ill"){
+void illCallback(std_msgs::String msg){
+	if (msg.data == "Call Ill"){
 
 		ROS_INFO("resident gets ill");
+		ill=true;
+	}
+	else if (msg.data == "emergency"){
+
+		ROS_INFO("There is emergency");
+		emergency=true;
 	}
 }
+
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
 void coordinateCallback(project1::move mo)
 {

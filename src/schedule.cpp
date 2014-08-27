@@ -48,7 +48,6 @@ int main(int argc, char **argv)
 {
 	//command ill
 	string command="";
-	bool ill=false;
 
 	 //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
@@ -90,11 +89,13 @@ int main(int argc, char **argv)
 
 	// move
 	//project1::move Mo;
-	std_msgs::String illMessage;
+	std_msgs::String msg;
 
 	std::stringstream ss;
-	ss << "Call Ill";
-	illMessage.data = ss.str();
+	//ss << "Call Ill";
+	//msg.data = ss.str();
+
+
 
 	while (ros::ok())
 	{
@@ -111,9 +112,16 @@ int main(int argc, char **argv)
 		//s}
 		cin >>command;
 		if(command=="ill"){
-			ill=true;
-			resident_ill.publish(illMessage);
+			ss << "Call Ill";
+			
 		}
+		else if(command=="em"){
+			ss << "emergency";
+			
+		}
+		msg.data = ss.str();
+
+		resident_ill.publish(msg);
 		
 		ros::spinOnce();
 
