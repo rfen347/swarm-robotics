@@ -49,11 +49,38 @@ void rotateFast(){
 	angular_z=M_PI/2;
 }
 
+// Spin for the number of cycles specified
+void spin(int cycles){
+
+	// Infrastructure
+	ros::Rate loop_rate(loopRate);
+	ros::NodeHandle n;
+	geometry_msgs::Twist RobotNode_cmdvel;
+	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000); 
+
+	rotateFast(); 			// start spinning
+	int counter = 0;
+		
+	while (counter < cycles) {
+		counter++;
+
+		// Infrastructure
+		RobotNode_cmdvel.linear.x = linear_x;
+		RobotNode_cmdvel.angular.z = angular_z;
+		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		setOrientation();
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
+
+	stopRotation(); // stop spinning
+}
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {
 	//This is the call back function to process odometry messages coming from Stage. 	
-	px = -10.5 + msg.pose.pose.position.x;
-	py = 4.5 + msg.pose.pose.position.y;
+	px = 6 + msg.pose.pose.position.x;
+	py = -9 + msg.pose.pose.position.y;
 
 	//ROS_INFO("Current x position is: %f", px);
 	//ROS_INFO("Current y position is: %f", py);
@@ -236,7 +263,32 @@ void navigate(int direction, double distance)
 //Schedule to call when the relative is to visit the resident
 void visit(){
 	ROS_INFO("Relative(r8) Enters");
+	navigate(0,1);
+	navigate(1,5.5);
+	navigate(2,7.5);
+	navigate(1,7);
+	navigate(0,1);
+	// Spin to show that relative is talking to resident.
+	// Leave
+	navigate(2,1);
+	navigate(3,7);
+	navigate(0,7.5);
+	navigate(3,5.5);
+	navigate(2,1);
 }
+//Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
+void coordinateCallback(project1::move mo)
+{
+	double delta_x;
+	double delta_y;
+	double distance;
+	delta_x = px - mo.x;
+	delta_y = py - mo.y;
+	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
+
+}
+
+
 
 int main(int argc, char **argv)
 {
@@ -244,8 +296,8 @@ int main(int argc, char **argv)
  //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
 	theta = 0;
-	px = -10.5;
-	py = 4.5;
+	px = 6;
+	py = -9;
 	
 	//Initial velocity
 	linear_x = 0;
@@ -261,9 +313,21 @@ ros::NodeHandle n;
 //to stage
 ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/cmd_vel",1000); 
 
+ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_8/coord",1000);  
+
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_8/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_8/base_scan",1000,StageLaser_callback);
+
+ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
+ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
+ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
+ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
+ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
+ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coord",1000, coordinateCallback);	
+ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
+ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
+ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);
 
 ros::Rate loop_rate(loopRate);
 
@@ -274,7 +338,7 @@ int count = 0;
 //velocity of this RobotNode
 geometry_msgs::Twist RobotNode_cmdvel;
 
-
+project1::move coord;
 
 while (ros::ok())
 {
@@ -284,12 +348,22 @@ while (ros::ok())
         
 	//publish the message
 	RobotNode_stage_pub.publish(RobotNode_cmdvel);
+
+	coord.x = px;
+	coord.y = py;
+	coord.theta = theta;	
+	coordinatePublisher.publish(coord);
+
 	setOrientation();
 	ros::spinOnce();
 
 	loop_rate.sleep();
 	++count;
 
+	/* TESTING
+	if(count==1){
+		visit();
+	}*/
 }
 
 return 0;
