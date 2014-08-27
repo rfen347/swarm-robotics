@@ -139,15 +139,42 @@ int main(int argc, char **argv)
         
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
+		if (count == 1){
+
+			cin >>command;
+
+			std::stringstream ss;
+
+			if(command=="ill"){
+				ss << "call Ill";
+			}
+			else if(command=="em"){
+				ss << "emergency";
+			}
+			else if(command=="n"){
+				ss << "normal day";
+			}
+
+			msg.data = ss.str();
+			resident_ill.publish(msg);
+
+		}
 
 		if (count == 20){
 			resident_wake.publish(Mo);
 		}
+		
+		
 
 		if (count == 55){
 			resident_useToilet.publish(Mo);
 			robot_cooking.publish(Mo);
 		}
+		if (count == 100){
+			count=0;
+			ROS_INFO("DAY ENDS");
+		}
+
 
 		ros::spinOnce();
 
