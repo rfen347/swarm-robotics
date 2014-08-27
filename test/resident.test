@@ -1,0 +1,5 @@
+<launch>
+	<node name="resident" pkg="project1" type="resident" />
+	<test test-name="residentTest" pkg="project1" type="residentTest" />
+
+</launch>
