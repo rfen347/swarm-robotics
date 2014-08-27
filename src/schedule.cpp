@@ -139,7 +139,7 @@ int main(int argc, char **argv)
         
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		if (count == 1){
+		/*if (count == 1){
 
 			cin >>command;
 
@@ -158,8 +158,10 @@ int main(int argc, char **argv)
 			msg.data = ss.str();
 			resident_ill.publish(msg);
 
-		}
+		}*/
+	
 
+		// add schedule here!!!!!!!!!!!!!!!!!!!
 		if (count == 20){
 			resident_wake.publish(Mo);
 		}
@@ -170,7 +172,10 @@ int main(int argc, char **argv)
 			resident_useToilet.publish(Mo);
 			robot_cooking.publish(Mo);
 		}
-		if (count == 100){
+
+		
+		// another day starts
+		if (count == 2000){
 			count=0;
 			ROS_INFO("DAY ENDS");
 		}
