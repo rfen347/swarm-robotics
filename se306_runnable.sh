@@ -17,9 +17,10 @@ killall R10
 killall stageros
 #killall roscore
 
+# run roscore in another terminal, it takes so long to run roscore every single time
 #roscore &
 cd project1
-#rosmake
+rosmake
 roscd
 
 rosrun stage_ros stageros project1/world/myworld.world &
@@ -32,13 +33,14 @@ rosrun project1 R4 &
 rosrun project1 R5 &
 rosrun project1 R6 &
 rosrun project1 R7 &
-#rosrun project1 R8 &
-#rosrun project1 R9 &
-#rosrun project1 R10 &
+rosrun project1 R8 &
+rosrun project1 R9 &
+rosrun project1 R10 &
 
 cd project1
-sleep 1
+
 gnome-terminal -e "./runSchedule.sh"
+#rosrun rqt_graph rqt_graph
 
 read -p "Press any key to exit... " -n1 -s
 killall R0

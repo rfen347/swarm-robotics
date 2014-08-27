@@ -177,7 +177,7 @@ void navigate(int direction, double distance)
 			RobotNode_cmdvel.angular.z = angular_z;
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
-			loop_rate.sleep();			
+			loop_rate.sleep();
 		}
 
 	}else if (direction==1){ // Move North/up.

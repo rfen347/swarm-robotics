@@ -140,34 +140,16 @@ int main(int argc, char **argv)
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
+		if (count == 5){
 
-		if ( count == 5 ){
-			ROS_INFO("5secs passed");
 			resident_wake.publish(Mo);
 
 		}
 
-		if (count == 20){
+		if (count == 25){
 			resident_useToilet.publish(Mo);
 			robot_cooking.publish(Mo);
 		}
-
-		cin >>command;
-		
-		std::stringstream ss;
-		
-		if(command=="ill"){
-			ss << "Call Ill";
-			
-		}
-		else if(command=="em"){
-			ss << "emergency";
-			
-		}
-		
-		msg.data = ss.str();
-
-		resident_ill.publish(msg);
 
 		ros::spinOnce();
 

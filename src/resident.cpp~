@@ -549,7 +549,7 @@ while (ros::ok())
 	coord.x = px;
 	coord.y = py;
 	coord.theta = theta;	
-	coordinatePublisher.publish(coord);
+	coordPublisher.publish(coord);
 
 	loop_rate.sleep();
 	++count;
