@@ -407,10 +407,13 @@ void illCallback(std_msgs::String msg){
 		ROS_INFO("There is emergency");
 		emergency=true;
 	}
-	else if (msg.data == "Call Ill"){
+	else if (msg.data == "call Ill"){
 
 		ROS_INFO("resident gets ill");
 		ill=true;
+	}
+	else if (msg.data == "normal day"){
+		ROS_INFO("normal day starts");
 	}
 	
 }

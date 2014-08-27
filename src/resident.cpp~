@@ -177,7 +177,7 @@ void navigate(int direction, double distance)
 			RobotNode_cmdvel.angular.z = angular_z;
 			RobotNode_stage_pub.publish(RobotNode_cmdvel);
 			ros::spinOnce();
-			loop_rate.sleep();			
+			loop_rate.sleep();
 		}
 
 	}else if (direction==1){ // Move North/up.
@@ -407,10 +407,14 @@ void illCallback(std_msgs::String msg){
 		ROS_INFO("There is emergency");
 		emergency=true;
 	}
-	else if (msg.data == "Call Ill"){
+	else if (msg.data == "call Ill"){
 
 		ROS_INFO("resident gets ill");
 		ill=true;
+	}
+	else if (msg.data == "normal day"){
+
+		ROS_INFO("normal day starts");
 	}
 	
 }
