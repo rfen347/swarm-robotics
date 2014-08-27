@@ -8,7 +8,10 @@
 #include <sstream>
 #include "math.h"
 #include <time.h>
+#include <string>
 
+
+using namespace std;
 //velocity of the robot
 double linear_x;
 double angular_z;
@@ -34,6 +37,8 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 
 int main(int argc, char **argv)
 {
+	//command ill
+	string command="";
 
 	 //initialize robot parameters
 	//Initial pose. This is same as the pose that you used in the world file to set	the robot pose.
@@ -54,6 +59,8 @@ int main(int argc, char **argv)
 	//advertise() function will tell ROS that you want to publish on a given topic_
 	//to stage
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
+
+	ros::Publisher resident_ill = n.advertise<std_msgs::String>("robot_0/ill",1000);
 
 	//subscribe to listen to messages coming from stage
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
@@ -118,7 +125,11 @@ int main(int argc, char **argv)
 	geometry_msgs::Twist RobotNode_cmdvel;
 
 	// move
+
 	project1::move Mo;
+
+	std_msgs::String msg;
+
 
 	while (ros::ok())
 	{
@@ -129,11 +140,29 @@ int main(int argc, char **argv)
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
 
+
 		if ( count == 5 ){
 
 			resident_wake.publish(Mo);
 
 		}
+
+		cin >>command;
+		
+		std::stringstream ss;
+		
+		if(command=="ill"){
+			ss << "Call Ill";
+			
+		}
+		else if(command=="em"){
+			ss << "emergency";
+			
+		}
+		
+		msg.data = ss.str();
+
+		resident_ill.publish(msg);
 
 		ros::spinOnce();
 
