@@ -82,9 +82,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = -0.7 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
-
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -280,10 +277,14 @@ void coordinateCallback(project1::move mo)
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
 	if (distance< distance_limit){
 		stopMove();
-}
+	}
 
 }
 
+
+void giveCompanionship_callback(project1::move) {
+	giveCompanionship();
+}
 
 int main(int argc, char **argv)
 {
@@ -314,6 +315,7 @@ ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_6/coord",
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_6/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_6/base_scan",1000,StageLaser_callback);
 
+ros::Subscriber giveCompanionship_sub = n.subscribe<project1::move>("robot_6/giveCompanionship",1000,giveCompanionship_callback);
 
 ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
 ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
@@ -358,15 +360,6 @@ while (ros::ok())
 	
 	loop_rate.sleep();
 	++count;
-
-
-	/*if(count==40){
-		//TESTING
-		giveCompanionship();
-	}*/
-
-
-
 }
 
 return 0;

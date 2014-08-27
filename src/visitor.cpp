@@ -82,9 +82,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = 6.0 + msg.pose.pose.position.x;
 	py =-7.0 + msg.pose.pose.position.y;
 
-	//ROS_INFO("Current x robot 2 is: %f", px);
-	//ROS_INFO("Current y robot 2 is: %f", py);
-
 }
 
 
@@ -289,10 +286,8 @@ void coordinateCallBack(project1::move mo)
 
 }
 
-void coordinateCallback(project1::move mo)
-{
-	ROS_INFO("visitor sees robot at %f %f %f", mo.x, mo.y, mo.theta);
-
+void visit_callback(project1::move){
+	visit();
 }
 
 int main(int argc, char **argv)
@@ -324,6 +319,8 @@ ros::Publisher coordPublisher= n.advertise<project1::move>("robot_2/coord",1000)
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_2/base_scan",1000,StageLaser_callback);
+
+ros::Subscriber visit_sub = n.subscribe<project1::move>("robot_2/visit",1000, visit_callback);
 
 ros::Subscriber residentCoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallBack);	
 ros::Subscriber cookingCoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallBack);		
@@ -365,8 +362,6 @@ while (ros::ok())
 
 
 	ros::spinOnce();
-
-	//ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;

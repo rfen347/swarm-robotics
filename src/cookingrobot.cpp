@@ -247,7 +247,7 @@ void navigate(int direction, double distance)
 }
 
 void cook() {
-
+	ROS_INFO("Cooking robot starts cooking");
 	navigate(3,5);
 	// Spin to indicate getting items from fridge
 	spin(40);
@@ -270,9 +270,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//This is the call back function to process odometry messages coming from Stage. 	
 	px = 5.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
-
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
 }
 
 
@@ -283,6 +280,10 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
+
+void cooking_callback(project1::move) {
+	cook();
+}
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
 {	
@@ -327,6 +328,10 @@ int main(int argc, char **argv)
 	//subscribe to listen to messages coming from stage
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
+	
+	// receive topic from schedule
+	ros::Subscriber cooking_sub = n.subscribe<project1::move>("robot_1/cooking",1000,cooking_callback);
+
 	ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
 	ros::Subscriber medicalcoordSub = n.subscribe<project1::move>("robot_4/coord",1000, coordinateCallback);
 	ros::Subscriber entertainmentcoordSub = n.subscribe<project1::move>("robot_5/coord",1000, coordinateCallback);	
@@ -369,15 +374,7 @@ project1::move coord;
 
 		loop_rate.sleep();
 		++count;
-		
-		 //TESTING
-		/*if(count==30){
-			cook();
-		}*/
 
-
-
-		
 	}
 
 	return 0;

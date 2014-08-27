@@ -16,9 +16,6 @@ using namespace std;
 double linear_x;
 double angular_z;
 
-
-
-
 //pose of the robot
 double px;
 double py;
@@ -36,12 +33,6 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 {
 	//This is the callback function to process laser scan messages
 	//you can access the range data from msg.ranges[i]. i = sample number	
-}
-
-void coordinateCallback(project1::move mo)
-{
-	ROS_INFO("%f %f %f", mo.x, mo.y, mo.theta);
-
 }
 
 int main(int argc, char **argv)
@@ -69,14 +60,60 @@ int main(int argc, char **argv)
 	//to stage
 	ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_3/cmd_vel",1000);
 
-	//ros::Publisher resident_move = n.advertise<std_msgs::String>("robot_0/bbb",1000);
 	ros::Publisher resident_ill = n.advertise<std_msgs::String>("robot_0/ill",1000);
 
 	//subscribe to listen to messages coming from stage
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_3/odom",1000, StageOdom_callback);
-	//ros::Subscriber carecoordSub = n.subscribe<project1::move>("robot_7/rmove",1000, coordinateCallback);	
-
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
+
+	// advertise topics to other nodes
+	// to CookingRobot R1
+	ros::Publisher robot_cooking = n.advertise<project1::move>("robot_1/cooking",1000);
+
+	// to CompainionRobot R6
+	ros::Publisher robot_giveCompanionship = n.advertise<project1::move>("robot_6/giveCompanionship",1000);
+
+	// to MedicalRobot R4
+	ros::Publisher robot_giveMedication = n.advertise<project1::move>("robot_4/giveMedication",1000);
+	ros::Publisher robot_callDoctor = n.advertise<project1::move>("robot_4/callDoctor",1000);
+
+	// to EntertainmentRobot R5
+	ros::Publisher robot_giveEntertainment = n.advertise<project1::move>("robot_5/giveEntertainment",1000);
+
+	// to Resident R0
+	ros::Publisher resident_wake = n.advertise<project1::move>("robot_0/wake",1000);
+	ros::Publisher resident_useToilet = n.advertise<project1::move>("robot_0/useToilet",1000);
+	ros::Publisher resident_useSink = n.advertise<project1::move>("robot_0/useSink",1000);
+	ros::Publisher resident_shower = n.advertise<project1::move>("robot_0/shower",1000);
+	ros::Publisher resident_bathroomToLounge = n.advertise<project1::move>("robot_0/bathroomToLounge",1000);
+	ros::Publisher resident_exercise = n.advertise<project1::move>("robot_0/exercise",1000);
+	ros::Publisher resident_getReadyToEat = n.advertise<project1::move>("robot_0/getReadyToEat",1000);
+	ros::Publisher resident_eat = n.advertise<project1::move>("robot_0/eat",1000);
+	ros::Publisher resident_takeMedication = n.advertise<project1::move>("robot_0/takeMedication",1000);
+	ros::Publisher resident_tableToSofa = n.advertise<project1::move>("robot_0/tableToSofa",1000);
+	ros::Publisher resident_converseWithCaregiver = n.advertise<project1::move>("robot_0/converseWithCaregiver",1000);
+	ros::Publisher resident_acceptEntertainment = n.advertise<project1::move>("robot_0/acceptEntertainment",1000);
+	ros::Publisher resident_acceptCompanionship = n.advertise<project1::move>("robot_0/acceptCompanionship",1000);
+	ros::Publisher resident_goToBed = n.advertise<project1::move>("robot_0/goToBed",1000);
+	ros::Publisher resident_goToAmbulance = n.advertise<project1::move>("robot_0/goToAmbulance",1000);
+
+	// to Visitor R2
+	ros::Publisher visitor_visit = n.advertise<project1::move>("robot_2/visit",1000);
+
+	// to Relatives R8
+	ros::Publisher relative_visit = n.advertise<project1::move>("robot_8/visit",1000);
+
+	// to Caregiver R7
+	ros::Publisher caregiver_helpShower = n.advertise<project1::move>("robot_7/helpShower",1000);
+	ros::Publisher caregiver_helpEat = n.advertise<project1::move>("robot_7/helpEat",1000);
+	ros::Publisher caregiver_helpExercise = n.advertise<project1::move>("robot_7/helpExercise",1000);
+	ros::Publisher caregiver_giveMoralSupport = n.advertise<project1::move>("robot_7/giveMoralSupport",1000);
+
+	// to Doctor R9
+	ros::Publisher doctor_visit = n.advertise<project1::move>("robot_9/visit",1000);
+
+	// to Nurse R10
+	ros::Publisher nurse_visit = n.advertise<project1::move>("robot_10/visit",1000);
 
 	ros::Rate loop_rate(10);
 
@@ -88,13 +125,10 @@ int main(int argc, char **argv)
 	geometry_msgs::Twist RobotNode_cmdvel;
 
 	// move
-	//project1::move Mo;
+
+	project1::move Mo;
+
 	std_msgs::String msg;
-
-	std::stringstream ss;
-	//ss << "Call Ill";
-	//msg.data = ss.str();
-
 
 
 	while (ros::ok())
@@ -105,24 +139,100 @@ int main(int argc, char **argv)
         
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		//if ( count == 20 ){
+		/*if (count == 1){
 
-		//resident_move.publish(Mo);
-		//caregiver_move.publish(Mo);
-		//s}
-		cin >>command;
-		if(command=="ill"){
-			ss << "Call Ill";
-			
-		}
-		else if(command=="em"){
-			ss << "emergency";
-			
-		}
-		msg.data = ss.str();
+			cin >>command;
 
-		resident_ill.publish(msg);
+			std::stringstream ss;
+
+			if(command=="ill"){
+				ss << "call Ill";
+			}
+			else if(command=="em"){
+				ss << "emergency";
+			}
+			else if(command=="n"){
+				ss << "normal day";
+			}
+
+			msg.data = ss.str();
+			resident_ill.publish(msg);
+
+		}*/
+	
+
+		// add schedule here!!!!!!!!!!!!!!!!!!!
+		if (count == 20){
+			resident_wake.publish(Mo);
+		}
 		
+		// resident uses toilet
+		if (count == 55){
+			resident_useToilet.publish(Mo);
+		}
+		
+		// caregiver comes
+		if (count == 150){
+			caregiver_helpShower.publish(Mo);
+		}
+
+		// resident is using sink
+		if (count == 300){
+			resident_useSink.publish(Mo);
+		}
+		
+		// resident goes to shower
+		if (count == 430){
+			resident_shower.publish(Mo);
+		}
+		
+
+		// moving into lounge
+		if (count == 530){
+			resident_bathroomToLounge.publish(Mo);
+			caregiver_helpExercise.publish(Mo);
+		}
+
+		// once in lounge, resident exercises
+		if (count==690){
+			resident_exercise.publish(Mo);
+		}
+	
+		// cooking robot starts making food
+		if (count==800){
+			robot_cooking.publish(Mo);
+		}
+
+		// resident eats
+		if (count==1250){
+			resident_getReadyToEat.publish(Mo);
+		}
+	
+		if(count==1350){
+			resident_eat.publish(Mo);
+			caregiver_helpEat.publish(Mo);
+		}
+		
+		if(count==1400){
+			resident_takeMedication.publish(Mo);
+		}
+
+		if(count==1460){
+			resident_tableToSofa.publish(Mo);
+			caregiver_giveMoralSupport.publish(Mo);
+		}
+
+		if(count==1600){
+			resident_converseWithCaregiver.publish(Mo);
+		}
+
+
+		// another day starts
+		if (count == 5000){
+			count=0;
+			ROS_INFO("DAY ENDS");
+		}
+
 		ros::spinOnce();
 
 		loop_rate.sleep();

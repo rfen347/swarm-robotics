@@ -286,6 +286,14 @@ void callDoctor(){
 	navigate(0,0.6);
 }
 
+void callDoctor_callback(project1::move){
+	callDoctor();
+}
+
+void giveMedication_callback(project1::move){
+	giveMedication();
+}
+
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
 {	
@@ -298,8 +306,7 @@ void coordinateCallback(project1::move mo)
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
 	if (distance< distance_limit){
 		stopMove();
-}
-
+	}
 }
 
 int main(int argc, char **argv)
@@ -329,6 +336,10 @@ ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_4/coord",
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_4/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_4/base_scan",1000,StageLaser_callback);
+
+
+ros::Subscriber giveMedication_sub = n.subscribe<project1::move>("robot_4/giveMedication",1000,giveMedication_callback);
+ros::Subscriber callDoctor_sub = n.subscribe<project1::move>("robot_4/callDoctor",1000,callDoctor_callback);
 
 ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
 ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
@@ -373,15 +384,6 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-
-	/* TESTING
-	if(count==1){
-		giveMedication();
-		callDoctor();
-	}*/
-
-
-
 
 }
 

@@ -294,6 +294,10 @@ void coordinateCallback(project1::move mo)
 
 }
 
+void visit_callback(project1::move){
+	visit();
+}
+
 int main(int argc, char **argv)
 {
 
@@ -324,6 +328,9 @@ ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_10/coord"
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_10/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_10/base_scan",1000,StageLaser_callback);
 
+
+ros::Subscriber visit_sub = n.subscribe<project1::move>("robot_10/visit",1000, visit_callback);
+
 ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
 ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
 ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
@@ -333,6 +340,7 @@ ros::Subscriber companionshipcoordSub = n.subscribe<project1::move>("robot_6/coo
 ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",1000, coordinateCallback);	
 ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
 ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);	
+
 
 ros::Rate loop_rate(loopRate);
 
@@ -371,13 +379,6 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-
-
-	// TESTING
-	// if(count==1){
-	// 	visit();
-	// }
-
 }
 
 return 0;

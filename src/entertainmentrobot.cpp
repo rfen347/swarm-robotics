@@ -82,9 +82,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = 2.3 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
-
 }
 
 
@@ -280,8 +277,12 @@ void coordinateCallback(project1::move mo)
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
 	if (distance< distance_limit){
 		stopMove();
+	}
+
 }
 
+void giveEntertainment_callback(project1::move){
+	giveEntertainment();
 }
 
 int main(int argc, char **argv)
@@ -312,6 +313,9 @@ ros::Publisher coordinatePublisher= n.advertise<project1::move>("robot_5/coord",
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_5/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_5/base_scan",1000,StageLaser_callback);
 
+
+ros::Subscriber giveEntertainment_sub = n.subscribe<project1::move>("robot_5/giveEntertainment",1000,giveEntertainment_callback);
+
 ros::Subscriber residentcoordSub = n.subscribe<project1::move>("robot_0/coord",1000, coordinateCallback);
 ros::Subscriber cookingcoordSub = n.subscribe<project1::move>("robot_1/coord",1000, coordinateCallback);	
 ros::Subscriber friendcoordSub = n.subscribe<project1::move>("robot_2/coord",1000, coordinateCallback);	
@@ -321,6 +325,7 @@ ros::Subscriber caregivercoordSub = n.subscribe<project1::move>("robot_7/coord",
 ros::Subscriber relativecoordSub = n.subscribe<project1::move>("robot_8/coord",1000, coordinateCallback);
 ros::Subscriber doctorcarecoordSub = n.subscribe<project1::move>("robot_9/coord",1000, coordinateCallback);
 ros::Subscriber nursecarecoordSub = n.subscribe<project1::move>("robot_10/coord",1000, coordinateCallback);	
+
 
 ros::Rate loop_rate(loopRate);
 
@@ -354,12 +359,6 @@ while (ros::ok())
 
 	loop_rate.sleep();
 	++count;
-
-
-	//TESTING
-	// if (count==1){
-	// 	giveEntertainment();
-	// }
 
 }
 

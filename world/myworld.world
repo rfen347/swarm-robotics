@@ -7,15 +7,15 @@ define mylaser ranger
   )
   # generic model properties
   color "black"
-  size [ 0.05 0.05 0.1 ]
+  size [ 0.050 0.050 0.100 ]
   
 )
 
 define myRobot position
 (
-  size [0.35 0.35 0.25]
+  size [0.350 0.350 0.250]
   drive "diff"
-  mylaser(pose [ 0.050 0.000 0 0.000 ])
+  mylaser(pose [ 0.050 0.000 0.000 0.000 ])
 )
 
 define floorplan model
@@ -26,7 +26,7 @@ define floorplan model
   # remove the boundry
   boundary 0
   
-  ranger_return 1
+  ranger_return 1.000
 )
 
 define my_block model
@@ -44,8 +44,8 @@ interval_sim 100  # simulation timestep in milliseconds. length of each simulati
 
 window
 ( 
-  size [ 745.000 448.000 ] #size of the window in pixels
-  scale 30 
+  size [ 745 448 ] #size of the window in pixels
+  scale 30.000 
   
 )
 
@@ -54,12 +54,12 @@ floorplan
 ( 
   name "house"
   bitmap "house1.png"
-  size [20.0 10.0 0.5]
-  pose [ 0 0 0 0 ]
+  size [20.000 10.000 0.500]
+  pose [ 0.000 0.000 0.000 0.000 ]
 )
 
 # RESIDENT NODE (r0)
-myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red"
+myRobot( pose [ -6.500 4.500 0.000 0.000 ] name "r0" color "red"
 	#Pentagon because it's human.
 	block
 	(
@@ -72,11 +72,11 @@ myRobot( pose [ -6.5 4.5 0 0 ] name "r0" color "red"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # COOKING ROBOT (r1)
-myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "gray"
+myRobot( pose [ 5.500 4.500 0.000 0.000 ] name "r1" color "gray"
 	#Triangle because it's a robot.
 	block
 	(
@@ -87,11 +87,11 @@ myRobot( pose [ 5.5 4.5 0 0 ] name "r1" color "gray"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # VISITOR/FRIEND (r2)
-myRobot( pose [ 6.0 -7.0 0 0 ] name "r2" color "orange"
+myRobot( pose [ 6.000 -7.000 0.000 0.000 ] name "r2" color "orange"
 	#Pentagon because it's human.
 	block
 	(
@@ -104,16 +104,16 @@ myRobot( pose [ 6.0 -7.0 0 0 ] name "r2" color "orange"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # SCHEDULE ROBOT (r3)
-myRobot( pose [ -20.0 0 0 0 ] name "r4" color "white"
+myRobot( pose [ -20.000 0.000 0.000 0.000 ] name "r4" color "white"
 	#No shape becuase it's invisible
 )
 
 # MEDICAL ROBOT (r4)
-myRobot( pose [ 1.9 -4.4 0 0 ] name "r4" color "green"
+myRobot( pose [ 1.900 -4.400 0.000 0.000 ] name "r4" color "green"
 	#Triangle because it's a robot.
 	block
 	(
@@ -124,11 +124,11 @@ myRobot( pose [ 1.9 -4.4 0 0 ] name "r4" color "green"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # ENTERTAINMENT ROBOT (r5)
-myRobot( pose [ 2.3 4.5 0 0 ] name "r5" color "blue"
+myRobot( pose [ 2.300 4.500 0.000 0.000 ] name "r5" color "blue"
 	#Triangle because it's a robot.
 	block
 	(
@@ -139,11 +139,11 @@ myRobot( pose [ 2.3 4.5 0 0 ] name "r5" color "blue"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # COMPANIONSHIP ROBOT (r6)
-myRobot( pose [ -0.7 4.5 0 0 ] name "r6" color "violet"
+myRobot( pose [ -0.700 4.500 0.000 0.000 ] name "r6" color "violet"
 	#Triangle because it's a robot.
 	block
 	(
@@ -154,11 +154,11 @@ myRobot( pose [ -0.7 4.5 0 0 ] name "r6" color "violet"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # CAREGIVER (r7)
-myRobot( pose [ 6.0 -8.0 0 0 ] name "r7" color "pink"
+myRobot( pose [ 6.000 -8.000 0.000 0.000 ] name "r7" color "pink"
 	#Pentagon because it's human.
 	block
 	(
@@ -171,12 +171,12 @@ myRobot( pose [ 6.0 -8.0 0 0 ] name "r7" color "pink"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 
 )
 
 # RELATIVE (r8)
-myRobot( pose [ 6.0 -9.0 0 0 ] name "r8" color "yellow"
+myRobot( pose [ 6.000 -9.000 0.000 0.000 ] name "r8" color "yellow"
 	#Pentagon because it's human.
 	block
 	(
@@ -189,11 +189,11 @@ myRobot( pose [ 6.0 -9.0 0 0 ] name "r8" color "yellow"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # DOCTOR (r9)
-myRobot( pose [ 6.0 -10.0 0 0 ] name "r9" color "SpringGreen"
+myRobot( pose [ 6.000 -10.000 0.000 0.000 ] name "r9" color "SpringGreen"
 	#Pentagon because it's human.
 	block
 	(
@@ -206,11 +206,11 @@ myRobot( pose [ 6.0 -10.0 0 0 ] name "r9" color "SpringGreen"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 # NURSE (r10)
-myRobot( pose [ 6.0 -11.0 0 0 ] name "r10" color "SeaGreen"
+myRobot( pose [ 6.000 -11.000 0.000 0.000 ] name "r10" color "SeaGreen"
 	#Pentagon because it's human.
 	block
 	(
@@ -223,7 +223,7 @@ myRobot( pose [ 6.0 -11.0 0 0 ] name "r10" color "SeaGreen"
 		z [0 0.5]
 	)
 	#fit shape to this size in meters
-	size [0.4 0.4 0.4]
+	size [0.400 0.400 0.400]
 )
 
 gui_disable 0
