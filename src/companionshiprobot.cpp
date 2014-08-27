@@ -82,9 +82,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = -0.7 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
-
 }
 
 void StageLaser_callback(sensor_msgs::LaserScan msg)
@@ -280,13 +277,12 @@ void coordinateCallback(project1::move mo)
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
 	if (distance< distance_limit){
 		stopMove();
-}
+	}
 
 }
 
 
-void giveCompanionship_callback {
-	ROS_INFO("companion robot is giving companion");
+void giveCompanionship_callback(project1::move) {
 	giveCompanionship();
 }
 

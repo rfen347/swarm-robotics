@@ -142,9 +142,14 @@ int main(int argc, char **argv)
 
 
 		if ( count == 5 ){
-
+			ROS_INFO("5secs passed");
 			resident_wake.publish(Mo);
 
+		}
+
+		if (count == 20){
+			resident_useToilet.publish(Mo);
+			robot_cooking.publish(Mo);
 		}
 
 		cin >>command;

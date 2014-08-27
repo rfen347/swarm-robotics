@@ -287,12 +287,10 @@ void callDoctor(){
 }
 
 void callDoctor_callback(project1::move){
-	ROS_INFO(Medical robot is calling doctor);
 	callDoctor();
 }
 
-void callDoctor_giveMedication(project1::move){
-	ROS_INFO(Medical robot is giving medication);
+void giveMedication_callback(project1::move){
 	giveMedication();
 }
 
@@ -308,6 +306,7 @@ void coordinateCallback(project1::move mo)
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
 	if (distance< distance_limit){
 		stopMove();
+	}
 }
 
 int main(int argc, char **argv)

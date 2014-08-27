@@ -82,9 +82,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = 6.0 + msg.pose.pose.position.x;
 	py =-7.0 + msg.pose.pose.position.y;
 
-	//ROS_INFO("Current x robot 2 is: %f", px);
-	//ROS_INFO("Current y robot 2 is: %f", py);
-
 }
 
 
@@ -289,14 +286,7 @@ void coordinateCallBack(project1::move mo)
 
 }
 
-void coordinateCallback(project1::move mo)
-{
-	ROS_INFO("visitor sees robot at %f %f %f", mo.x, mo.y, mo.theta);
-
-}
-
 void visit_callback(project1::move){
-	ROS_INFO("visitor is visiting");
 	visit();
 }
 

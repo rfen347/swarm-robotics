@@ -82,9 +82,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	px = 2.3 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
-
 }
 
 
@@ -280,12 +277,11 @@ void coordinateCallback(project1::move mo)
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
 	if (distance< distance_limit){
 		stopMove();
-}
+	}
 
 }
 
 void giveEntertainment_callback(project1::move){
-	ROS_INFO("Entertainment robot is entertaining resident");
 	giveEntertainment();
 }
 

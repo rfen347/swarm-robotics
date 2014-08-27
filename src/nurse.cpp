@@ -295,7 +295,6 @@ void coordinateCallback(project1::move mo)
 }
 
 void visit_callback(project1::move){
-	ROS_INFO("Nurse is visiting");
 	visit();
 }
 

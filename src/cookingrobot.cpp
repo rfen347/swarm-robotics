@@ -247,7 +247,7 @@ void navigate(int direction, double distance)
 }
 
 void cook() {
-
+	ROS_INFO("Cooking robot starts cooking");
 	navigate(3,5);
 	// Spin to indicate getting items from fridge
 	spin(40);
@@ -270,9 +270,6 @@ void StageOdom_callback(nav_msgs::Odometry msg)
 	//This is the call back function to process odometry messages coming from Stage. 	
 	px = 5.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
-
-	//ROS_INFO("Current x position is: %f", px);
-	//ROS_INFO("Current y position is: %f", py);
 }
 
 
@@ -285,7 +282,6 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 
 
 void cooking_callback(project1::move) {
-	ROS_INFO("cooking robot starts cooking");
 	cook();
 }
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
