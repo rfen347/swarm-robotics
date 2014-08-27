@@ -277,6 +277,11 @@ void visit(){
 	navigate(2,1);
 }
 
+void visit_callback(project1::move){
+	ROS_INFO("Relative is visiting");
+	visit();
+}
+
 int main(int argc, char **argv)
 {
 
@@ -303,6 +308,8 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_8/
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_8/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_8/base_scan",1000,StageLaser_callback);
+
+ros::Subscriber visit_sub = n.subscribe<project1::move>("robot_8/visit",1000,visit_callback);
 
 ros::Rate loop_rate(loopRate);
 

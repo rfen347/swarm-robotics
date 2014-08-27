@@ -266,6 +266,11 @@ void giveEntertainment(){
 	// Spin to show that the entertainment robot is giving entertainment through the TV.
 }
 
+void giveEntertainment_callback(project1::move){
+	ROS_INFO("Entertainment robot is entertaining resident");
+	giveEntertainment();
+}
+
 int main(int argc, char **argv)
 {
 
@@ -292,6 +297,8 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_5/
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_5/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_5/base_scan",1000,StageLaser_callback);
+
+ros::Subscriber giveEntertainment_sub = n.subscribe<project1::move>("robot_5/giveEntertainment",1000,giveEntertainment_callback);
 
 ros::Rate loop_rate(loopRate);
 

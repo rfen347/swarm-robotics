@@ -277,6 +277,11 @@ void visit(){
 	navigate(0,0);
 }
 
+void visit_callback(project1::move){
+	ROS_INFO("visitor is visiting");
+	visit();
+}
+
 int main(int argc, char **argv)
 {
 
@@ -304,6 +309,8 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_2/
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_2/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_2/base_scan",1000,StageLaser_callback);
 
+ros::Subscriber visit_sub = n.subscribe<project1::move>("robot_2/visit",1000, visit_callback);
+
 ros::Rate loop_rate(loopRate);
 
 //a count of howmany messages we have sent
@@ -325,8 +332,6 @@ while (ros::ok())
 	setOrientation();
 
 	ros::spinOnce();
-
-	//ROS_INFO("Cycle %i - Visitor co-ordinates - (%f, %f)",count,px,py);
 
 	loop_rate.sleep();
 	++count;

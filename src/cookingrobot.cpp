@@ -283,6 +283,11 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 	
 }
 
+void cooking_callback(project1::move) {
+	ROS_INFO("cooking robot starts cooking");
+	cook();
+}
+
 int main(int argc, char **argv)
 {
 
@@ -309,6 +314,9 @@ int main(int argc, char **argv)
 	//subscribe to listen to messages coming from stage
 	ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_1/odom",1000, StageOdom_callback);
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_1/base_scan",1000,StageLaser_callback);
+	
+	// receive topic from schedule
+	ros::Subscriber cooking_sub = n.subscribe<project1::move>("robot_1/cooking",1000,cooking_callback);
 
 	ros::Rate loop_rate(loopRate);
 
@@ -334,11 +342,6 @@ int main(int argc, char **argv)
 
 		loop_rate.sleep();
 		++count;
-		
-		 //TESTING
-		if(count==30){
-			cook();
-		}
 		
 	}
 

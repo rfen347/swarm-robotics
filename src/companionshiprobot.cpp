@@ -269,6 +269,11 @@ void giveCompanionship(){
 	navigate(1,1);
 }
 
+void giveCompanionship_callback {
+	ROS_INFO("companion robot is giving companion");
+	giveCompanionship();
+}
+
 int main(int argc, char **argv)
 {
 
@@ -295,6 +300,8 @@ ros::Publisher RobotNode_stage_pub = n.advertise<geometry_msgs::Twist>("robot_6/
 //subscribe to listen to messages coming from stage
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_6/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_6/base_scan",1000,StageLaser_callback);
+
+ros::Subscriber giveCompanionship_sub = n.subscribe<project1::move>("robot_6/giveCompanionship",1000,giveCompanionship_callback);
 
 ros::Rate loop_rate(loopRate);
 
