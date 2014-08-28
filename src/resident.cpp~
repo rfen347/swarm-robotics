@@ -230,7 +230,6 @@ void navigate(int direction, double distance)
 			loop_rate.sleep();
 		}
 	}
-ROS_INFO("should stop");
 	//Stop the robot's movement once at the destination
 	stopMove();
 
@@ -381,7 +380,7 @@ void goToAmbulance(){
 
 void StageOdom_callback(nav_msgs::Odometry msg)
 {	
-	px = 5.5 + msg.pose.pose.position.x;
+	px = -6.5 + msg.pose.pose.position.x;
 	py = 4.5 + msg.pose.pose.position.y;
 }
 
@@ -404,7 +403,6 @@ void illCallback(std_msgs::String msg){
 		bool ill=true;
 	}
 	else if (msg.data == "normal day"){
-
 		ROS_INFO("normal day starts");
 	}
 	

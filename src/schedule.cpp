@@ -166,20 +166,72 @@ int main(int argc, char **argv)
 			resident_wake.publish(Mo);
 		}
 		
-		
-
+		// resident uses toilet
 		if (count == 55){
 			resident_useToilet.publish(Mo);
+		}
+		
+		// caregiver comes
+		if (count == 150){
+			caregiver_helpShower.publish(Mo);
+		}
+
+		// resident is using sink
+		if (count == 300){
+			resident_useSink.publish(Mo);
+		}
+		
+		// resident goes to shower
+		if (count == 430){
+			resident_shower.publish(Mo);
+		}
+		
+
+		// moving into lounge
+		if (count == 530){
+			resident_bathroomToLounge.publish(Mo);
+			caregiver_helpExercise.publish(Mo);
+		}
+
+		// once in lounge, resident exercises
+		if (count==690){
+			resident_exercise.publish(Mo);
+		}
+	
+		// cooking robot starts making food
+		if (count==800){
 			robot_cooking.publish(Mo);
 		}
 
+		// resident eats
+		if (count==1250){
+			resident_getReadyToEat.publish(Mo);
+		}
+	
+		if(count==1350){
+			resident_eat.publish(Mo);
+			caregiver_helpEat.publish(Mo);
+		}
 		
+		if(count==1400){
+			resident_takeMedication.publish(Mo);
+		}
+
+		if(count==1460){
+			resident_tableToSofa.publish(Mo);
+			caregiver_giveMoralSupport.publish(Mo);
+		}
+
+		if(count==1600){
+			resident_converseWithCaregiver.publish(Mo);
+		}
+
+
 		// another day starts
-		if (count == 2000){
+		if (count == 5000){
 			count=0;
 			ROS_INFO("DAY ENDS");
 		}
-
 
 		ros::spinOnce();
 
