@@ -345,7 +345,7 @@ void acceptCompanionship(){
 void goToBed(){
 	ROS_INFO("Resident goes to bed");
 	navigate(2,1.6);
-	navigate(3,3.5);
+	navigate(3,4);
 	navigate(2,2.5);
 	navigate(1,5);
 	navigate(2,3);
@@ -511,7 +511,7 @@ ros::Subscriber acceptCompanionship_sub = n.subscribe<project1::move>("robot_0/a
 ros::Subscriber goToBed_sub = n.subscribe<project1::move>("robot_0/goToBed",1000, goToBed_callback);
 ros::Subscriber goToAmbulance_sub = n.subscribe<project1::move>("robot_0/goToAmbulance",1000, goToAmbulance_callback);
 
-//ros::Subscriber residentIllsub = n.subscribe<std_msgs::String>("robot_0/ill", 1000, illCallback);
+ros::Subscriber residentIllsub = n.subscribe<std_msgs::String>("robot_0/ill", 1000, illCallback);
 
 ros::Rate loop_rate(loopRate);
 
