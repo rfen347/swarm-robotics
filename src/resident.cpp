@@ -500,6 +500,7 @@ ros::Publisher coordPublisher= n.advertise<project1::move>("robot_0/coord",1000)
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);	
 
+//subscribe to listen to messages coming from the schedule node
 ros::Subscriber wake_sub = n.subscribe<project1::move>("robot_0/wake",1000, wake_callback);
 ros::Subscriber useToilet_sub = n.subscribe<project1::move>("robot_0/useToilet",1000, useToilet_callback);
 ros::Subscriber useSink_sub = n.subscribe<project1::move>("robot_0/useSink",1000, useSink_callback);

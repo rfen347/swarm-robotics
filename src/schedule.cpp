@@ -182,7 +182,7 @@ int main(int argc, char **argv)
 		}*/
 		
 		//Sick day
-		/*if (count== 50){
+		if (count== 50){
 			doctor_visit.publish(Mo);	
 		}
 
@@ -192,13 +192,13 @@ int main(int argc, char **argv)
 		}
 		if (count ==440){
 			resident_takeMedication.publish(Mo);
-		}*/
+		}
 
-		//emergency day
+		/*emergency day
 		
 		if (count == 50){
 			resident_goToAmbulance.publish(Mo);			
-		}
+		}*/
 	
 
 		ros::spinOnce();
