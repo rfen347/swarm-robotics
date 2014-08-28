@@ -163,7 +163,7 @@ int main(int argc, char **argv)
 	
 
 		// add schedule here!!!!!!!!!!!!!!!!!!!
-		if (count == 20){
+		/*if (count == 20){
 			resident_wake.publish(Mo);
 		}
 		
@@ -232,7 +232,7 @@ int main(int argc, char **argv)
 		if (count == 5000){
 			count=0;
 			ROS_INFO("DAY ENDS");
-		}
+		}*/
 		
 
 		// odd day
@@ -294,9 +294,9 @@ int main(int argc, char **argv)
 		if(count==1460){
 			resident_tableToSofa.publish(Mo);
 			caregiver_giveMoralSupport.publish(Mo);
-		}*/
+		}
 
-		/*if(count==1600){
+		if(count==1600){
 			resident_converseWithCaregiver.publish(Mo);
 		}
 		
@@ -307,12 +307,12 @@ int main(int argc, char **argv)
 		
 		if (count == 1850){
 			resident_acceptCompanionship.publish(Mo);
-		}
+		}*/
 
-		if (count == 1900){
+		//if (count == 1900){
 		
-		}		
-		*/
+		//}		
+		
 
 		//Sick day
 		/*if (count== 50){
@@ -329,16 +329,29 @@ int main(int argc, char **argv)
 
 
 		//emergency day
+
+		if (count== 50){
+			doctor_visit.publish(Mo);	
+		}
+
+		if (count == 65){
+			nurse_visit.publish(Mo);
+					
+		}
+		if (count ==440){
+			resident_takeMedication.publish(Mo);
+		}
 		
-		/*if (count == 50){
+		if (count == 500){
 			resident_goToAmbulance.publish(Mo);			
 		}
+		
 	
 
 		ros::spinOnce();
 
 		loop_rate.sleep();
-		++count;*/
+		++count;
 	}
 
 	return 0;
