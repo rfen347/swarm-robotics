@@ -276,7 +276,7 @@ void visit(){
 	navigate(3,10);
 	navigate(2,2);
 	//Set back to original orientation
-	setOrientation(0);
+	rotateToAngle(0);
 }
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
 void coordinateCallback(project1::move mo)

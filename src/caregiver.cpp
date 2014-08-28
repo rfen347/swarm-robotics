@@ -307,7 +307,7 @@ void helpShower(){
 //Schedule to call when resident is to exercise
 void helpExercise(){
 
-	ROS_INFO("Caregiver helps resident to exercise");
+	ROS_INFO("Caregiver helps resident exercise");
 
 	navigate(1,2.2);
 	navigate(0,5);

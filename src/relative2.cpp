@@ -267,7 +267,7 @@ void visit(){
 	navigate(1,11);
 	navigate(2,8.5);
 	navigate(1,1);
-	
+
 	ROS_INFO("The second relative eats");
 	spin(110);
 	// Leave
@@ -276,7 +276,7 @@ void visit(){
 	navigate(3,11);
 	navigate(2,1.5);
 	//Set back to original orientation
-	setOrientation(0);
+	rotateToAngle(0);
 }
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
 void coordinateCallback(project1::move mo)
