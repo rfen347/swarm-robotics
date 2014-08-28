@@ -252,41 +252,51 @@ int main(int argc, char **argv)
 		
 		// emergency day
 		if (command == "em"){
+
+		if (count == 10) {
+			robot_callDoctor.publish(Mo);
+		}
 		
-		if (count== 10){
+		if (count== 50){
 			doctor_visit.publish(Mo);	
 		}
 
-		if (count == 25){
+		if (count == 75){
 			nurse_visit.publish(Mo);
 					
 		}
-		if (count ==400){
+		if (count ==450){
 			resident_takeMedication.publish(Mo);
 		}
 		
-		if (count == 460){
+		if (count == 510){
 			resident_goToAmbulance.publish(Mo);	
 		} 
 		
-		if (count == 850){
+		if (count == 900){
 			ROS_INFO("Resident is dead on his way to the hospitl, RIP");	
 		} }
 
+		// sick day
 		if (command == "ill"){
-		if (count== 10){
+
+		if (count == 10) {
+			robot_callDoctor.publish(Mo);
+		}
+
+		if (count== 60){
 			doctor_visit.publish(Mo);	
 		}
 
-		if (count == 25){
+		if (count == 75){
 			nurse_visit.publish(Mo);
 					
 		}
-		if (count == 400){
+		if (count == 450){
 			resident_takeMedication.publish(Mo);
 		}
 
-		if (count == 850){
+		if (count == 900){
 			count=0;
 			ROS_INFO("DAY ENDS");
 		}}
