@@ -10,7 +10,6 @@
 #include <time.h>
 #include <string>
 
-
 using namespace std;
 //velocity of the robot
 double linear_x;
@@ -67,18 +66,6 @@ int main(int argc, char **argv)
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
 
 	// advertise topics to other nodes
-	// to CookingRobot R1
-	ros::Publisher robot_cooking = n.advertise<project1::move>("robot_1/cooking",1000);
-
-	// to CompainionRobot R6
-	ros::Publisher robot_giveCompanionship = n.advertise<project1::move>("robot_6/giveCompanionship",1000);
-
-	// to MedicalRobot R4
-	ros::Publisher robot_giveMedication = n.advertise<project1::move>("robot_4/giveMedication",1000);
-	ros::Publisher robot_callDoctor = n.advertise<project1::move>("robot_4/callDoctor",1000);
-
-	// to EntertainmentRobot R5
-	ros::Publisher robot_giveEntertainment = n.advertise<project1::move>("robot_5/giveEntertainment",1000);
 
 	// to Resident R0
 	ros::Publisher resident_wake = n.advertise<project1::move>("robot_0/wake",1000);
@@ -97,18 +84,30 @@ int main(int argc, char **argv)
 	ros::Publisher resident_goToBed = n.advertise<project1::move>("robot_0/goToBed",1000);
 	ros::Publisher resident_goToAmbulance = n.advertise<project1::move>("robot_0/goToAmbulance",1000);
 
+	// to CookingRobot R1
+	ros::Publisher robot_cooking = n.advertise<project1::move>("robot_1/cooking",1000);
 
 	// to Visitor R2
 	ros::Publisher visitor_visit = n.advertise<project1::move>("robot_2/visit",1000);
 
-	// to Relatives R8
-	ros::Publisher relative_visit = n.advertise<project1::move>("robot_8/visit",1000);
+	// to MedicalRobot R4
+	ros::Publisher robot_giveMedication = n.advertise<project1::move>("robot_4/giveMedication",1000);
+	ros::Publisher robot_callDoctor = n.advertise<project1::move>("robot_4/callDoctor",1000);
+
+	// to EntertainmentRobot R5
+	ros::Publisher robot_giveEntertainment = n.advertise<project1::move>("robot_5/giveEntertainment",1000);
+
+	// to CompainionRobot R6
+	ros::Publisher robot_giveCompanionship = n.advertise<project1::move>("robot_6/giveCompanionship",1000);
 
 	// to Caregiver R7
 	ros::Publisher caregiver_helpShower = n.advertise<project1::move>("robot_7/helpShower",1000);
 	ros::Publisher caregiver_helpEat = n.advertise<project1::move>("robot_7/helpEat",1000);
 	ros::Publisher caregiver_helpExercise = n.advertise<project1::move>("robot_7/helpExercise",1000);
 	ros::Publisher caregiver_giveMoralSupport = n.advertise<project1::move>("robot_7/giveMoralSupport",1000);
+
+	// to Relatives R8
+	ros::Publisher relative_visit = n.advertise<project1::move>("robot_8/visit",1000);
 
 	// to Doctor R9
 	ros::Publisher doctor_visit = n.advertise<project1::move>("robot_9/visit",1000);
@@ -140,7 +139,7 @@ int main(int argc, char **argv)
         
 		//publish the message
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
-		/*if (count == 1){
+		if (count == 1){
 
 			cin >>command;
 
@@ -159,10 +158,9 @@ int main(int argc, char **argv)
 			msg.data = ss.str();
 			resident_ill.publish(msg);
 
-		}*/
+		}
 	
-
-		// add schedule here!!!!!!!!!!!!!!!!!!!
+		if (command == "n"){
 		if (count == 20){
 			resident_wake.publish(Mo);
 		}
@@ -206,6 +204,7 @@ int main(int argc, char **argv)
 
 		// resident eats
 		if (count==1250){
+			robot_giveMedication.publish(Mo);
 			resident_getReadyToEat.publish(Mo);
 		}
 	
@@ -225,6 +224,7 @@ int main(int argc, char **argv)
 
 		if(count==1600){
 			resident_converseWithCaregiver.publish(Mo);
+			robot_giveEntertainment.publish(Mo);
 		}
 
 		if(count==1650){
@@ -236,36 +236,60 @@ int main(int argc, char **argv)
 		}
 
 		if(count==2200){
+			robot_giveCompanionship.publish(Mo);
+		}
+
+		if(count==2300){
 			resident_goToBed.publish(Mo);
 		}
 
 		// another day starts
-		if (count == 5000){
+		if (count == 2550){
 			count=0;
 			ROS_INFO("DAY ENDS");
+		} 
 		}
 		
-		/*//Sick day
-		if (count== 50){
+		// emergency day
+		if (command == "em"){
+		
+		if (count== 10){
 			doctor_visit.publish(Mo);	
 		}
 
-
-		if (count == 60){
+		if (count == 25){
 			nurse_visit.publish(Mo);
 					
 		}
-		if (count ==440){
+		if (count ==400){
+			resident_takeMedication.publish(Mo);
+		}
+		
+		if (count == 460){
+			resident_goToAmbulance.publish(Mo);	
+		} 
+		
+		if (count == 850){
+			ROS_INFO("Resident is dead on his way to the hospitl, RIP");	
+		} }
+
+		if (command == "ill"){
+		if (count== 10){
+			doctor_visit.publish(Mo);	
+		}
+
+		if (count == 25){
+			nurse_visit.publish(Mo);
+					
+		}
+		if (count == 400){
 			resident_takeMedication.publish(Mo);
 		}
 
-		emergency day
-		
-		if (count == 50){
-			resident_goToAmbulance.publish(Mo);			
-		}*/
-	
-
+		if (count == 850){
+			count=0;
+			ROS_INFO("DAY ENDS");
+		}}
 
 		ros::spinOnce();
 

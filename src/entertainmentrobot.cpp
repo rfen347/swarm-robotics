@@ -261,7 +261,7 @@ void navigate(int direction, double distance)
 void giveEntertainment(){
 	ROS_INFO("Entertainment robot gives resident entertainment");
 	// Spin to show that the entertainment robot is giving entertainment through the TV.
-	spin(80);
+	spin(590);
 }
 
 

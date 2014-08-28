@@ -266,7 +266,7 @@ void visit(){
 	navigate(1,6);
 	navigate(2,1.1);
 	// Spin to show that visitor is watching TV and talking to resident.
-	spin(210);
+	spin(230);
 	navigate(0,1.1);
 	navigate(3,6);
 	navigate(0,4);
