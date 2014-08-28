@@ -163,7 +163,7 @@ int main(int argc, char **argv)
 	
 
 		// add schedule here!!!!!!!!!!!!!!!!!!!
-		/*if (count == 20){
+		if (count == 20){
 			resident_wake.publish(Mo);
 		}
 		
@@ -232,17 +232,87 @@ int main(int argc, char **argv)
 		if (count == 5000){
 			count=0;
 			ROS_INFO("DAY ENDS");
-		}*/
+		}
 		
 
 		// odd day
-		if (count == 50){
+
+		/*if (count == 20){
+			resident_wake.publish(Mo);
+		}
+		
+		// resident uses toilet
+		if (count == 55){
+			resident_useToilet.publish(Mo);
+		}
+		
+		// caregiver comes
+		if (count == 150){
+			caregiver_helpShower.publish(Mo);
+		}
+
+		// resident is using sink
+		if (count == 300){
+			resident_useSink.publish(Mo);
+		}
+		
+		// resident goes to shower
+		if (count == 430){
+			resident_shower.publish(Mo);
+		}
+
+		// moving into lounge
+		if (count == 530){
+			resident_bathroomToLounge.publish(Mo);
+			caregiver_helpExercise.publish(Mo);
+		}
+
+		// once in lounge, resident exercises
+		if (count==690){
+			resident_exercise.publish(Mo);
+		}
+	
+		// cooking robot starts making food
+		if (count==800){
+			robot_cooking.publish(Mo);
+		}
+
+		// resident eats
+		if (count==1250){
+			resident_getReadyToEat.publish(Mo);
+		}
+	
+		if(count==1350){
+			resident_eat.publish(Mo);
+			caregiver_helpEat.publish(Mo);
+		}
+		
+		if(count==1400){
+			resident_takeMedication.publish(Mo);
+		}
+
+		if(count==1460){
+			resident_tableToSofa.publish(Mo);
+			caregiver_giveMoralSupport.publish(Mo);
+		}*/
+
+		/*if(count==1600){
+			resident_converseWithCaregiver.publish(Mo);
+		}
+		
+
+		if (count == 1800){
 			robot_giveCompanionship.publish(Mo);
 		}
 		
-		if (count == 60){
-			
+		if (count == 1850){
+			resident_acceptCompanionship.publish(Mo);
 		}
+
+		if (count == 1900){
+		
+		}		
+		*/
 
 		//Sick day
 		/*if (count== 50){
@@ -260,7 +330,7 @@ int main(int argc, char **argv)
 
 		//emergency day
 		
-		if (count == 50){
+		/*if (count == 50){
 			resident_goToAmbulance.publish(Mo);			
 		}
 	
@@ -268,7 +338,7 @@ int main(int argc, char **argv)
 		ros::spinOnce();
 
 		loop_rate.sleep();
-		++count;
+		++count;*/
 	}
 
 	return 0;
