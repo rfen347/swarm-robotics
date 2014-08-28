@@ -97,6 +97,7 @@ int main(int argc, char **argv)
 	ros::Publisher resident_goToBed = n.advertise<project1::move>("robot_0/goToBed",1000);
 	ros::Publisher resident_goToAmbulance = n.advertise<project1::move>("robot_0/goToAmbulance",1000);
 
+
 	// to Visitor R2
 	ros::Publisher visitor_visit = n.advertise<project1::move>("robot_2/visit",1000);
 
@@ -226,12 +227,45 @@ int main(int argc, char **argv)
 			resident_converseWithCaregiver.publish(Mo);
 		}
 
+		if(count==1650){
+			visitor_visit.publish(Mo);
+		}
+
+		if(count==1700){
+			relative_visit.publish(Mo);
+		}
+
+		if(count==2200){
+			resident_goToBed.publish(Mo);
+		}
 
 		// another day starts
 		if (count == 5000){
 			count=0;
 			ROS_INFO("DAY ENDS");
 		}
+		
+		/*//Sick day
+		if (count== 50){
+			doctor_visit.publish(Mo);	
+		}
+
+
+		if (count == 60){
+			nurse_visit.publish(Mo);
+					
+		}
+		if (count ==440){
+			resident_takeMedication.publish(Mo);
+		}
+
+		emergency day
+		
+		if (count == 50){
+			resident_goToAmbulance.publish(Mo);			
+		}*/
+	
+
 
 		ros::spinOnce();
 

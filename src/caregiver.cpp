@@ -340,7 +340,7 @@ void giveMoralSupport(){
 	// Then leave the house.
 	navigate(0,1.5);
 	navigate(3,7);
-	navigate(0,3);
+	navigate(0,2.5);
 	navigate(3,4.5);
 	navigate(2,1);
 }

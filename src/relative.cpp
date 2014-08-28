@@ -263,19 +263,19 @@ void navigate(int direction, double distance)
 //Schedule to call when the relative is to visit the resident
 void visit(){
 	ROS_INFO("Relative(r8) Enters");
-	navigate(0,1);
-	navigate(1,5.5);
-	navigate(2,7.5);
-	navigate(1,7);
-	navigate(0,1);
+	navigate(0,1.5);
+	navigate(1,6.5);
+	navigate(2,4);
+	navigate(1,6);
+	navigate(2,0.5);
 	// Spin to show that relative is talking to resident.
-	spin(60);
+	spin(120);
 	// Leave
-	navigate(2,1);
-	navigate(3,7);
-	navigate(0,7.5);
-	navigate(3,5.5);
-	navigate(2,1);
+	navigate(0,0.5);
+	navigate(3,6);
+	navigate(0,4);
+	navigate(3,6.5);
+	navigate(2,1.5);
 }
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
 void coordinateCallback(project1::move mo)

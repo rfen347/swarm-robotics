@@ -318,7 +318,7 @@ void takeMedication(){
 // Schedule to call for the resident to go to the sofa
 void tableToSofa(){
 	ROS_INFO("Resident moves to the sofa");
-	navigate(1,3.5);
+	navigate(1,3.8);
 	navigate(0,1.6);
 	navigate(1,0);
 }
@@ -326,13 +326,7 @@ void tableToSofa(){
 // Schedule to call for the resident to talk to the caregiver
 void converseWithCaregiver(){
 	ROS_INFO("Resident converses with the caregiver");
-	spin(50);
-}
-
-// Schedule to call for the resident to talk to the visitors
-void converseWithVisitors(){
-	ROS_INFO("Resident converses with visitors");
-	spin(60);
+	spin(590);
 }
 
 // Schedule to call for the resident to accept entertainment from the entertainment robot
@@ -378,6 +372,7 @@ void goToAmbulance(){
 	navigate(3,7);
 }
 
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {	
 	px = -6.5 + msg.pose.pose.position.x;
@@ -390,7 +385,7 @@ void StageLaser_callback(sensor_msgs::LaserScan msg)
 }
 
 
-void illCallback(std_msgs::String msg){
+/*void illCallback(std_msgs::String msg){
 
 	if (msg.data == "emergency"){
 
@@ -406,7 +401,7 @@ void illCallback(std_msgs::String msg){
 		ROS_INFO("normal day starts");
 	}
 	
-}
+} */
 
 void wake_callback(project1::move){
 	wakeUp();
@@ -469,6 +464,7 @@ void goToAmbulance_callback(project1::move){
 	goToAmbulance();
 }
 
+
 int main(int argc, char **argv)
 {
 // Create a schedule object
@@ -498,6 +494,7 @@ ros::Publisher coordPublisher= n.advertise<project1::move>("robot_0/coord",1000)
 ros::Subscriber StageOdo_sub = n.subscribe<nav_msgs::Odometry>("robot_0/odom",1000, StageOdom_callback);
 ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_0/base_scan",1000,StageLaser_callback);	
 
+//subscribe to listen to messages coming from the schedule node
 ros::Subscriber wake_sub = n.subscribe<project1::move>("robot_0/wake",1000, wake_callback);
 ros::Subscriber useToilet_sub = n.subscribe<project1::move>("robot_0/useToilet",1000, useToilet_callback);
 ros::Subscriber useSink_sub = n.subscribe<project1::move>("robot_0/useSink",1000, useSink_callback);
@@ -514,7 +511,7 @@ ros::Subscriber acceptCompanionship_sub = n.subscribe<project1::move>("robot_0/a
 ros::Subscriber goToBed_sub = n.subscribe<project1::move>("robot_0/goToBed",1000, goToBed_callback);
 ros::Subscriber goToAmbulance_sub = n.subscribe<project1::move>("robot_0/goToAmbulance",1000, goToAmbulance_callback);
 
-ros::Subscriber residentIllsub = n.subscribe<std_msgs::String>("robot_0/ill", 1000, illCallback);
+//ros::Subscriber residentIllsub = n.subscribe<std_msgs::String>("robot_0/ill", 1000, illCallback);
 
 ros::Rate loop_rate(loopRate);
 
