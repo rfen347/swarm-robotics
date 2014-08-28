@@ -14,6 +14,8 @@ killall R7
 killall R8
 killall R9
 killall R10
+killall R11
+killall R12
 killall stageros
 killall roscore
 
@@ -36,6 +38,8 @@ rosrun project1 R7 &
 rosrun project1 R8 &
 rosrun project1 R9 &
 rosrun project1 R10 &
+rosrun project1 R11 &
+rosrun project1 R12 &
 
 cd project1
 
@@ -54,6 +58,8 @@ killall R7
 killall R8
 killall R9
 killall R10
+killall R11
+killall R12
 killall stageros
 killall roscore
 
