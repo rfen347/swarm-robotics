@@ -15,10 +15,10 @@ killall R8
 killall R9
 killall R10
 killall stageros
-#killall roscore
+killall roscore
 
 # run roscore in another terminal, it takes so long to run roscore every single time
-#roscore &
+roscore &
 cd project1
 rosmake
 roscd
@@ -55,5 +55,5 @@ killall R8
 killall R9
 killall R10
 killall stageros
-#killall roscore
+killall roscore
 
