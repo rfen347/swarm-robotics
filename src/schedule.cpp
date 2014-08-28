@@ -274,7 +274,7 @@ int main(int argc, char **argv)
 		} 
 		
 		if (count == 900){
-			ROS_INFO("Resident is dead on his way to the hospitl, RIP");	
+			ROS_INFO("Resident is dead on his way to the hospital, RIP");	
 		} }
 
 		// sick day
