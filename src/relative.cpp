@@ -262,16 +262,16 @@ void navigate(int direction, double distance)
 
 //Schedule to call when the relative is to visit the resident
 void visit(){
-	ROS_INFO("Relative(r8) Enters");
+	ROS_INFO("First Relative Enters");
 	navigate(0,1.5);
 	navigate(1,6.5);
 	navigate(2,4);
 	navigate(1,6);
 	navigate(2,0.5);	
-	ROS_INFO("Relative(r8) Talks with the resident");
+	ROS_INFO("First Relative talks with the resident");
 	// Spin to show that relative is talking to resident.
 	spin(120);	
-	ROS_INFO("Relative(r8) leaves the house");
+	ROS_INFO("First Relative leaves the house");
 	// Leave
 	navigate(0,0.5);
 	navigate(3,6);

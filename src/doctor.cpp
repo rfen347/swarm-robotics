@@ -262,7 +262,7 @@ void navigate(int direction, double distance)
 
 //Schedule to call when the resident gets ill
 void visit(){
-	ROS_INFO("Doctor(r9) enters when resident is ill");
+	ROS_INFO("Doctor enters when resident is ill");
 	navigate(0,1);
 	navigate(1,6.5);
 	navigate(2,10.5);
@@ -271,7 +271,7 @@ void visit(){
 	// Spin to show that the doctor is treating the resident.
 	spin(60);
 	// Leave
-	ROS_INFO("Doctor(r9) leaves the house");
+	ROS_INFO("Doctor leaves the house");
 	navigate(0,3);
 	navigate(3,7.1);
 	navigate(0,10.5);
