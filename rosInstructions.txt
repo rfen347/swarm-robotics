@@ -22,6 +22,11 @@ Open new terminal:
 >>rosrun stage_ros stageros world/myworld.world
 
 
+ROS Testing stuff:
+
+rostest test/resident.test
+
+
 Git command line stuff:
 
 git clone <github link>  		--- do this only initially
