@@ -97,6 +97,7 @@ int main(int argc, char **argv)
 	ros::Publisher resident_goToBed = n.advertise<project1::move>("robot_0/goToBed",1000);
 	ros::Publisher resident_goToAmbulance = n.advertise<project1::move>("robot_0/goToAmbulance",1000);
 
+
 	// to Visitor R2
 	ros::Publisher visitor_visit = n.advertise<project1::move>("robot_2/visit",1000);
 
@@ -162,7 +163,7 @@ int main(int argc, char **argv)
 	
 
 		// add schedule here!!!!!!!!!!!!!!!!!!!
-		if (count == 20){
+		/*if (count == 20){
 			resident_wake.publish(Mo);
 		}
 		
@@ -178,7 +179,22 @@ int main(int argc, char **argv)
 		if (count == 2000){
 			count=0;
 			ROS_INFO("DAY ENDS");
+		}*/
+		
+		//Sick day
+		if (count== 50){
+			doctor_visit.publish(Mo);	
+			
 		}
+
+		if (count == 60){
+			nurse_visit.publish(Mo);
+					
+		}
+		if (count ==440){
+			resident_takeMedication.publish(Mo);
+		}
+		//emergency day
 
 
 		ros::spinOnce();

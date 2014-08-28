@@ -230,7 +230,6 @@ void navigate(int direction, double distance)
 			loop_rate.sleep();
 		}
 	}
-ROS_INFO("should stop");
 	//Stop the robot's movement once at the destination
 	stopMove();
 
@@ -379,6 +378,7 @@ void goToAmbulance(){
 	navigate(3,7);
 }
 
+
 void StageOdom_callback(nav_msgs::Odometry msg)
 {	
 	px = -6.5 + msg.pose.pose.position.x;
@@ -469,6 +469,7 @@ void goToBed_callback(project1::move){
 void goToAmbulance_callback(project1::move){
 	goToAmbulance();
 }
+
 
 int main(int argc, char **argv)
 {
