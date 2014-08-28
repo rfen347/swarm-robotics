@@ -227,7 +227,7 @@ myRobot( pose [ 6.000 -11.000 0.000 0.000 ] name "r10" color "SeaGreen"
 )
 
 # THE SECOND VISITOR (r11)
-myRobot( pose [ 6.000 -13.000 0.000 0.000 ] name "r11" color "Brown"
+myRobot( pose [ 6.000 -13.000 0.000 0.000 ] name "r11" color "orange"
 	#Pentagon because it's human.
 	block
 	(
@@ -244,7 +244,7 @@ myRobot( pose [ 6.000 -13.000 0.000 0.000 ] name "r11" color "Brown"
 )
 
 # THE SECOND RELATIVE (r12)
-myRobot( pose [ 6.000 -14.000 0.000 0.000 ] name "r12" color "grey"
+myRobot( pose [ 6.000 -14.000 0.000 0.000 ] name "r12" color "yellow"
 	#Pentagon because it's human.
 	block
 	(
