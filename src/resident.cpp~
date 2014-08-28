@@ -230,7 +230,6 @@ void navigate(int direction, double distance)
 			loop_rate.sleep();
 		}
 	}
-ROS_INFO("should stop");
 	//Stop the robot's movement once at the destination
 	stopMove();
 

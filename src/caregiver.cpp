@@ -294,36 +294,36 @@ void helpShower(){
 	navigate(0,1);
 	navigate(1,4.5);
 	navigate(2,10.5);
-	navigate(1,3);
+	navigate(1,2.7);
 	navigate(2,5);
-	navigate(3,3);
+	navigate(3,2);
 	// Spin to show that caregiver is helping the resident shower.
 	spin(40);
 
 
 }
 
-//Schedule to call when resident is to eat a meal
-void helpEat(){
-	ROS_INFO("Caregiver helps resident to eat meal");
+//Schedule to call when resident is to exercise
+void helpExercise(){
 
-	navigate(1,3);
+	ROS_INFO("Caregiver helps resident to exercise");
+
+	navigate(1,2.2);
 	navigate(0,5);
 	navigate(3,1);
 	navigate(0,3);
-	// Spin to show that caregiver is helping the resident eat.
-	spin(40);
+	navigate(3,1);
+	// Spin to show that caregiver is helping the resident exercise.
+	spin(450);
 
 }
 
-//Schedule to call when resident is to exercise
-void helpExercise(){
-	ROS_INFO("Caregiver helps resident with exercise");
-	navigate(3,1.5);
-	navigate(0,6);
-	navigate(2,9);
-	navigate(0,9);
-	navigate(2,9);
+//Schedule to call when resident is to eat a meal
+void helpEat(){
+	ROS_INFO("Caregiver helps resident to eat");
+	navigate(1,1);
+	// Spin to show that caregiver is helping the resident exercise.
+	spin(40);
 }
 
 //Schedule to call when resident needs conversation or moral support
@@ -332,12 +332,13 @@ void giveMoralSupport(){
 
 	navigate(1,2);
 	navigate(0,3);
-	navigate(1,4.5);
-	navigate(0,1);
+	navigate(1,3);
+	ROS_INFO("Caregiver is talking to resident");
 	// Spin to show that caregiver is talking to resident.
 	spin(50);
+	ROS_INFO("Caregiver leaves the house");
 	// Then leave the house.
-	navigate(0,3.5);
+	navigate(0,1.5);
 	navigate(3,7);
 	navigate(0,3);
 	navigate(3,4.5);

@@ -326,7 +326,7 @@ void tableToSofa(){
 // Schedule to call for the resident to talk to the caregiver
 void converseWithCaregiver(){
 	ROS_INFO("Resident converses with the caregiver");
-	spin(50);
+	spin(200);
 }
 
 // Schedule to call for the resident to talk to the visitors
