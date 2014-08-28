@@ -258,7 +258,7 @@ void navigate(int direction, double distance)
 
 //Schedule to call when resident needs entertainment
 void giveCompanionship(){
-	ROS_INFO("Resident uses skype with the Companionship robot");
+	ROS_INFO("Companionship robot moves to the resident");
 	navigate(3,1);
 	// Spin to show that it is running *generic video messaging service*.
 	spin(50); // spin for 5 seconds
