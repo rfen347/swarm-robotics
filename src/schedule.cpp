@@ -141,22 +141,32 @@ int main(int argc, char **argv)
 		RobotNode_stage_pub.publish(RobotNode_cmdvel);
 		if (count == 1){
 
-			cin >>command;
+			while (1 < 2){
+				cin >>command;
 
-			std::stringstream ss;
+				std::stringstream ss;
 
-			if(command=="ill"){
-				ss << "call Ill";
+				if(command=="ill"){
+					ss << "call Ill";
+					msg.data = ss.str();
+					resident_ill.publish(msg);
+					break;
+				}
+				else if(command=="em"){
+					ss << "emergency";
+					msg.data = ss.str();
+					resident_ill.publish(msg);
+					break;
+				}
+				else if(command=="n"){
+					ss << "normal day";
+					msg.data = ss.str();
+					resident_ill.publish(msg);
+					break;
+				} else {
+					ROS_INFO("invalid input, please use either n, ill, or em");
+				}
 			}
-			else if(command=="em"){
-				ss << "emergency";
-			}
-			else if(command=="n"){
-				ss << "normal day";
-			}
-
-			msg.data = ss.str();
-			resident_ill.publish(msg);
 
 		}
 	
