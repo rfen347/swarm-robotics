@@ -148,18 +148,21 @@ int main(int argc, char **argv)
 				std::stringstream ss;
 
 				if(command=="ill"){
+					ROS_INFO("Ill Day Selected");
 					ss << "call Ill";
 					msg.data = ss.str();
 					resident_ill.publish(msg);
 					break;
 				}
 				else if(command=="em"){
+					ROS_INFO("Emergency Day Selected");
 					ss << "emergency";
 					msg.data = ss.str();
 					resident_ill.publish(msg);
 					break;
 				}
 				else if(command=="n"){
+					ROS_INFO("Normal Day Selected");
 					ss << "normal day";
 					msg.data = ss.str();
 					resident_ill.publish(msg);
