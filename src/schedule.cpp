@@ -67,18 +67,6 @@ int main(int argc, char **argv)
 	ros::Subscriber StageLaser_sub = n.subscribe<sensor_msgs::LaserScan>("robot_3/base_scan",1000,StageLaser_callback);
 
 	// advertise topics to other nodes
-	// to CookingRobot R1
-	ros::Publisher robot_cooking = n.advertise<project1::move>("robot_1/cooking",1000);
-
-	// to CompainionRobot R6
-	ros::Publisher robot_giveCompanionship = n.advertise<project1::move>("robot_6/giveCompanionship",1000);
-
-	// to MedicalRobot R4
-	ros::Publisher robot_giveMedication = n.advertise<project1::move>("robot_4/giveMedication",1000);
-	ros::Publisher robot_callDoctor = n.advertise<project1::move>("robot_4/callDoctor",1000);
-
-	// to EntertainmentRobot R5
-	ros::Publisher robot_giveEntertainment = n.advertise<project1::move>("robot_5/giveEntertainment",1000);
 
 	// to Resident R0
 	ros::Publisher resident_wake = n.advertise<project1::move>("robot_0/wake",1000);
@@ -97,18 +85,30 @@ int main(int argc, char **argv)
 	ros::Publisher resident_goToBed = n.advertise<project1::move>("robot_0/goToBed",1000);
 	ros::Publisher resident_goToAmbulance = n.advertise<project1::move>("robot_0/goToAmbulance",1000);
 
+	// to CookingRobot R1
+	ros::Publisher robot_cooking = n.advertise<project1::move>("robot_1/cooking",1000);
 
 	// to Visitor R2
 	ros::Publisher visitor_visit = n.advertise<project1::move>("robot_2/visit",1000);
 
-	// to Relatives R8
-	ros::Publisher relative_visit = n.advertise<project1::move>("robot_8/visit",1000);
+	// to MedicalRobot R4
+	ros::Publisher robot_giveMedication = n.advertise<project1::move>("robot_4/giveMedication",1000);
+	ros::Publisher robot_callDoctor = n.advertise<project1::move>("robot_4/callDoctor",1000);
+
+	// to EntertainmentRobot R5
+	ros::Publisher robot_giveEntertainment = n.advertise<project1::move>("robot_5/giveEntertainment",1000);
+
+	// to CompainionRobot R6
+	ros::Publisher robot_giveCompanionship = n.advertise<project1::move>("robot_6/giveCompanionship",1000);
 
 	// to Caregiver R7
 	ros::Publisher caregiver_helpShower = n.advertise<project1::move>("robot_7/helpShower",1000);
 	ros::Publisher caregiver_helpEat = n.advertise<project1::move>("robot_7/helpEat",1000);
 	ros::Publisher caregiver_helpExercise = n.advertise<project1::move>("robot_7/helpExercise",1000);
 	ros::Publisher caregiver_giveMoralSupport = n.advertise<project1::move>("robot_7/giveMoralSupport",1000);
+
+	// to Relatives R8
+	ros::Publisher relative_visit = n.advertise<project1::move>("robot_8/visit",1000);
 
 	// to Doctor R9
 	ros::Publisher doctor_visit = n.advertise<project1::move>("robot_9/visit",1000);
@@ -181,6 +181,16 @@ int main(int argc, char **argv)
 			ROS_INFO("DAY ENDS");
 		}*/
 		
+
+		// odd day
+		if (count == 50){
+			robot_giveCompanionship.publish(Mo);
+		}
+		
+		if (count == 60){
+			
+		}
+
 		//Sick day
 		/*if (count== 50){
 			doctor_visit.publish(Mo);	
