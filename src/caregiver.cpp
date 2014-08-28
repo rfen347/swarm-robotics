@@ -343,6 +343,8 @@ void giveMoralSupport(){
 	navigate(0,2.5);
 	navigate(3,4.5);
 	navigate(2,1);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 void helpShower_callback(project1::move) {

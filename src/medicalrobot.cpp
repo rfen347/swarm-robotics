@@ -275,6 +275,8 @@ void giveMedication(){
 	navigate(3,3);
 	navigate(2,1);
 	navigate(3,1);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 //Schedule to call when resident is ill and doctor is needed
@@ -284,6 +286,9 @@ void callDoctor(){
 	// Spin to show robot is using the phone.
 	spin(50);
 	navigate(0,0.6);
+	//Set back to original orientation
+	rotateToAngle(0);
+
 }
 
 void callDoctor_callback(project1::move){

@@ -349,6 +349,8 @@ void goToBed(){
 	navigate(2,2.5);
 	navigate(1,5);
 	navigate(2,3);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 // Schedule to call for the resident to sleep
