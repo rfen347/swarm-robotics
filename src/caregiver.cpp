@@ -341,7 +341,7 @@ void giveMoralSupport(){
 	navigate(0,1.5);
 	navigate(3,7);
 	navigate(0,2.5);
-	navigate(3,4.5);
+	navigate(3,4.4);
 	navigate(2,0.5);
 	//Set back to original orientation
 	rotateToAngle(0);

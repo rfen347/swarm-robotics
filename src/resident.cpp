@@ -341,6 +341,15 @@ void acceptCompanionship(){
 	spin(50);
 }
 
+// Schedule to call for the resident to sleep
+void goToSleep(){
+	//Set back to original orientation
+	rotateToAngle(0);
+
+	ROS_INFO("Resident is sleeping");
+}
+
+
 // Schedule to call for the resident to go to bed
 void goToBed(){
 	ROS_INFO("Resident goes to bed");
@@ -348,16 +357,10 @@ void goToBed(){
 	navigate(3,4);
 	navigate(2,2.5);
 	navigate(1,5.2);
-	navigate(2,3);
-	//Set back to original orientation
-	rotateToAngle(0);
+	navigate(2,3.1);
+	goToSleep();
 }
 
-// Schedule to call for the resident to sleep
-void sleep(){
-	ROS_INFO("Resident is sleeping");
-	// No movement needed
-}
 
 // Schedule to call for the resident to get sick
 void getSick(){
@@ -466,6 +469,9 @@ void goToAmbulance_callback(project1::move){
 	goToAmbulance();
 }
 
+void goToSleep_callback(project1::move){
+	goToSleep();
+}
 
 int main(int argc, char **argv)
 {
@@ -512,6 +518,7 @@ ros::Subscriber acceptEntertainment_sub = n.subscribe<project1::move>("robot_0/a
 ros::Subscriber acceptCompanionship_sub = n.subscribe<project1::move>("robot_0/acceptCompanionship",1000, acceptCompanionship_callback);
 ros::Subscriber goToBed_sub = n.subscribe<project1::move>("robot_0/goToBed",1000, goToBed_callback);
 ros::Subscriber goToAmbulance_sub = n.subscribe<project1::move>("robot_0/goToAmbulance",1000, goToAmbulance_callback);
+ros::Subscriber goToSleep_sub = n.subscribe<project1::move>("robot_0/goToSleep",1000, goToSleep_callback);
 
 //ros::Subscriber residentIllsub = n.subscribe<std_msgs::String>("robot_0/ill", 1000, illCallback);
 

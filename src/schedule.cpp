@@ -83,6 +83,7 @@ int main(int argc, char **argv)
 	ros::Publisher resident_acceptCompanionship = n.advertise<project1::move>("robot_0/acceptCompanionship",1000);
 	ros::Publisher resident_goToBed = n.advertise<project1::move>("robot_0/goToBed",1000);
 	ros::Publisher resident_goToAmbulance = n.advertise<project1::move>("robot_0/goToAmbulance",1000);
+	ros::Publisher resident_goToSleep = n.advertise<project1::move>("robot_0/goToSleep",1000);
 
 	// to CookingRobot R1
 	ros::Publisher robot_cooking = n.advertise<project1::move>("robot_1/cooking",1000);
@@ -247,6 +248,7 @@ int main(int argc, char **argv)
 
 		if(count==2200){
 			robot_giveCompanionship.publish(Mo);
+			resident_acceptCompanionship.publish(Mo);
 		}
 
 		if(count==2300){
@@ -289,27 +291,32 @@ int main(int argc, char **argv)
 
 		// sick day
 		if (command == "ill"){
+			if (count == 10) {
+				robot_callDoctor.publish(Mo);
+			}
 
-		if (count == 10) {
-			robot_callDoctor.publish(Mo);
-		}
+			if (count== 60){
+				doctor_visit.publish(Mo);	
+			}
 
-		if (count== 60){
-			doctor_visit.publish(Mo);	
-		}
+			if (count == 75){
+				nurse_visit.publish(Mo);
+						
+			}
+			if (count == 450){
+				resident_takeMedication.publish(Mo);
+				
+			}
 
-		if (count == 75){
-			nurse_visit.publish(Mo);
-					
-		}
-		if (count == 450){
-			resident_takeMedication.publish(Mo);
-		}
+			if (count == 550){
+				resident_goToSleep.publish(Mo);
+			}
 
-		if (count == 900){
-			count=0;
-			ROS_INFO("DAY ENDS");
-		}}
+			if (count == 900){
+				count=0;
+				ROS_INFO("DAY ENDS");
+			}
+		}
 
 		ros::spinOnce();
 
