@@ -271,6 +271,7 @@ void visit(){
 	// Spin to show that the doctor is treating the resident.
 	spin(60);
 	// Leave
+	ROS_INFO("Doctor(r9) leaves the house");
 	navigate(0,3);
 	navigate(3,7.1);
 	navigate(0,10.5);

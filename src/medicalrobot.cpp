@@ -262,13 +262,14 @@ void navigate(int direction, double distance)
 
 //Schedule to call when resident is to take medication
 void giveMedication(){
-	ROS_INFO("Medical robot gives resident medication");
+	ROS_INFO("Medical robot prepares the resident's medication");
 	// Spin to show robot is getting medicine.
 	spin(40);
 	navigate(1,1);
 	navigate(0,1);
 	navigate(1,3);
 	navigate(2,0.6);
+	ROS_INFO("Medical robot gives resident medication");
 	// Spin to show robot is delivering medicine.
 	spin(50);
 	navigate(0,0.6);

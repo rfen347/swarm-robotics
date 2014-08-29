@@ -275,6 +275,7 @@ void visit(){
 	// Spin to show that nurse is treating patient.
 	spin(60);
 	// Leave.
+	ROS_INFO("Nurse(r10) leaves the house");
 	navigate(0,3);
 	navigate(3,6.4);
 	navigate(0,10.5);
