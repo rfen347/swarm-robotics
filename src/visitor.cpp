@@ -265,13 +265,17 @@ void visit(){
 	navigate(2,4);
 	navigate(1,6);
 	navigate(2,1.1);
+	ROS_INFO("visitor(r2) watches TV with the resident");
 	// Spin to show that visitor is watching TV and talking to resident.
 	spin(230);
+	ROS_INFO("visitor(r2) leaves the house");
 	navigate(0,1.1);
 	navigate(3,6);
 	navigate(0,4);
 	navigate(3,4.5);
 	navigate(2,1);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
 void coordinateCallBack(project1::move mo)

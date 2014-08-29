@@ -262,19 +262,22 @@ void navigate(int direction, double distance)
 
 //Schedule to call when resident is to take medication
 void giveMedication(){
-	ROS_INFO("Medical robot gives resident medication");
+	ROS_INFO("Medical robot prepares the resident's medication");
 	// Spin to show robot is getting medicine.
 	spin(40);
 	navigate(1,1);
 	navigate(0,1);
 	navigate(1,3);
 	navigate(2,0.6);
+	ROS_INFO("Medical robot gives resident medication");
 	// Spin to show robot is delivering medicine.
 	spin(50);
 	navigate(0,0.6);
 	navigate(3,3);
 	navigate(2,1);
 	navigate(3,1);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 //Schedule to call when resident is ill and doctor is needed
@@ -284,6 +287,9 @@ void callDoctor(){
 	// Spin to show robot is using the phone.
 	spin(50);
 	navigate(0,0.6);
+	//Set back to original orientation
+	rotateToAngle(0);
+
 }
 
 void callDoctor_callback(project1::move){
@@ -297,14 +303,14 @@ void giveMedication_callback(project1::move){
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
 {	
-	double distance_limit = 0.8;
+	
 	double delta_x;
 	double delta_y;
 	double distance;
 	delta_x = px - mo.x;
 	delta_y = py - mo.y;
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
-	if (distance< distance_limit){
+	if (distance< 0.8){
 		stopMove();
 	}
 }

@@ -289,7 +289,7 @@ void navigate(int direction, double distance)
 
 //Schedule to call when resident is to take a shower
 void helpShower(){
-	ROS_INFO("Caregiver helps resident take a shower");
+	ROS_INFO("Caregiver enters the house");
 
 	navigate(0,1);
 	navigate(1,4.5);
@@ -297,6 +297,7 @@ void helpShower(){
 	navigate(1,2.7);
 	navigate(2,5);
 	navigate(3,2);
+	ROS_INFO("Caregiver helps resident take a shower");
 	// Spin to show that caregiver is helping the resident shower.
 	spin(40);
 
@@ -342,7 +343,9 @@ void giveMoralSupport(){
 	navigate(3,7);
 	navigate(0,2.5);
 	navigate(3,4.5);
-	navigate(2,1);
+	navigate(2,0.5);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 void helpShower_callback(project1::move) {

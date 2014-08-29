@@ -267,15 +267,19 @@ void visit(){
 	navigate(1,6.5);
 	navigate(2,4);
 	navigate(1,6);
-	navigate(2,0.5);
+	navigate(2,0.5);	
+	ROS_INFO("Relative(r8) Talks with the resident");
 	// Spin to show that relative is talking to resident.
-	spin(120);
+	spin(120);	
+	ROS_INFO("Relative(r8) leaves the house");
 	// Leave
 	navigate(0,0.5);
 	navigate(3,6);
 	navigate(0,4);
 	navigate(3,6.5);
 	navigate(2,1.5);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 //Receive co-ordinates from the robot nodes and calculates the distances between them and this robot.
 void coordinateCallback(project1::move mo)

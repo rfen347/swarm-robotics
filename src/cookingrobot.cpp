@@ -263,6 +263,8 @@ void cook() {
 	spin(50);
 	navigate(0,3.1);
 	navigate(1,5);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)
@@ -287,14 +289,14 @@ void cooking_callback(project1::move) {
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
 {	
-	double distance_limit = 0.8;
+	
 	double delta_x;
 	double delta_y;
 	double distance;
 	delta_x = px - mo.x;
 	delta_y = py - mo.y;
 	distance = sqrt(delta_x*delta_x + delta_y*delta_y);
-	if (distance< distance_limit){
+	if (distance< 0.8){
 		stopMove();
 }
 
