@@ -17,12 +17,12 @@ killall R10
 killall R11
 killall R12
 killall stageros
-#killall roscore
+killall roscore
 
 # run roscore in another terminal, it takes so long to run roscore every single time
-#roscore &
+roscore &
 cd project1
-#rosmake
+rosmake
 roscd
 
 rosrun stage_ros stageros project1/world/myworld.world &
@@ -61,5 +61,5 @@ killall R10
 killall R11
 killall R12
 killall stageros
-#killall roscore
+killall roscore
 
