@@ -226,6 +226,40 @@ myRobot( pose [ 6.000 -11.000 0.000 0.000 ] name "r10" color "SeaGreen"
 	size [0.400 0.400 0.400]
 )
 
+# THE SECOND VISITOR (r11)
+myRobot( pose [ 6.000 -13.000 0.000 0.000 ] name "r11" color "Brown"
+	#Pentagon because it's human.
+	block
+	(
+		points 5
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.400 0.400 0.400]
+)
+
+# THE SECOND RELATIVE (r12)
+myRobot( pose [ 6.000 -14.000 0.000 0.000 ] name "r12" color "grey"
+	#Pentagon because it's human.
+	block
+	(
+		points 5
+		point[0] [0 0]
+		point[1] [0 1]
+		point[2] [0.5 1]
+		point[3] [1 0.5]
+		point[4] [0.5 0]
+		z [0 0.5]
+	)
+	#fit shape to this size in meters
+	size [0.400 0.400 0.400]
+)
+
 gui_disable 0
 gui_interval 100
 gui_menu_interval 20

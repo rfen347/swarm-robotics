@@ -40,6 +40,8 @@ rosbuild_add_executable(R7 src/caregiver.cpp)
 rosbuild_add_executable(R8 src/relative.cpp)
 rosbuild_add_executable(R9 src/doctor.cpp)
 rosbuild_add_executable(R10 src/nurse.cpp)
+rosbuild_add_executable(R11 src/friend2.cpp)
+rosbuild_add_executable(R12 src/relative2.cpp)
 
 
 rosbuild_add_gtest(residentTest test/resident.test test/residentTest.cpp)

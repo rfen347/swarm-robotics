@@ -114,6 +114,12 @@ int main(int argc, char **argv)
 
 	// to Nurse R10
 	ros::Publisher nurse_visit = n.advertise<project1::move>("robot_10/visit",1000);
+		
+	// to Friend2 R11
+	ros::Publisher friend2_visit = n.advertise<project1::move>("robot_11/visit",1000);
+	
+	// to Relative2 R12
+	ros::Publisher relative2_visit = n.advertise<project1::move>("robot_12/visit",1000);
 
 	ros::Rate loop_rate(10);
 
@@ -243,6 +249,14 @@ int main(int argc, char **argv)
 
 		if(count==1700){
 			relative_visit.publish(Mo);
+		}
+
+		if(count==1750){
+			friend2_visit.publish(Mo);
+		}
+
+		if(count==1800){
+			relative2_visit.publish(Mo);
 		}
 
 		if(count==2200){
