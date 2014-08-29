@@ -263,6 +263,8 @@ void cook() {
 	spin(50);
 	navigate(0,3.1);
 	navigate(1,5);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 void StageOdom_callback(nav_msgs::Odometry msg)

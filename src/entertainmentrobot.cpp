@@ -262,6 +262,8 @@ void giveEntertainment(){
 	ROS_INFO("Entertainment robot gives resident entertainment");
 	// Spin to show that the entertainment robot is giving entertainment through the TV.
 	spin(590);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 
 

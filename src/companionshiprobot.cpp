@@ -264,6 +264,8 @@ void giveCompanionship(){
 	spin(50); // spin for 5 seconds
 
 	navigate(1,1);
+	//Set back to original orientation
+	rotateToAngle(0);
 }
 //Collision Detection: Receive co-ordinates from the robot nodes and calculates the distances between them and this robot. If the distance is less than the distance limit, stop robot.
 void coordinateCallback(project1::move mo)
